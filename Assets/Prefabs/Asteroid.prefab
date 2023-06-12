@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 2
-  destroyOnCollision: 1
+  health: 1
+  speed: 4
 --- !u!212 &1344349466860986975
 SpriteRenderer:
   m_ObjectHideFlags: 0

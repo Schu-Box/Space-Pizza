@@ -9,6 +9,8 @@ public class ShipModule : MonoBehaviour
     public int damageDealtOnCollision = 5;
 
     public List<ShipSubModule> shipSubModules = new List<ShipSubModule>();
+    
+    private List<ShipModule> neighboringShipModules = new List<ShipModule>();
 
     private Ship ship;
     private SpriteRenderer _spriteRenderer;

@@ -9,21 +9,19 @@ public class HazardManager : MonoBehaviour
    public Transform hazardParent;
    public Asteroid asteroidPrefab;
 
-   public float spawnRadius = 30f;
+   public Vector2 spawnRadiusRange = new Vector2(35f, 55f);
 
    public float spawnRate = 1f;
    private float spawnTimer = 0f;
 
    public void Update()
    {
-      //Instantiate a new asteroid at a random position on the spawn radiuss
-
       spawnTimer += Time.deltaTime;
       if (spawnTimer >= spawnRate)
       {
          spawnTimer = 0f;
-         Vector2 randomPosition = Random.insideUnitCircle.normalized * spawnRadius;
-         Asteroid asteroid = Instantiate(asteroidPrefab, randomPosition, Quaternion.identity, hazardParent).GetComponent<Asteroid>();
+         Vector2 randomPosition = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusRange.x, spawnRadiusRange.y);
+         Asteroid asteroid = Instantiate(asteroidPrefab, transform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Asteroid>();
          asteroid.SetTrajectory(trackedObject.position);
       }
    }

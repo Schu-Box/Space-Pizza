@@ -79,6 +79,14 @@ public class Ship : MonoBehaviour
     public void RemoveShipModule(ShipModule shipModule)
     {
         shipModules.Remove(shipModule);
+        
+        //TODO: Also remove neighboring ship modules that are no longer connected to the core
+
         CaclulcateShipStats();
+    }
+
+    private void RemoveDisconnectedNeighboringShipModules()
+    {
+        
     }
 }
