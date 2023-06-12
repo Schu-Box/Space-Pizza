@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShipModule : MonoBehaviour
 {
     public int health = 1;
+    public int damageDealtOnCollision = 5;
 
     public List<ShipSubModule> shipSubModules = new List<ShipSubModule>();
 
@@ -25,7 +26,7 @@ public class ShipModule : MonoBehaviour
         if (hazard != null)
         {
             HitByHazard(hazard);
-            hazard.HitShipModule();
+            hazard.TakeDamage(1);
         }
     }
 

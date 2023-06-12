@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ShipSubModule : ScriptableObject
+public class ShipSubModule : MonoBehaviour
 {
     
 }

@@ -51,8 +51,7 @@ public class Ship : MonoBehaviour
                     if (subModule is ShipLaser)
                     {
                         ShipLaser shipLaser = subModule as ShipLaser;
-                        Debug.Log("fire");
-                        // shipLaser.FireLaser();
+                        shipLaser.FireLaser();
                     }
                 }
             }

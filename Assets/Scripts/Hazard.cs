@@ -6,10 +6,8 @@ using UnityEngine;
 public class Hazard : MonoBehaviour
 {
     public int damage = 1;
-
+    public int health;
     public float speed = 1f;
-
-    public bool destroyOnCollision = true;
 
     private Rigidbody2D _rb;
 
@@ -30,9 +28,10 @@ public class Hazard : MonoBehaviour
         _rb.velocity = direction * speed;
     }
     
-    public void HitShipModule()
+    public void TakeDamage(int damage)
     {
-        if (destroyOnCollision)
+        health -= damage;
+        if (health <= 0)
         {
             Destroy(this.gameObject);
         }
