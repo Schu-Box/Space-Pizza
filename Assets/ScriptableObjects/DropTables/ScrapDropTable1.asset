@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7f97a5186a9814f96db8eb2afa86c5, type: 3}
+  m_Name: ScrapDropTable1
+  m_EditorClassIdentifier: 
+  drops:
+  - weight: 1
+    prefab: {fileID: 7499066545738407629, guid: 399c3017a750578479e7a780c8d5542d, type: 3}
+  - weight: 1
+    prefab: {fileID: 4902451166476045242, guid: b34add264ed8b2b4a8b7cde8cbbf80d7, type: 3}
+  - weight: 1
+    prefab: {fileID: 4210475436687485880, guid: a5e207f542e0ead46991ca00bb8b63a3, type: 3}
+  - weight: 1
+    prefab: {fileID: 3157790553523162409, guid: fdd28d92ec3dbdb4fa2006ab92585564, type: 3}
