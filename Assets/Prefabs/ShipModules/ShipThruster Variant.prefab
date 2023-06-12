@@ -122,6 +122,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4669488060588372687, guid: 238e251a96269c04db98805fa7d0761e, type: 3}
+      propertyPath: coreModule
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669488060588372687, guid: 238e251a96269c04db98805fa7d0761e, type: 3}
       propertyPath: rotationSpeed
       value: 20
       objectReference: {fileID: 0}

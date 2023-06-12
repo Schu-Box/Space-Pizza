@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ShipModule : MonoBehaviour
 {
+    public bool coreModule = false;
     public int health = 1;
     public int damageDealtOnCollision = 5;
 

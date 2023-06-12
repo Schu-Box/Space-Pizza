@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4669488060588372686}
   - component: {fileID: 4669488060588372685}
   m_Layer: 0
-  m_Name: ShipModule
+  m_Name: ShipCore
   m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9676eb42ff24714fa7da4821d8e410a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coreModule: 1
   health: 2
+  damageDealtOnCollision: 5
+  shipSubModules: []
 --- !u!212 &4669488060588372686
 SpriteRenderer:
   m_ObjectHideFlags: 0

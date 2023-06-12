@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c564bd1f5c2b8f449ec28c41f8a4017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 0}
+  laser: {fileID: 0}
+  laserDuration: 0.1
+  laserCooldownDuration: 2
 --- !u!1001 &8089660449451809542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,6 +54,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 739992083282933777, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2899191395196209696, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}
       propertyPath: m_Color.b
       value: 0.98358655
@@ -59,6 +65,10 @@ PrefabInstance:
     - target: {fileID: 2899191395196209696, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}
       propertyPath: m_Color.g
       value: 0.654902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899191395196209697, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}
+      propertyPath: coreModule
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2899191395196209697, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}
       propertyPath: shipSubModules.Array.size
@@ -114,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2899191395196209701, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}
       propertyPath: m_Name
-      value: ShipLaser
+      value: ShipLaser Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 257bb903344ff1b4499086ab49ded90f, type: 3}

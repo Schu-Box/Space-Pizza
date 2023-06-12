@@ -56,6 +56,21 @@ public class Ship : MonoBehaviour
                 }
             }
         }
+
+        // if (Input.GetButtonDown("Fire2"))
+        // {
+        //     foreach (ShipModule shipModule in shipModules)
+        //     {
+        //         foreach (ShipSubModule subModule in shipModule.shipSubModules)
+        //         {
+        //             if (subModule is ShipShield)
+        //             {
+        //                 ShipShield shipShield = subModule as ShipShield;
+        //                 shipShield.TriggerShield();
+        //             }
+        //         }
+        //     }
+        // }
     }
     
     public void CaclulcateShipStats()
@@ -79,14 +94,26 @@ public class Ship : MonoBehaviour
     public void RemoveShipModule(ShipModule shipModule)
     {
         shipModules.Remove(shipModule);
-        
-        //TODO: Also remove neighboring ship modules that are no longer connected to the core
 
+        if (shipModule.coreModule)
+        {
+            DestroyShip();
+            return;
+        }
+        
+        RemoveDisconnectedNeighboringShipModules();
         CaclulcateShipStats();
+    }
+    
+    private void DestroyShip()
+    {
+        Destroy(gameObject);
+        
+        //TODO: Call game over script in GameManager
     }
 
     private void RemoveDisconnectedNeighboringShipModules()
     {
-        
+        //TODO: Iterate through all ship modules and remove any that are not connected to the core module
     }
 }
