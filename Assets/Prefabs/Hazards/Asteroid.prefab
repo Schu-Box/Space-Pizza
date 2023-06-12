@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   health: 1
-  speed: 4
+  speedRange: {x: 3, y: 8}
 --- !u!212 &1344349466860986975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5943396, g: 0.37134254, b: 0.15363115, a: 1}
+  m_Color: {r: 0.6226415, g: 0.5531137, b: 0.53688145, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -18,6 +19,8 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        if (trackedObject == null) return;
+        
         if (Vector2.Distance(transform.position, trackedObject.position) > followThresholdRadius)
         {
             Vector3 newTargetPosition = new Vector3(trackedObject.position.x, trackedObject.position.y, _cameraZDistance);

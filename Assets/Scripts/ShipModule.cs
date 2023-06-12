@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipModule : MonoBehaviour
@@ -11,11 +12,13 @@ public class ShipModule : MonoBehaviour
 
     public List<ShipSubModule> shipSubModules = new List<ShipSubModule>();
     
-    private List<ShipModule> neighboringShipModules = new List<ShipModule>();
+    private List<ShipModule> _neighboringShipModules = new List<ShipModule>();
 
     private Ship ship;
     private SpriteRenderer _spriteRenderer;
-    
+
+    private Coroutine _explosionCoroutine;
+
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -54,7 +57,28 @@ public class ShipModule : MonoBehaviour
 
     private void DestroyShipModule()
     {
-        Destroy(gameObject);
-        ship.RemoveShipModule(this);
+        if (_explosionCoroutine == null)
+        {
+            ship.RemoveShipModule(this);
+
+            _explosionCoroutine = StartCoroutine(ExplosionCoroutine());
+        }
+        else
+        {
+            Debug.LogWarning("Explosion is triggered but this thang is already exploding");
+        }
+      
     }
+
+    public IEnumerator ExplosionCoroutine()
+    {
+        transform.SetParent(null);
+        gameObject.AddComponent<Rigidbody2D>();
+        
+        //TODO: Apply force
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        Destroy(gameObject);
+    } 
 }

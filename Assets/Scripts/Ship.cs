@@ -109,7 +109,7 @@ public class Ship : MonoBehaviour
     {
         Destroy(gameObject);
         
-        //TODO: Call game over script in GameManager
+        InterfaceManager.Instance.DisplayGameOver();
     }
 
     private void RemoveDisconnectedNeighboringShipModules()

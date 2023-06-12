@@ -7,7 +7,8 @@ public class HazardManager : MonoBehaviour
    public Transform trackedObject;
    
    public Transform hazardParent;
-   public Asteroid asteroidPrefab;
+   public Hazard asteroidPrefab;
+   public Hazard coinPrefab;
 
    public Vector2 spawnRadiusRange = new Vector2(35f, 55f);
 
@@ -21,8 +22,20 @@ public class HazardManager : MonoBehaviour
       {
          _spawnTimer = 0f;
          Vector2 randomPosition = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusRange.x, spawnRadiusRange.y);
-         Asteroid asteroid = Instantiate(asteroidPrefab, transform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Asteroid>();
-         asteroid.SetTrajectory(trackedObject.position);
+
+         Hazard hazardPrefab;
+         float randomValue = Random.value;
+         if (randomValue < 0.25f)
+         {
+            hazardPrefab = coinPrefab;
+         }
+         else
+         {
+            hazardPrefab = asteroidPrefab;
+         }
+         
+         Hazard hazardObject = Instantiate(hazardPrefab, transform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Hazard>();
+         hazardObject.SetTrajectory(trackedObject.position);
       }
    }
 }

@@ -1,24 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour
 {
+    public static InterfaceManager Instance;
+    
     public TextMeshProUGUI jumpDriveChargeText;
     public Slider jumpDriveChargeSlider;
+    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI coinCountText;
 
-    public float jumpDriveChargeDuration = 30f;
+    private float jumpDriveChargeDuration = 90f;
     private float jumpDriveChargeTimer = 0f;
 
     private bool jumpDriveReady = false;
+    private int coinCount = 0;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        Instance = this;
+        
+        gameOverText.gameObject.SetActive(false);
+    }
+
     void Update()
     {
         if (!jumpDriveReady)
-        { jumpDriveChargeTimer += Time.deltaTime;
+        { 
+            jumpDriveChargeTimer += Time.deltaTime;
 
             jumpDriveChargeSlider.value = jumpDriveChargeTimer / jumpDriveChargeDuration;
         
@@ -27,11 +41,34 @@ public class InterfaceManager : MonoBehaviour
                 JumpDriveReady();
             }
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public void AddCoin(int coins)
+    {
+        coinCount += coins;
+        coinCountText.text = "Coins: " + coinCount;
     }
 
     private void JumpDriveReady()
     {
         jumpDriveReady = true;
         jumpDriveChargeText.text = "Jump Drive Ready!";
+    }
+
+    public void DisplayGameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+        gameOverText.text = "Game Over";
+    }
+
+    public void DisplaySuccess()
+    {
+        gameOverText.gameObject.SetActive(true);
+        gameOverText.text = "Success!";
     }
 }
