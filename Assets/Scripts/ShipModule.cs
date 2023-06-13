@@ -26,18 +26,20 @@ public class ShipModule : MonoBehaviour
         ship = GetComponentInParent<Ship>();
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        Hazard hazard = other.gameObject.GetComponent<Hazard>();
-        if (hazard != null)
-        {
-            HitByHazard(hazard);
-            hazard.TakeDamage(1);
-        }
-    }
+    // public void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     Hazard hazard = other.gameObject.GetComponent<Hazard>();
+    //     if (hazard != null)
+    //     {
+    //         HitByHazard(hazard);
+    //         hazard.TakeDamage(1);
+    //     }
+    // }
 
     public void HitByHazard(Hazard hazard)
     {
+        hazard.TakeDamage(damageDealtOnCollision);
+        
         health -= hazard.damage;
         
         if (health <= 0)

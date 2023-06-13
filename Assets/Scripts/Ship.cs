@@ -32,7 +32,8 @@ public class Ship : MonoBehaviour
     {
         if (addForceMovement)
         {
-            rb.AddForce(transform.up * (Input.GetAxis("Vertical") * speed / 10f));
+            float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
+            rb.AddForce(transform.up * (forwardInput * speed) / 10f);
         }
         else
         {
