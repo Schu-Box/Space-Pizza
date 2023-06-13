@@ -1,8 +1,9 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 public class ShipLaser : ShipSubModule
 { 
-    public GameObject laser;
+    public Laser laserPrefab;
     public int laserDamage = 1;
     public float laserDuration = 0.1f;
     public float laserCooldownDuration = 2f;
@@ -20,20 +21,28 @@ public class ShipLaser : ShipSubModule
     
     public void FireLaser()
     {
-        if (_laserCoroutine == null && _laserCooldownTimeRemaining <= 0f)
+        
+        if(_laserCooldownTimeRemaining > 0f)
         {
-            StartCoroutine(FireLaserCoroutine());
+            return;
         }
+
+        Debug.Log("fire!");
+        
+        _laserCooldownTimeRemaining = laserCooldownDuration;
+
+        Laser laser = Instantiate(laserPrefab, transform.position, Quaternion.identity).GetComponent<Laser>();
+        laser.Fire(this);
     }
     
-    private IEnumerator FireLaserCoroutine()
-    {
-        _laserCooldownTimeRemaining = laserCooldownDuration;
-        
-        laser.SetActive(true);
-        yield return new WaitForSeconds(laserDuration);
-        laser.SetActive(false);
-        
-        _laserCoroutine = null;
-    }
+    // private IEnumerator FireLaserCoroutine()
+    // {
+    //     _laserCooldownTimeRemaining = laserCooldownDuration;
+    //     
+    //     laser.SetActive(true);
+    //     yield return new WaitForSeconds(laserDuration);
+    //     laser.SetActive(false);
+    //     
+    //     _laserCoroutine = null;
+    // }
 }

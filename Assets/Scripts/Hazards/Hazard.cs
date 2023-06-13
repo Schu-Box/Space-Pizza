@@ -50,6 +50,13 @@ public class Hazard : MonoBehaviour
         {
             shipModule.HitByHazard(this);
         }
+
+        Laser laser = other.gameObject.GetComponent<Laser>();
+        if (laser != null)
+        {
+            TakeDamage(laser.damage);
+            laser.DestroyLaser();
+        }
     }
 
     public void TakeDamage(int damage)

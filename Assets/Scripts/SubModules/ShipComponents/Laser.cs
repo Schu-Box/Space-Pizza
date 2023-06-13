@@ -4,14 +4,43 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public ShipLaser shipLaser;
+    public float speed = 30f;
+    [HideInInspector] public int damage;
+
+    private Rigidbody2D _rigidbody;
     
-    public void OnTriggerEnter2D(Collider2D other)
+    void Start()
     {
-        Hazard hazard = other.gameObject.GetComponent<Hazard>();
-        if (hazard != null)
-        {
-            hazard.TakeDamage(shipLaser.laserDamage);
-        }
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
+
+    public void Fire(ShipLaser shipLaser)
+    {
+        if(_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+        
+        damage = shipLaser.laserDamage;
+        
+        transform.eulerAngles = shipLaser.transform.eulerAngles;
+        
+        _rigidbody.velocity = transform.up * speed;
+    }
+    
+    public void DestroyLaser()
+    {
+        Destroy(gameObject);
+    }
+    
+    // public void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     Hazard hazard = other.gameObject.GetComponent<Hazard>();
+    //     if (hazard != null)
+    //     {
+    //         Debug.Log("laser hit!");
+    //         
+    //         hazard.TakeDamage(_shipLaser.laserDamage);
+    //     }
+    // }
 }

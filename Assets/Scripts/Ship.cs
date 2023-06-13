@@ -43,7 +43,7 @@ public class Ship : MonoBehaviour
         rb.angularVelocity = -Input.GetAxis("Horizontal") * rotationSpeed;
 
         //TODO: Refactor, this is gross
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             foreach (ShipModule shipModule in shipModules)
             {
