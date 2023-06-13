@@ -32,11 +32,10 @@ public class Ship : MonoBehaviour
         DontDestroyOnLoad(rootTransform);
         
         rb = rootTransform.GetComponent<Rigidbody2D>();
-        
-        foreach (Transform child in rootTransform)
+
+        foreach (ShipModule shipModule in rootTransform.GetComponentsInChildren<ShipModule>())
         {
-            ShipModule shipModule = child.GetComponent<ShipModule>();
-            if (shipModule != null && child.gameObject.activeSelf)
+            if (shipModule != null && shipModule.gameObject.activeInHierarchy)
             {
                 AddModule(shipModule);
             }
