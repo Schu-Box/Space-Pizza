@@ -139,8 +139,6 @@ public class ShipModule : MonoBehaviour
 
     public IEnumerator ExplosionCoroutine()
     {
-        Debug.Log("HET");
-        
         rootTransform.SetParent(null);
         rootTransform.gameObject.AddComponent<Rigidbody2D>();
 

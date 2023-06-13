@@ -49,6 +49,7 @@ public class Hazard : MonoBehaviour
         if (shipModule != null)
         {
             shipModule.HitByHazard(this);
+            return;
         }
 
         Laser laser = other.gameObject.GetComponent<Laser>();
@@ -56,6 +57,14 @@ public class Hazard : MonoBehaviour
         {
             TakeDamage(laser.damage);
             laser.DestroyLaser();
+            return;
+        }
+
+        ShipShield shipShield = other.gameObject.GetComponent<ShipShield>();
+        if (shipShield != null)
+        {
+            TakeDamage(shipShield.damageDealtOnCollision);
+            shipShield.AbsorbDamage(damage);
         }
     }
 

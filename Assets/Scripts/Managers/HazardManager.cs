@@ -33,6 +33,11 @@ public class HazardManager : MonoBehaviour
             hazardPrefab = asteroidPrefab;
          }
          
+         if(ShipManager.Current.PlayerShip == null)
+         {
+            return;
+         }
+         
          Hazard hazardObject = Instantiate(hazardPrefab, transform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Hazard>();
          hazardObject.SetTrajectory(ShipManager.Current.PlayerShip.RootTransform.position);
       }
