@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   health: 1
-  speedRange: {x: 0, y: 2}
+  speedRange: {x: 0, y: 0}
 --- !u!212 &1344349466860986975
 SpriteRenderer:
   m_ObjectHideFlags: 0

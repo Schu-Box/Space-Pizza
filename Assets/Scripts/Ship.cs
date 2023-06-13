@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour
         foreach (Transform child in transform)
         {
             ShipModule shipModule = child.GetComponent<ShipModule>();
-            if (shipModule != null)
+            if (shipModule != null && child.gameObject.activeSelf)
             {
                 shipModules.Add(shipModule);
             }
