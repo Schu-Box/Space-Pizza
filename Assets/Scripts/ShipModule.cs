@@ -54,8 +54,6 @@ public class ShipModule : MonoBehaviour
         {
             string row = rows[i];
 
-            Debug.LogError(row);
-
             int parsedValidSymbols = 0;
 
             for (int j = 0; j < row.Length; j++)
@@ -66,8 +64,6 @@ public class ShipModule : MonoBehaviour
                 {
                     continue;
                 }
-
-                Debug.LogError($"symbol at ({i}, {parsedValidSymbols}): {symbol}");
 
                 if (symbol == '1')
                 {
@@ -88,13 +84,6 @@ public class ShipModule : MonoBehaviour
             {
                 rowString += Shape[i, j];
             }
-
-            Debug.LogError($"Shape at row {i}: {rowString}");
-        }
-
-        foreach ((int, int) valueTuple in ShapeAsList)
-        {
-            Debug.LogError($"Shape occupying space at ({valueTuple.Item1}, {valueTuple.Item2})");
         }
     }
 
@@ -152,13 +141,13 @@ public class ShipModule : MonoBehaviour
     {
         Debug.Log("HET");
         
-        transform.SetParent(null);
-        gameObject.AddComponent<Rigidbody2D>();
+        rootTransform.SetParent(null);
+        rootTransform.gameObject.AddComponent<Rigidbody2D>();
 
         //TODO: Apply force
 
         yield return new WaitForSeconds(0.5f);
 
-        Destroy(gameObject);
+        Destroy(rootTransform.gameObject);
     }
 }

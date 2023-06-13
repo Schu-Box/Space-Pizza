@@ -157,8 +157,6 @@ namespace Managers
                 {
                     if (shape[i, j] != 0)
                     {
-                        Debug.LogError($"Shape of {placedModule.name} has an element at" +
-                                       $" ({i}, {j})", placedModule);
                         occupiedSpaces[row + i, column + j] = placedModule;
                     }
                 }
