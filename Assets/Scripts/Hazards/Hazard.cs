@@ -16,6 +16,7 @@ public class Hazard : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     public Collider2D collider;
+    public ParticleSystem destructionParticles;
     
     private Rigidbody2D _rigidbody;
 
@@ -65,6 +66,7 @@ public class Hazard : MonoBehaviour
         {
             TakeDamage(shipShield.damageDealtOnCollision);
             shipShield.AbsorbDamage(damage);
+            return;
         }
     }
 
@@ -81,6 +83,11 @@ public class Hazard : MonoBehaviour
     {
         collider.enabled = false;
         _rigidbody.velocity = Vector2.zero;
+        spriteRenderer.gameObject.SetActive(false);
+        if (destructionParticles != null)
+        {
+            destructionParticles.gameObject.SetActive(true);
+        }
         
         StartCoroutine(DestroyHazardCoroutine());
     }

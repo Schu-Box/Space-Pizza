@@ -20,6 +20,8 @@ public class Ship : MonoBehaviour
     private float speed = 0f;
     private float rotationSpeed = 0f;
 
+    private bool isThrusting = false;
+
     private List<ShipModule> shipModules = new List<ShipModule>();
 
     private void Awake()
@@ -43,13 +45,55 @@ public class Ship : MonoBehaviour
 
         CaclulcateShipStats();
     }
+    
+    //TODO: Refactor shipModule searching (maybe just have a shared formula?)
 
     void Update()
     {
         if (addForceMovement)
         {
             float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
-            rb.AddForce(transform.up * (forwardInput * speed) / 10f);
+            if (forwardInput > 0f)
+            {
+                rb.AddForce(transform.up * (forwardInput * speed) / 10f);
+
+                if (!isThrusting)
+                {
+                    isThrusting = true;
+                    //Activate all shipModules that are thrusters
+                    foreach (ShipModule shipModule in shipModules)
+                    {
+                        foreach (ShipSubModule subModule in shipModule.shipSubModules)
+                        {
+                            if (subModule is ShipThruster)
+                            {
+                                ShipThruster shipThruster = subModule as ShipThruster;
+                                shipThruster.EnableParticles(true);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isThrusting)
+                {
+                    isThrusting = false;
+                    
+                    //Deactivate all shipModules that are thrusters
+                    foreach (ShipModule shipModule in shipModules)
+                    {
+                        foreach (ShipSubModule subModule in shipModule.shipSubModules)
+                        {
+                            if (subModule is ShipThruster)
+                            {
+                                ShipThruster shipThruster = subModule as ShipThruster;
+                                shipThruster.EnableParticles(false);
+                            }
+                        }
+                    }
+                }
+            }
         }
         else
         {
