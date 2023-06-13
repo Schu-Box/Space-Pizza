@@ -11,13 +11,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipLaser Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665084, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665084, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665084, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665084, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 542145720985665085, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 542145720985665085, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665085, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 542145720985665085, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -59,13 +79,74 @@ PrefabInstance:
       propertyPath: coreModule
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665087, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 73ac5ff1adae70b4bbfe2aca6facbbbf, type: 3}
+    - target: {fileID: 542145720985665087, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665087, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542145720985665087, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d1f16bf3c27f0746be9546426c5b51b, type: 2}
+    - target: {fileID: 1197272183435976577, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4827828562036870477, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 40
+      value: 39.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827828562036870477, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4827828562036870477, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.25
+      value: 20.4794
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 542145720985665084, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+--- !u!1 &4598878001343235585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 542145720985665082, guid: b100bb70fd08aa54284bb5f9b1da671c, type: 3}
+  m_PrefabInstance: {fileID: 4058985179970353211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &3731317175773431008
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598878001343235585}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1, y: 1}
+      - {x: -1, y: -1}
+      - {x: 1, y: -1}
+      - {x: 0.98476684, y: 0.03382069}
+      - {x: -0.45868468, y: 0.062414527}
+      - {x: -0.46796632, y: 0.98476696}
