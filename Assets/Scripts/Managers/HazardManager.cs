@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class HazardManager : MonoBehaviour
 {
-   public Transform trackedObject;
-   
    public Transform hazardParent;
    public Hazard asteroidPrefab;
    public Hazard coinPrefab;
@@ -35,7 +34,7 @@ public class HazardManager : MonoBehaviour
          }
          
          Hazard hazardObject = Instantiate(hazardPrefab, transform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Hazard>();
-         hazardObject.SetTrajectory(trackedObject.position);
+         hazardObject.SetTrajectory(ShipManager.Current.PlayerShip.RootTransform.position);
       }
    }
 }

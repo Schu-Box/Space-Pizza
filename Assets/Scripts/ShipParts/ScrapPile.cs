@@ -19,7 +19,7 @@ public class ScrapPile : MonoBehaviour
 
         GameObject scrapObject = Instantiate(selectedScrapPrefab, Vector3.zero, Quaternion.identity);
 
-        ShipPart instantiatedPart = scrapObject.GetComponentInChildren<ShipPart>();
+        ShipModule instantiatedPart = scrapObject.GetComponentInChildren<ShipModule>();
 
         if (instantiatedPart == null)
         {

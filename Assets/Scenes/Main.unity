@@ -1477,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &782299724
 Rigidbody2D:
   serializedVersion: 4
@@ -1511,6 +1511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3269a63e0f0bb314d9c9ed16378b8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootTransform: {fileID: 0}
+  moduleParent: {fileID: 0}
   addForceMovement: 1
 --- !u!4 &782299727
 Transform:
@@ -1524,7 +1526,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1333276331}
   - {fileID: 2019030204}
   - {fileID: 6194942173933363152}
   - {fileID: 1455270204}
@@ -2257,7 +2258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2abd2cdcf43554a90c4a1833618a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObject: {fileID: 782299727}
   hazardParent: {fileID: 1590861190}
   asteroidPrefab: {fileID: 1344349466860986968, guid: 18832143323cea043ba5a5b9ad395ff6, type: 3}
   coinPrefab: {fileID: 5863432961061354667, guid: 0cd52f25c9c370c439292d84fd00d88e, type: 3}
@@ -2271,11 +2271,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333276329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.8121858, y: 1.4030719, z: 0.036560494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 782299727}
+  m_Father: {fileID: 1590861190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359037405
@@ -2427,6 +2427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3269a63e0f0bb314d9c9ed16378b8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootTransform: {fileID: 0}
+  moduleParent: {fileID: 0}
   addForceMovement: 0
 --- !u!1 &1369897784
 GameObject:
@@ -2692,7 +2694,8 @@ Transform:
   m_LocalPosition: {x: -3.8121858, y: -1.4030719, z: -0.036560494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1333276331}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

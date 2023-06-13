@@ -26,9 +26,9 @@ namespace Managers
         
         [SerializeField] private int areaStartY = 0;
 
-        private Dictionary<ShipPart, List<(int, int)>> occupiedSpacesByPart = new();
+        private Dictionary<ShipModule, List<(int, int)>> occupiedSpacesByPart = new();
 
-        private ShipPart[,] occupiedSpaces;
+        private ShipModule[,] occupiedSpaces;
 
         private List<(int, int)> validNeighborPositions = new List<(int, int)>
         {
@@ -38,15 +38,15 @@ namespace Managers
             (1, 0)
         };
 
-        private void Awake()
+        private void Start()
         {
-            occupiedSpaces = new ShipPart[constructionAreaHeight,constructionAreaWidth];
+            occupiedSpaces = new ShipModule[constructionAreaHeight,constructionAreaWidth];
 
             Vector3 coreGridPosition = corePosition.GridPosition();
             
             GameObject shipCore = Instantiate(shipCorePrefab, coreGridPosition, Quaternion.identity);
 
-            ShipPart coreLogic = shipCore.GetComponentInChildren<ShipPart>();
+            ShipModule coreLogic = shipCore.GetComponentInChildren<ShipModule>();
 
             if (coreLogic == null)
             {
@@ -57,7 +57,7 @@ namespace Managers
             PlacePart(coreGridPosition, coreLogic);
         }
 
-        public bool CanBePlaced(Vector3 position, ShipPart partToPlace)
+        public bool CanBePlaced(Vector3 position, ShipModule partToPlace)
         {
             ConvertPositionToIndices(position, out int row, out int column);
 
@@ -139,11 +139,11 @@ namespace Managers
             row = (Mathf.RoundToInt(position.y) - areaStartY) * -1;
         }
 
-        public void PlacePart(Vector3 partPosition, ShipPart placedPart)
+        public void PlacePart(Vector3 partPosition, ShipModule placedModule)
         {
             ConvertPositionToIndices(partPosition, out int row, out int column);
 
-            int[,] shape = placedPart.Shape;
+            int[,] shape = placedModule.Shape;
             
             for(int i = 0; i < shape.GetLength(0); i++)
             {
@@ -151,13 +151,14 @@ namespace Managers
                 {
                     if (shape[i, j] != 0)
                     {
-                        Debug.LogError($"Shape of {placedPart.name} has an element at" +
-                                       $" ({i}, {j})", placedPart);
-                        occupiedSpaces[row + i, column + j] = placedPart;
+                        Debug.LogError($"Shape of {placedModule.name} has an element at" +
+                                       $" ({i}, {j})", placedModule);
+                        occupiedSpaces[row + i, column + j] = placedModule;
                     }
                 }
             }
 
+            ShipManager.Current.PlayerShip.AddModule(placedModule);
             // PrintArray();
         }
 

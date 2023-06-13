@@ -6,7 +6,7 @@ namespace ShipParts
 {
     public class PartSelector: MonoBehaviour
     {
-        [SerializeField] private ShipPart _shipPart;
+        [SerializeField] private ShipModule _shipPart;
 
         private void OnMouseDown()
         {
