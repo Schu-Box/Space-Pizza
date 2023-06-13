@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 using ShipParts;
 
@@ -8,24 +9,52 @@ namespace Managers
     public class ConstructionManager: MonoBehaviour
     {
         public static ConstructionManager Current => GameManager.Instance.ReferenceProvider.ConstructionManager;
+
+        [SerializeField] 
+        private GameObject shipCorePrefab;
+
+        [SerializeField] 
+        private Vector3 corePosition;
         
         [SerializeField] 
         private int constructionAreaWidth = 64;
         
         [SerializeField] 
         private int constructionAreaHeight = 64;
-
-        [SerializeField] private int areaStartY = 0;
-
+        
         [SerializeField] private int areaStartX = 0;
+        
+        [SerializeField] private int areaStartY = 0;
 
         private Dictionary<ShipPart, List<(int, int)>> occupiedSpacesByPart = new();
 
         private ShipPart[,] occupiedSpaces;
 
+        private List<(int, int)> validNeighborPositions = new List<(int, int)>
+        {
+            (-1, 0),
+            (0, -1),
+            (0, 1),
+            (1, 0)
+        };
+
         private void Awake()
         {
             occupiedSpaces = new ShipPart[constructionAreaHeight,constructionAreaWidth];
+
+            Vector3 coreGridPosition = corePosition.GridPosition();
+            
+            GameObject shipCore = Instantiate(shipCorePrefab, coreGridPosition, Quaternion.identity);
+
+            ShipPart coreLogic = shipCore.GetComponentInChildren<ShipPart>();
+
+            if (coreLogic == null)
+            {
+                Debug.LogError($"[ConstructionManager] The ship core prefab is missing a ship" +
+                               $" part component!");
+            }
+            
+            PlacePart(coreGridPosition, coreLogic);
         }
 
         public bool CanBePlaced(Vector3 position, ShipPart partToPlace)
@@ -42,25 +71,66 @@ namespace Managers
                 return false;
             }
 
-            int[,] shape = partToPlace.Shape;
+            bool isShapeConnectedToExistingPart = false;
             
-            for(int i = 0; i < shape.GetLength(0); i++)
+            List<(int, int)> shapeInformation = partToPlace.ShapeAsList;
+
+            foreach ((int, int) takenPosition in shapeInformation)
             {
-                for (int j = 0; j < shape.GetLength(1); j++)
+                int shapeRow = row + takenPosition.Item1;
+                int shapeColumn = column + takenPosition.Item2;
+                
+                if (occupiedSpaces[shapeRow, shapeColumn] != null)
                 {
-                    if (shape[i, j] != 0 &&
-                        occupiedSpaces[row + i, column + j] != null)
+                    return false;
+                }
+
+                if (isShapeConnectedToExistingPart)
+                {
+                    continue;
+                }
+
+                foreach ((int, int) validNeighborPosition in validNeighborPositions)
+                {
+                    int neighborRow = shapeRow + validNeighborPosition.Item1;
+                    int neighborColumn = shapeColumn + validNeighborPosition.Item2;
+
+                    if (neighborRow < 0 || neighborRow >= constructionAreaHeight)
                     {
-                        Debug.LogError($"Cannot be placed at ({row}, {column}) because shape part" +
-                                       $" ({i}, {j}) is overlapping the occupied space" +
-                                       $" ({row + i}, {column + j})");
+                        continue;
+                    }
                         
-                        return false;
+                    if (neighborColumn < 0 || neighborColumn >= constructionAreaWidth)
+                    {
+                        continue;
+                    }
+
+                    if (occupiedSpaces[neighborRow, neighborColumn] != null)
+                    {
+                        // there is an existing part of the ship next to this part of the shape :)
+                        isShapeConnectedToExistingPart = true;
+                        break;
                     }
                 }
             }
+            
+            // for(int i = 0; i < shape.GetLength(0); i++)
+            // {
+            //     for (int j = 0; j < shape.GetLength(1); j++)
+            //     {
+            //         if (shape[i, j] != 0 &&
+            //             occupiedSpaces[row + i, column + j] != null)
+            //         {
+            //             Debug.LogError($"Cannot be placed at ({row}, {column}) because shape part" +
+            //                            $" ({i}, {j}) is overlapping the occupied space" +
+            //                            $" ({row + i}, {column + j})");
+            //             
+            //             return false;
+            //         }
+            //     }
+            // }
 
-            return true;
+            return isShapeConnectedToExistingPart;
         }
 
         private void ConvertPositionToIndices(Vector3 position, out int row, out int column)
@@ -88,7 +158,7 @@ namespace Managers
                 }
             }
 
-            PrintArray();
+            // PrintArray();
         }
 
         private void PrintArray()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShipParts
@@ -15,9 +16,9 @@ namespace ShipParts
 
         [SerializeField] private ShipModuleDefinition _moduleDefinition;
 
-        private int[,] shape = new int[5,5];
-
-        public int[,] Shape => shape;
+        public int[,] Shape { get; }= new int[5,5];
+        
+        public List<(int, int)> ShapeAsList { get; }= new ();
 
         private void Awake()
         {
@@ -52,22 +53,29 @@ namespace ShipParts
                     if(symbol == '1')
                     {
                         Shape[i, parsedValidSymbols] = 1;
+                        ShapeAsList.Add((i, parsedValidSymbols));
                     }
 
                     parsedValidSymbols += 1;
                 }
             }
 
-            for (int i = 0; i < shape.GetLength(0); i++)
+            // TODO debug only, delete if things seem to work
+            for (int i = 0; i < Shape.GetLength(0); i++)
             {
                 string rowString = "";
                 
-                for (int j = 0; j < shape.GetLength(1); j++)
+                for (int j = 0; j < Shape.GetLength(1); j++)
                 {
-                    rowString += shape[i, j];
+                    rowString += Shape[i, j];
                 }
                 
                 Debug.LogError($"Shape at row {i}: {rowString}");
+            }
+
+            foreach ((int, int) valueTuple in ShapeAsList)
+            {
+                Debug.LogError($"Shape occupying space at ({valueTuple.Item1}, {valueTuple.Item2})");
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Helpers;
 using ShipParts;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -34,9 +35,7 @@ namespace Managers
 
             Vector3 objectPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            objectPosition.x = Mathf.RoundToInt(objectPosition.x);
-            objectPosition.y = Mathf.RoundToInt(objectPosition.y);
-            objectPosition.z = 0;
+            objectPosition = objectPosition.GridPosition();
             
             _currentlyDraggedPart.RootTransform.position = objectPosition;
 

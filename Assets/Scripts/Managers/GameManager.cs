@@ -22,6 +22,7 @@ namespace Managers
             }
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

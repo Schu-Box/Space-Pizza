@@ -197,7 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8497ed78dd9b4c50aedbf718372c28bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipCorePrefab: {fileID: 7499066545738407629, guid: 399c3017a750578479e7a780c8d5542d, type: 3}
+  corePosition: {x: 0, y: 0, z: 0}
   constructionAreaWidth: 64
   constructionAreaHeight: 64
-  areaStartY: 2
-  areaStartX: -7
+  areaStartX: -17
+  areaStartY: 5
