@@ -1,30 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    [SerializeField]
+    private Transform rootTransform;
+
+    public Transform RootTransform => rootTransform;
+
+    [SerializeField]
+    private Transform moduleParent;
+    
     private Rigidbody2D rb;
     public bool addForceMovement = false;
 
     private float speed = 0f;
     private float rotationSpeed = 0f;
-    
+
     private List<ShipModule> shipModules = new List<ShipModule>();
-    
+
+    private void Awake()
+    {
+        ShipManager.Current.RegisterShip(this);
+    }
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        DontDestroyOnLoad(rootTransform);
         
-        foreach (Transform child in transform)
+        rb = rootTransform.GetComponent<Rigidbody2D>();
+        
+        foreach (Transform child in rootTransform)
         {
             ShipModule shipModule = child.GetComponent<ShipModule>();
             if (shipModule != null && child.gameObject.activeSelf)
             {
-                shipModules.Add(shipModule);
+                AddModule(shipModule);
             }
         }
-        
+
         CaclulcateShipStats();
     }
 
@@ -72,6 +89,43 @@ public class Ship : MonoBehaviour
         //     }
         // }
     }
+
+    private void OnDestroy()
+    {
+        foreach (ShipModule shipModule in shipModules)
+        {
+            shipModule.ModuleDestroyedEvent -= RemoveModule;
+        }
+    }
+
+    public void AddModule(ShipModule shipModule)
+    {
+        if (shipModules.Contains(shipModule))
+        {
+            return;
+        }
+
+        shipModule.ModuleDestroyedEvent += RemoveModule;
+        shipModules.Add(shipModule);
+
+        shipModule.RootTransform.parent = moduleParent;
+        CaclulcateShipStats();
+    }
+    
+    public void RemoveModule(ShipModule shipModule)
+    {
+        shipModule.ModuleDestroyedEvent -= RemoveModule;
+        shipModules.Remove(shipModule);
+
+        if (shipModule.coreModule)
+        {
+            DestroyShip();
+            return;
+        }
+
+        RemoveDisconnectedNeighboringShipModules();
+        CaclulcateShipStats();
+    }
     
     public void CaclulcateShipStats()
     {
@@ -91,19 +145,7 @@ public class Ship : MonoBehaviour
         }
     }
     
-    public void RemoveShipModule(ShipModule shipModule)
-    {
-        shipModules.Remove(shipModule);
-
-        if (shipModule.coreModule)
-        {
-            DestroyShip();
-            return;
-        }
-        
-        RemoveDisconnectedNeighboringShipModules();
-        CaclulcateShipStats();
-    }
+    
     
     private void DestroyShip()
     {

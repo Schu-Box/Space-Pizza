@@ -10,11 +10,11 @@ namespace Managers
     {
         public static DragAndDropManager Current => GameManager.Instance.ReferenceProvider.DragAndDropManager;
         
-        private ShipPart _currentlyDraggedPart = null;
+        private ShipModule _currentlyDraggedPart = null;
 
         private bool startedDraggingThisFrame = false;
 
-        public void StartDragging(ShipPart objectToDrag)
+        public void StartDragging(ShipModule objectToDrag)
         {
             if (_currentlyDraggedPart != null)
             {
@@ -41,7 +41,7 @@ namespace Managers
 
             bool canBePlaced = ConstructionManager.Current.CanBePlaced(objectPosition, _currentlyDraggedPart);
             
-            _currentlyDraggedPart.PlacementVisualizer.ChangeColor(canBePlaced);
+            _currentlyDraggedPart.ModuleColorController.ShowPositionValidity(canBePlaced);
             
             if (canBePlaced &&
                 !startedDraggingThisFrame &&

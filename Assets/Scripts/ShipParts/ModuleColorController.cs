@@ -4,10 +4,13 @@ using UnityEngine;
 
 namespace ShipParts
 {
-    public class PlacementVisualizer: MonoBehaviour
+    public class ModuleColorController: MonoBehaviour
     {
         [SerializeField]
         private Color invalidPlacementColor = Color.red;
+        
+        [SerializeField]
+        private Color moduleDamagedColor = Color.gray;
         
         [SerializeField] 
         private List<SpriteRenderer> renderersToColor = new();
@@ -22,7 +25,7 @@ namespace ShipParts
             }
         }
 
-        public void ChangeColor(bool isPlacementValid)
+        public void ShowPositionValidity(bool isPlacementValid)
         {
             if (isPlacementValid)
             {
@@ -35,10 +38,7 @@ namespace ShipParts
         
         public void ShowInvalidPosition()
         {
-            foreach (SpriteRenderer spriteRenderer in renderersToColor)
-            {
-                spriteRenderer.color = invalidPlacementColor;
-            }
+            ChangeColor(invalidPlacementColor);
         }
 
         public void ResetColor()
@@ -46,6 +46,19 @@ namespace ShipParts
             for (int i = 0; i < renderersToColor.Count; i++)
             {
                 renderersToColor[i].color = defaultColors[i];
+            }
+        }
+
+        public void ShowDamage()
+        {
+            ChangeColor(moduleDamagedColor);
+        }
+
+        private void ChangeColor(Color targetColor)
+        {
+            foreach (SpriteRenderer spriteRenderer in renderersToColor)
+            {
+                spriteRenderer.color = targetColor;
             }
         }
     }

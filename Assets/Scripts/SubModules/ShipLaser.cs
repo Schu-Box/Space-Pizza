@@ -1,8 +1,14 @@
 using System.Collections;
 using UnityEngine;
+
 public class ShipLaser : ShipSubModule
-{ 
-    public GameObject laser;
+{
+    [SerializeField]
+    private Collider2D laserCollider;
+
+    [SerializeField]
+    private SpriteRenderer laserBeamVisuals;
+    
     public int laserDamage = 1;
     public float laserDuration = 0.1f;
     public float laserCooldownDuration = 2f;
@@ -18,6 +24,15 @@ public class ShipLaser : ShipSubModule
         }
     }
     
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Hazard hazard = other.gameObject.GetComponent<Hazard>();
+        if (hazard != null)
+        {
+            hazard.TakeDamage(laserDamage);
+        }
+    }
+    
     public void FireLaser()
     {
         if (_laserCoroutine == null && _laserCooldownTimeRemaining <= 0f)
@@ -29,11 +44,25 @@ public class ShipLaser : ShipSubModule
     private IEnumerator FireLaserCoroutine()
     {
         _laserCooldownTimeRemaining = laserCooldownDuration;
+
+        ActivateLaser();
         
-        laser.SetActive(true);
         yield return new WaitForSeconds(laserDuration);
-        laser.SetActive(false);
+        
+        DeactivateLaser();
         
         _laserCoroutine = null;
+    }
+    
+    private void ActivateLaser()
+    {
+        laserBeamVisuals.enabled = true;
+        laserCollider.enabled = true;
+    }
+    
+    private void DeactivateLaser()
+    {
+        laserBeamVisuals.enabled = false;
+        laserCollider.enabled = false;
     }
 }

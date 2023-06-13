@@ -16,5 +16,10 @@ namespace Managers
         [SerializeField] private ConstructionManager constructionManager;
 
         public ConstructionManager ConstructionManager => constructionManager;
+
+        [SerializeField]
+        private ShipManager shipManager;
+        
+        public ShipManager ShipManager => shipManager;
     }
 }

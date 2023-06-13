@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ShipShield : ShipSubModule
 {
-   public GameObject shield;
+   [SerializeField]
+   private GameObject activeShieldVisuals;
+
+   [SerializeField]
+   private Collider2D shieldCollider;
+   
    public int shieldMaxHealth = 2;
    public float shieldRechargeDuration = 4f;
    public int damageDealtOnCollision = 1;
@@ -25,13 +30,30 @@ public class ShipShield : ShipSubModule
          _shieldCooldownTimeRemaining -= Time.deltaTime;
       }
    }
+   
+   public void OnCollisionEnter2D(Collision2D other)
+   {
+      Hazard hazard = other.gameObject.GetComponent<Hazard>();
+      if (hazard != null)
+      {
+         hazard.TakeDamage(damageDealtOnCollision);
+         AbsorbDamage(hazard.damage);
+      }
+   }
     
    public void EnableShield()
    {
-      shield.SetActive(true);
+      activeShieldVisuals.SetActive(true);
+      shieldCollider.enabled = true;
       shieldHealthRemaining = shieldMaxHealth;
       
       //TODO: Animate scale up
+   }
+
+   private void DisableShield()
+   {
+      activeShieldVisuals.SetActive(false);
+      shieldCollider.enabled = false;
    }
 
    public void AbsorbDamage(int damage)
@@ -40,11 +62,11 @@ public class ShipShield : ShipSubModule
 
       if (shieldHealthRemaining <= 0f && _shieldRechargeCoroutine == null)
       {
-         shield.SetActive(false);
+         DisableShield();
          _shieldRechargeCoroutine = StartCoroutine(RechargeShieldCoroutine());
       }
    }
-    
+
    private IEnumerator RechargeShieldCoroutine()
    {
       yield return new WaitForSeconds(shieldRechargeDuration);

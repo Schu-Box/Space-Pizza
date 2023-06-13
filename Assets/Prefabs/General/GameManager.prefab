@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPhase: 10
+  scenePhaseMapping:
+  - phase: 20
+    sceneName: Main
 --- !u!1 &3994452617795761136
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +92,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a436060e6ba41fa9335f93b3b1860e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5457435741031332068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7961545707898939539}
+  - component: {fileID: 607901460370984089}
+  m_Layer: 0
+  m_Name: ShipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7961545707898939539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457435741031332068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5917812393324384845}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &607901460370984089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457435741031332068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa12dfee12240b0b987aa5cfeba4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7024412273468412672
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +169,7 @@ Transform:
   - {fileID: 2828461944917050857}
   - {fileID: 1439638063888661784}
   - {fileID: 8663043189717290805}
+  - {fileID: 7961545707898939539}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,6 +201,7 @@ MonoBehaviour:
   _dragAndDropManager: {fileID: 7023171950230432128}
   phaseManager: {fileID: 3720334585842877734}
   constructionManager: {fileID: 2270368252101788938}
+  shipManager: {fileID: 607901460370984089}
 --- !u!1 &9009405254120581853
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8497ed78dd9b4c50aedbf718372c28bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipCorePrefab: {fileID: 7499066545738407629, guid: 399c3017a750578479e7a780c8d5542d, type: 3}
+  shipCorePrefab: {fileID: 3690865600368182340, guid: f4f45254b57e45043812082d8ec0585d, type: 3}
   corePosition: {x: 0, y: 0, z: 0}
   constructionAreaWidth: 64
   constructionAreaHeight: 64

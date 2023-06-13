@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9676eb42ff24714fa7da4821d8e410a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootTransform: {fileID: 4669488060588372684}
+  placementVisualizer: {fileID: 0}
+  _moduleDefinition: {fileID: 0}
   coreModule: 1
   health: 2
   damageDealtOnCollision: 5
