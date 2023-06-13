@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GamePhases;
 using Helpers;
 using UnityEngine;
 using ShipParts;
@@ -40,6 +41,11 @@ namespace Managers
 
         private void Start()
         {
+            if (PhaseManager.Current.CurrentPhase != GamePhase.Construction)
+            {
+                return;
+            }
+            
             occupiedSpaces = new ShipModule[constructionAreaHeight,constructionAreaWidth];
 
             Vector3 coreGridPosition = corePosition.GridPosition();
