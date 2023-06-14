@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using GamePhases;
 using UnityEngine;
 
 public class ShipShield : ShipSubModule
@@ -20,9 +22,10 @@ public class ShipShield : ShipSubModule
 
    void Start()
    {
-      EnableShield();
+      PhaseManager.Current.PhaseChangedEvent += UpdateShieldState;
+      UpdateShieldState();
    }
-   
+
    void Update()
    {
       if(_shieldCooldownTimeRemaining > 0f)
@@ -30,7 +33,23 @@ public class ShipShield : ShipSubModule
          _shieldCooldownTimeRemaining -= Time.deltaTime;
       }
    }
+
+   private void OnDestroy()
+   {
+      PhaseManager.Current.PhaseChangedEvent -= UpdateShieldState;
+   }
    
+   private void UpdateShieldState()
+   {
+      if (PhaseManager.Current.CurrentPhase == GamePhase.Fighting)
+      {
+         EnableShield();
+         return;
+      }
+      
+      DisableShield();
+   }
+
    public void OnCollisionEnter2D(Collision2D other)
    {
       Hazard hazard = other.gameObject.GetComponent<Hazard>();
