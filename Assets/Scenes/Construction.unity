@@ -318,6 +318,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 615063228, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5667455513233931050, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -372,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5667455513560457503, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
       propertyPath: m_Name
-      value: UI (1)
+      value: UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}

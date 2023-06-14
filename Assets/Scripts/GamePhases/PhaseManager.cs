@@ -26,6 +26,8 @@ namespace GamePhases
 
         public GamePhase CurrentPhase => currentPhase;
 
+        public bool IsFirstConstructionPhase { get; private set; } = true;
+
         public void SwitchPhase(GamePhase nextPhase)
         {
             foreach (SceneForPhase sceneForPhase in scenePhaseMapping)
@@ -38,6 +40,12 @@ namespace GamePhases
                 SceneManager.LoadScene(sceneForPhase.sceneName);
             }
 
+            if (currentPhase == GamePhase.Construction)
+            {
+                // left the construction phase
+                IsFirstConstructionPhase = false;
+            }
+            
             currentPhase = nextPhase;
             PhaseChangedEvent?.Invoke();
         }
