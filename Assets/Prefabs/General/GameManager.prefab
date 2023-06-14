@@ -48,6 +48,8 @@ MonoBehaviour:
   scenePhaseMapping:
   - phase: 20
     sceneName: Main
+  - phase: 10
+    sceneName: ActivateJumpDrive
 --- !u!1 &3994452617795761136
 GameObject:
   m_ObjectHideFlags: 0

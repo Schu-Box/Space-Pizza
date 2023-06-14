@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePhases;
+using Helpers;
 using Managers;
 using TMPro;
 using UnityEditor.Tilemaps;
@@ -59,7 +61,7 @@ public class GameplayInterfaceManager : MonoBehaviour
     private void JumpDriveReady()
     {
         jumpDriveReady = true;
-        jumpDriveChargeText.text = "Jump Drive Ready!";
+        jumpDriveChargeText.text = "Jump Drive Ready! Press Space!";
     }
 
     public void DisplayGameOver()
@@ -72,5 +74,15 @@ public class GameplayInterfaceManager : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Success!";
+    }
+
+    public void ActivateJumpDrive()
+    {
+        PhaseManager.Current.SwitchPhase(GamePhase.Construction);
+        
+        
+        Transform shipTransform = ShipManager.Current.PlayerShip.RootTransform;
+        shipTransform.position = Vector3.zero;
+        shipTransform.eulerAngles = Vector3.zero;
     }
 }

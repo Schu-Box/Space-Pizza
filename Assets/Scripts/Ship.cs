@@ -120,6 +120,8 @@ public class Ship : MonoBehaviour
         //TODO: Refactor, this is gross
         if (Input.GetButton("Fire1"))
         {
+            GameplayInterfaceManager.Instance.ActivateJumpDrive();
+            
             foreach (ShipModule shipModule in shipModules)
             {
                 foreach (ShipSubModule subModule in shipModule.shipSubModules)
