@@ -26,6 +26,8 @@ public class ShipModule : MonoBehaviour
     [SerializeField]
     private ShipModuleDefinition _moduleDefinition;
 
+    public ShipModuleDefinition ModuleDefinition => _moduleDefinition;
+
     [SerializeField]
     private ModuleMover _moduleMover;
 
