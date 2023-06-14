@@ -11,6 +11,8 @@ public class HazardManager : MonoBehaviour
 
    public Vector2 spawnRadiusRange = new Vector2(35f, 55f);
 
+   public Vector2 targetRadiusRange = new Vector2(0f, 20f);
+
    public float spawnRate = 1f;
    private float _spawnTimer = 0f;
 
@@ -40,7 +42,10 @@ public class HazardManager : MonoBehaviour
          }
          
          Hazard hazardObject = Instantiate(hazardPrefab, playerShip.RootTransform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Hazard>();
-         hazardObject.SetTrajectory(playerShip.RootTransform.position);
+
+         Vector3 targetPosition = playerShip.RootTransform.position + (Random.insideUnitSphere * Random.Range(targetRadiusRange.x, targetRadiusRange.y));
+         
+         hazardObject.SetTrajectory(targetPosition);
       }
    }
 }
