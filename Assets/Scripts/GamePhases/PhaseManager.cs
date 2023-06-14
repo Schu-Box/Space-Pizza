@@ -32,7 +32,7 @@ namespace GamePhases
                 {
                     continue;
                 }
-
+                
                 SceneManager.LoadScene(sceneForPhase.sceneName);
             }
 

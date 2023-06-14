@@ -26,6 +26,12 @@ public class Ship : MonoBehaviour
 
     private void Awake()
     {
+        if (ShipManager.Current.PlayerShip != null)
+        {
+            Destroy(rootTransform.gameObject);
+            return;
+        }
+        
         ShipManager.Current.RegisterShip(this);
     }
 
@@ -179,14 +185,16 @@ public class Ship : MonoBehaviour
         {
             foreach (ShipSubModule shipSubModule in shipModule.shipSubModules)
             {
-                if (shipSubModule is ShipThruster)
+                Debug.Log(shipSubModule.gameObject.name);
+                if (shipSubModule is ShipThruster shipThruster)
                 {
-                    ShipThruster shipThruster = shipSubModule as ShipThruster;
                     speed += shipThruster.speed;
                     rotationSpeed += shipThruster.rotationSpeed;
                 }
             }
         }
+
+        Debug.Log(speed);
     }
     
     

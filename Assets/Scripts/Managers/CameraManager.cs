@@ -17,7 +17,7 @@ public class CameraManager : MonoBehaviour
         _cameraZDistance = transform.position.z;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (trackedObject == null) return;
         
