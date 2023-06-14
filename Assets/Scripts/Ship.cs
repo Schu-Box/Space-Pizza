@@ -18,6 +18,7 @@ public class Ship : MonoBehaviour
     
     private Rigidbody2D rb;
 
+    private bool jumpDriveCharging = false;
     private bool jumpDriveReady = false;
     private float jumpDriveChargeDuration = 45f;
     private float jumpDriveChargeTimer = 0f;
@@ -62,6 +63,11 @@ public class Ship : MonoBehaviour
         ResetJumpDrive();
 
         PhaseManager.Current.PhaseChangedEvent += ResetJumpDrive;
+    }
+
+    public void StartChargingJumpDrive()
+    {
+        jumpDriveCharging = true;
     }
 
     public void ResetJumpDrive()
@@ -126,7 +132,12 @@ public class Ship : MonoBehaviour
         rb.angularVelocity = -Input.GetAxis("Horizontal") * rotationSpeed;
 
         if (!jumpDriveReady)
-        { 
+        {
+            if (!jumpDriveCharging)
+            {
+                return;
+            }
+            
             jumpDriveChargeTimer += Time.deltaTime;
 
             GameplayInterfaceManager.Instance.UpdateJumpDriveSlider(jumpDriveChargeTimer / jumpDriveChargeDuration);
@@ -229,8 +240,6 @@ public class Ship : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(speed);
     }
 
     public void StopPhysics()

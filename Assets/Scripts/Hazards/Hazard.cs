@@ -9,11 +9,15 @@ public class Hazard : MonoBehaviour
     public int damage = 1;
     public int health = 1;
     public Vector2 speedRange = new Vector2(3f, 8f);
+    public Vector2 sizeRange = new Vector2(1f, 1.4f);
+    public Vector2 angularVelocityRange = new Vector2(-30f, 30f);
 
     public float explosionDuration = 0.4f;
 
     public List<Sprite> possibleSprites;
     public List<Material> possibleMaterials;
+
+    public Transform rootTransform;
 
     public SpriteRenderer spriteRenderer;
     public Collider2D collider;
@@ -36,6 +40,11 @@ public class Hazard : MonoBehaviour
             spriteRenderer.sprite = possibleSprites[randomIndex];
             spriteRenderer.material = possibleMaterials[randomIndex];
         }
+        
+        float randomSize = rootTransform.localScale.x * Random.Range(sizeRange.x, sizeRange.y);
+        rootTransform.localScale = new Vector3(randomSize, randomSize, 1f);
+        
+        _rigidbody.angularVelocity = Random.Range(angularVelocityRange.x, angularVelocityRange.y);
     }
 
     public void SetTrajectory(Vector3 targetPosition)

@@ -23,6 +23,8 @@ public class InputManager : MonoBehaviour
                 GameplayInterfaceManager.Instance.HideWASDTutorial();
                 
                 HazardManager.Instance.StartSpawningHazards();
+                
+                ShipManager.Current.PlayerShip.StartChargingJumpDrive();
             }
         }
     }
