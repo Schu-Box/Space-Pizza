@@ -13,6 +13,7 @@ public class Hazard : MonoBehaviour
     public float explosionDuration = 0.4f;
 
     public List<Sprite> possibleSprites;
+    public List<Material> possibleMaterials;
 
     public SpriteRenderer spriteRenderer;
     public Collider2D collider;
@@ -26,7 +27,14 @@ public class Hazard : MonoBehaviour
 
         if (possibleSprites.Count > 0)
         {
-            spriteRenderer.sprite = possibleSprites[Random.Range(0, possibleSprites.Count)];
+            if(possibleMaterials.Count != possibleSprites.Count)
+            {
+                Debug.LogError("Possible sprites and materials must be the same length!");
+            }
+            
+            int randomIndex = Random.Range(0, possibleSprites.Count);
+            spriteRenderer.sprite = possibleSprites[randomIndex];
+            spriteRenderer.material = possibleMaterials[randomIndex];
         }
     }
 

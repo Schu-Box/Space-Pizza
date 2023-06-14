@@ -157,6 +157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1458770374371456410, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1885311942148914311, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -325,6 +329,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5925808386851686662, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1bd2f8ec118deb4d9e86e29beb97efb, type: 2}
     - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: _moduleDefinition
       value: 
@@ -337,6 +345,10 @@ PrefabInstance:
       propertyPath: shipSubModules.Array.data[0]
       value: 
       objectReference: {fileID: 867352029}
+    - target: {fileID: 8871726158729930613, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9212840308517581608, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_LocalScale.x
       value: 2

@@ -26,7 +26,7 @@ public class HazardManager : MonoBehaviour
 
          Hazard hazardPrefab;
          float randomValue = Random.value;
-         if (randomValue < 0.25f)
+         if (randomValue < 0)
          {
             hazardPrefab = coinPrefab;
          }
