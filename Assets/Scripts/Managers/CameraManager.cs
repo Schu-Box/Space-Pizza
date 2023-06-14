@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Managers;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Transform trackedObject;
     public float followSpeed = 2f;
     public float followThresholdRadius = 20f;
 
@@ -19,11 +19,12 @@ public class CameraManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (trackedObject == null) return;
+        Ship trackedShip = ShipManager.Current.PlayerShip;
+        if (trackedShip == null) return;
         
-        if (Vector2.Distance(transform.position, trackedObject.position) > followThresholdRadius)
+        if (Vector2.Distance(transform.position, trackedShip.RootTransform.position) > followThresholdRadius)
         {
-            Vector3 newTargetPosition = new Vector3(trackedObject.position.x, trackedObject.position.y, _cameraZDistance);
+            Vector3 newTargetPosition = new Vector3(trackedShip.RootTransform.position.x, trackedShip.RootTransform.position.y, _cameraZDistance);
             transform.position = Vector3.Lerp(transform.position, newTargetPosition, followSpeed * Time.deltaTime);
         }
     }

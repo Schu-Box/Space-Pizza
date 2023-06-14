@@ -27,8 +27,6 @@ public class ShipLaser : ShipSubModule
             return;
         }
 
-        Debug.Log("fire!");
-        
         _laserCooldownTimeRemaining = laserCooldownDuration;
 
         Laser laser = Instantiate(laserPrefab, transform.position, Quaternion.identity).GetComponent<Laser>();

@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootTransform: {fileID: 3690865600368182343}
   moduleParent: {fileID: 3690865598778457873}
-  addForceMovement: 0
+  addForceMovement: 1
 --- !u!1001 &3690865599168008638
 PrefabInstance:
   m_ObjectHideFlags: 0

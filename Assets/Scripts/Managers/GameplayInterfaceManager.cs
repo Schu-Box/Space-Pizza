@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using TMPro;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -44,6 +45,7 @@ public class GameplayInterfaceManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R))
         {
+            Destroy(ShipManager.Current.PlayerShip.gameObject);
             SceneManager.LoadScene(0);
         }
     }

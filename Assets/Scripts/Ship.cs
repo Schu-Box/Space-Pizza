@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GamePhases;
 using Managers;
 using UnityEngine;
 
@@ -56,12 +57,20 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
+        if (PhaseManager.Current.CurrentPhase == GamePhase.Construction)
+        {
+            return;
+        }
+        
         if (addForceMovement)
         {
             float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
             if (forwardInput > 0f)
             {
-                rb.AddForce(transform.up * (forwardInput * speed) / 10f);
+                Vector2 force = rootTransform.up * (forwardInput * speed);
+                rb.AddForce(force);
+                
+                Debug.Log(force);
 
                 if (!isThrusting)
                 {
@@ -192,6 +201,8 @@ public class Ship : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log(speed);
     }
     
     
