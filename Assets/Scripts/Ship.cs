@@ -185,7 +185,6 @@ public class Ship : MonoBehaviour
         {
             foreach (ShipSubModule shipSubModule in shipModule.shipSubModules)
             {
-                Debug.Log(shipSubModule.gameObject.name);
                 if (shipSubModule is ShipThruster shipThruster)
                 {
                     speed += shipThruster.speed;
@@ -193,8 +192,6 @@ public class Ship : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(speed);
     }
     
     
@@ -203,7 +200,7 @@ public class Ship : MonoBehaviour
     {
         Destroy(gameObject);
         
-        InterfaceManager.Instance.DisplayGameOver();
+        GameplayInterfaceManager.Instance.DisplayGameOver();
     }
 
     private void RemoveDisconnectedNeighboringShipModules()

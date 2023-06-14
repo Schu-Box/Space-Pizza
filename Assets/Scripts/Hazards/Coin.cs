@@ -9,6 +9,6 @@ public class Coin : Hazard
     {
         Debug.Log("HIT COIN!");
 
-        InterfaceManager.Instance.AddCoin(1);
+        GameplayInterfaceManager.Instance.AddCoin(1);
     }
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InterfaceManager : MonoBehaviour
+public class GameplayInterfaceManager : MonoBehaviour
 {
-    public static InterfaceManager Instance;
+    public static GameplayInterfaceManager Instance;
     
     public TextMeshProUGUI jumpDriveChargeText;
     public Slider jumpDriveChargeSlider;
