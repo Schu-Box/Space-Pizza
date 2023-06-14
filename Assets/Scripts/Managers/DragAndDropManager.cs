@@ -39,7 +39,7 @@ namespace Managers
             
             _currentlyDraggedPart.RootTransform.position = objectPosition;
 
-            bool canBePlaced = ConstructionManager.Current.CanBePlaced(objectPosition, _currentlyDraggedPart);
+            bool canBePlaced = ShipGridController.Current.CanBePlaced(objectPosition, _currentlyDraggedPart);
             
             _currentlyDraggedPart.ModuleColorController.ShowPositionValidity(canBePlaced);
             
@@ -47,7 +47,7 @@ namespace Managers
                 !startedDraggingThisFrame &&
                 Input.GetMouseButtonDown(0))
             {
-                ConstructionManager.Current.PlacePart(objectPosition, _currentlyDraggedPart);
+                ShipGridController.Current.PlacePart(objectPosition, _currentlyDraggedPart);
                 _currentlyDraggedPart = null;
             }
 
