@@ -48,10 +48,21 @@ namespace Managers
                 Input.GetMouseButtonDown(0))
             {
                 ShipGridController.Current.PlacePart(objectPosition, _currentlyDraggedPart);
-                _currentlyDraggedPart = null;
+                StopDragging(_currentlyDraggedPart);
             }
 
             startedDraggingThisFrame = false;
+        }
+
+        public void StopDragging(ShipModule shipModule)
+        {
+            if (_currentlyDraggedPart != shipModule)
+            {
+                return;
+            }
+            
+            _currentlyDraggedPart.ModuleColorController.ResetColor();
+            _currentlyDraggedPart = null;
         }
     }
 }

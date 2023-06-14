@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3298573696253727883}
   - component: {fileID: 6135720174285442645}
   - component: {fileID: 1885311942148914311}
+  - component: {fileID: 8362740466755233702}
   m_Layer: 6
   m_Name: ModuleLogic
   m_TagString: Ship
@@ -81,6 +82,7 @@ MonoBehaviour:
   rootTransform: {fileID: 5085051556197591730}
   moduleColorController: {fileID: 2089820824628197670}
   _moduleDefinition: {fileID: 0}
+  _moduleMover: {fileID: 1361852874512600677}
   coreModule: 0
   health: 2
   damageDealtOnCollision: 5
@@ -115,6 +117,19 @@ PolygonCollider2D:
       - {x: -0.5877852, y: -0.80901706}
       - {x: 0.58778536, y: -0.80901694}
       - {x: 0.9510565, y: 0.30901712}
+--- !u!114 &8362740466755233702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334831910912214337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d8d1348cb24da0869e467632128491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipPart: {fileID: 6135720174285442645}
 --- !u!1 &5673046196014693613
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +233,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1253118563
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -309,6 +324,52 @@ Transform:
   m_Children:
   - {fileID: 3298573696253727883}
   - {fileID: 4854697373106281488}
+  - {fileID: 8871726158729930613}
   m_Father: {fileID: 5085051556197591730}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9180268217348021123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8871726158729930613}
+  - component: {fileID: 1361852874512600677}
+  m_Layer: 0
+  m_Name: ModuleMover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8871726158729930613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9180268217348021123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3443250914932090428}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1361852874512600677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9180268217348021123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1dd2f14623745d28385787f2c35ae71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipPart: {fileID: 6135720174285442645}

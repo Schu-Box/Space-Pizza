@@ -17,6 +17,8 @@ namespace GamePhases
     {
         public static PhaseManager Current => GameManager.Instance.ReferenceProvider.PhaseManager;
 
+        public event Action PhaseChangedEvent;
+        
         [SerializeField] private GamePhase currentPhase = GamePhase.Construction;
 
         [SerializeField]
@@ -37,6 +39,7 @@ namespace GamePhases
             }
 
             currentPhase = nextPhase;
+            PhaseChangedEvent?.Invoke();
         }
     }
 }
