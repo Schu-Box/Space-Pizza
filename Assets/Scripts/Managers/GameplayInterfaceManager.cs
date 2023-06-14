@@ -18,10 +18,6 @@ public class GameplayInterfaceManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI coinCountText;
 
-    private float jumpDriveChargeDuration = 90f;
-    private float jumpDriveChargeTimer = 0f;
-
-    private bool jumpDriveReady = false;
     private int coinCount = 0;
 
     private void Start()
@@ -33,23 +29,15 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     void Update()
     {
-        if (!jumpDriveReady)
-        { 
-            jumpDriveChargeTimer += Time.deltaTime;
-
-            jumpDriveChargeSlider.value = jumpDriveChargeTimer / jumpDriveChargeDuration;
-        
-            if (jumpDriveChargeTimer >= jumpDriveChargeDuration)
-            {
-                JumpDriveReady();
-            }
-        }
-
         if (Input.GetKey(KeyCode.R))
         {
-            Destroy(ShipManager.Current.PlayerShip.gameObject);
-            SceneManager.LoadScene(0);
+          Restart();
         }
+    }
+
+    public void UpdateJumpDriveSlider(float value)
+    {
+        jumpDriveChargeSlider.value = value;
     }
 
     public void AddCoin(int coins)
@@ -58,9 +46,8 @@ public class GameplayInterfaceManager : MonoBehaviour
         coinCountText.text = "Coins: " + coinCount;
     }
 
-    private void JumpDriveReady()
+    public void DisplayJumpDriveReady()
     {
-        jumpDriveReady = true;
         jumpDriveChargeText.text = "Jump Drive Ready! Press Space!";
     }
 
@@ -75,14 +62,23 @@ public class GameplayInterfaceManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Success!";
     }
+    
+    public void Restart()
+    {
+        Destroy(ShipManager.Current.PlayerShip.RootTransform.gameObject);
+        Destroy(GameManager.Instance.gameObject);
+        SceneManager.LoadScene(0);  
+    }
 
     public void ActivateJumpDrive()
     {
-        PhaseManager.Current.SwitchPhase(GamePhase.Construction);
-        
-        
-        Transform shipTransform = ShipManager.Current.PlayerShip.RootTransform;
-        shipTransform.position = Vector3.zero;
-        shipTransform.eulerAngles = Vector3.zero;
+        // Destroy(GameManager.Instance.gameObject);
+        // SceneManager.LoadScene(0);
+        GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
+
+        Ship ship = ShipManager.Current.PlayerShip;
+        ship.RootTransform.position = Vector3.zero;
+        ship.RootTransform.eulerAngles = Vector3.zero;
+        ship.StopPhysics();
     }
 }

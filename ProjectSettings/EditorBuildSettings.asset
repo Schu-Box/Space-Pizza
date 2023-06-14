@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ShipAssemblyPrototype.unity
+    path: Assets/Scenes/Construction.unity
     guid: 013044e34e09a3b418a12f5cc9be723f
   - enabled: 1
     path: Assets/Scenes/Main.unity

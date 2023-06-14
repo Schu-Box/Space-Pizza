@@ -17,11 +17,14 @@ public class ShipLaser : ShipSubModule
         {
             _laserCooldownTimeRemaining -= Time.deltaTime;
         }
+        else
+        {
+            FireLaser();
+        }
     }
     
     public void FireLaser()
     {
-        
         if(_laserCooldownTimeRemaining > 0f)
         {
             return;

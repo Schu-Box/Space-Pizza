@@ -17,7 +17,10 @@ public class Ship : MonoBehaviour
     private Transform moduleParent;
     
     private Rigidbody2D rb;
-    public bool addForceMovement = false;
+
+    private bool jumpDriveReady = false;
+    private float jumpDriveChargeDuration = 10f;
+    private float jumpDriveChargeTimer = 0f;
 
     private float speed = 0f;
     private float rotationSpeed = 0f;
@@ -65,50 +68,27 @@ public class Ship : MonoBehaviour
         {
             return;
         }
-        
-        if (addForceMovement)
-        {
-            float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
-            if (forwardInput > 0f)
-            {
-                Vector2 force = rootTransform.up * (forwardInput * speed);
-                rb.AddForce(force);
-                
-                Debug.Log(force);
 
-                if (!isThrusting)
-                {
-                    isThrusting = true;
-                    //Activate all shipModules that are thrusters
-                    foreach (ShipModule shipModule in shipModules)
-                    {
-                        foreach (ShipSubModule subModule in shipModule.shipSubModules)
-                        {
-                            if (subModule is ShipThruster)
-                            {
-                                ShipThruster shipThruster = subModule as ShipThruster;
-                                shipThruster.EnableParticles(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else
+        float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
+        if (forwardInput > 0f)
+        {
+            Vector2 force = rootTransform.up * (forwardInput * speed);
+            rb.AddForce(force);
+            
+            Debug.Log(force);
+
+            if (!isThrusting)
             {
-                if (isThrusting)
+                isThrusting = true;
+                //Activate all shipModules that are thrusters
+                foreach (ShipModule shipModule in shipModules)
                 {
-                    isThrusting = false;
-                    
-                    //Deactivate all shipModules that are thrusters
-                    foreach (ShipModule shipModule in shipModules)
+                    foreach (ShipSubModule subModule in shipModule.shipSubModules)
                     {
-                        foreach (ShipSubModule subModule in shipModule.shipSubModules)
+                        if (subModule is ShipThruster)
                         {
-                            if (subModule is ShipThruster)
-                            {
-                                ShipThruster shipThruster = subModule as ShipThruster;
-                                shipThruster.EnableParticles(false);
-                            }
+                            ShipThruster shipThruster = subModule as ShipThruster;
+                            shipThruster.EnableParticles(true);
                         }
                     }
                 }
@@ -116,44 +96,63 @@ public class Ship : MonoBehaviour
         }
         else
         {
-            rb.velocity = transform.up * (Input.GetAxis("Vertical") * speed);
-        }
-
-        rb.angularVelocity = -Input.GetAxis("Horizontal") * rotationSpeed;
-
-        //TODO: Refactor, this is gross
-        if (Input.GetButton("Fire1"))
-        {
-            GameplayInterfaceManager.Instance.ActivateJumpDrive();
-            
-            foreach (ShipModule shipModule in shipModules)
+            if (isThrusting)
             {
-                foreach (ShipSubModule subModule in shipModule.shipSubModules)
+                isThrusting = false;
+                
+                //Deactivate all shipModules that are thrusters
+                foreach (ShipModule shipModule in shipModules)
                 {
-                    if (subModule is ShipLaser)
+                    foreach (ShipSubModule subModule in shipModule.shipSubModules)
                     {
-                        ShipLaser shipLaser = subModule as ShipLaser;
-                        shipLaser.FireLaser();
+                        if (subModule is ShipThruster)
+                        {
+                            ShipThruster shipThruster = subModule as ShipThruster;
+                            shipThruster.EnableParticles(false);
+                        }
                     }
                 }
             }
         }
 
-        // if (Input.GetButtonDown("Fire2"))
-        // {
-        //     foreach (ShipModule shipModule in shipModules)
-        //     {
-        //         foreach (ShipSubModule subModule in shipModule.shipSubModules)
-        //         {
-        //             if (subModule is ShipShield)
-        //             {
-        //                 ShipShield shipShield = subModule as ShipShield;
-        //                 shipShield.TriggerShield();
-        //             }
-        //         }
-        //     }
-        // }
+        rb.angularVelocity = -Input.GetAxis("Horizontal") * rotationSpeed;
+
+        if (!jumpDriveReady)
+        { 
+            jumpDriveChargeTimer += Time.deltaTime;
+
+            GameplayInterfaceManager.Instance.UpdateJumpDriveSlider(jumpDriveChargeTimer / jumpDriveChargeDuration);
+        
+            if (jumpDriveChargeTimer >= jumpDriveChargeDuration)
+            {
+                jumpDriveReady = true;
+                GameplayInterfaceManager.Instance.DisplayJumpDriveReady();
+            }
+        }
+        else
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                GameplayInterfaceManager.Instance.ActivateJumpDrive();
+            }
+        }
     }
+    
+    //TODO: Ask Hagen how he would do this
+    // public List<ShipSubModule> GetShipSubModules(ShipSubModuleType??? )
+    // {
+    //     foreach (ShipModule shipModule in shipModules)
+    //     {
+    //         foreach (ShipSubModule subModule in shipModule.shipSubModules)
+    //         {
+    //             if (subModule is ShipThruster)
+    //             {
+    //                 ShipThruster shipThruster = subModule as ShipThruster;
+    //                 shipThruster.EnableParticles(true);
+    //             }
+    //         }
+    //     }
+    // }
 
     private void OnDestroy()
     {
@@ -223,9 +222,13 @@ public class Ship : MonoBehaviour
 
         Debug.Log(speed);
     }
-    
-    
-    
+
+    public void StopPhysics()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+    }
+
     private void DestroyShip()
     {
         Destroy(gameObject);

@@ -49,7 +49,7 @@ MonoBehaviour:
   - phase: 20
     sceneName: Main
   - phase: 10
-    sceneName: ActivateJumpDrive
+    sceneName: Construction
 --- !u!1 &3994452617795761136
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dragAndDropManager: {fileID: 7023171950230432128}
   phaseManager: {fileID: 3720334585842877734}
-  constructionManager: {fileID: 2270368252101788938}
+  shipGridController: {fileID: 2270368252101788938}
   shipManager: {fileID: 607901460370984089}
 --- !u!1 &9009405254120581853
 GameObject:
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipCorePrefab: {fileID: 3690865600368182340, guid: f4f45254b57e45043812082d8ec0585d, type: 3}
   corePosition: {x: 0, y: 0, z: 0}
-  constructionAreaWidth: 64
-  constructionAreaHeight: 64
+  shipGridWidth: 64
+  shipGridHeight: 64
   areaStartX: -17
   areaStartY: 5
