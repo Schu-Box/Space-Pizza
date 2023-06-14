@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool jumpDriveReady = false;
-    private float jumpDriveChargeDuration = 10f;
+    private float jumpDriveChargeDuration = 45f;
     private float jumpDriveChargeTimer = 0f;
 
     private float speed = 0f;
@@ -58,6 +58,16 @@ public class Ship : MonoBehaviour
         }
 
         CaclulcateShipStats();
+
+        ResetJumpDrive();
+
+        PhaseManager.Current.PhaseChangedEvent += ResetJumpDrive;
+    }
+
+    public void ResetJumpDrive()
+    {
+        jumpDriveReady = false;
+        jumpDriveChargeTimer = 0f;
     }
     
     //TODO: Refactor shipModule searching (maybe just have a shared formula?)
@@ -74,8 +84,6 @@ public class Ship : MonoBehaviour
         {
             Vector2 force = rootTransform.up * (forwardInput * speed);
             rb.AddForce(force);
-            
-            Debug.Log(force);
 
             if (!isThrusting)
             {
@@ -160,6 +168,8 @@ public class Ship : MonoBehaviour
         {
             shipModule.ModuleDestroyedEvent -= RemoveModule;
         }
+        
+        PhaseManager.Current.PhaseChangedEvent -= ResetJumpDrive;
     }
 
     public void AddModule(ShipModule shipModule)

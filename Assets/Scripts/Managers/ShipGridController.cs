@@ -16,6 +16,7 @@ namespace Managers
 
         [SerializeField]
         private Vector3 corePosition;
+        public Vector3 CorePosition => corePosition;
 
         [FormerlySerializedAs("constructionAreaWidth")]
         [SerializeField]

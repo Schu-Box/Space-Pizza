@@ -7,8 +7,6 @@ public class Coin : Hazard
 {
     public void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("HIT COIN!");
-
         GameplayInterfaceManager.Instance.AddCoin(1);
     }
 }

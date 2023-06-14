@@ -92,6 +92,6 @@ public class ShipShield : ShipSubModule
         
       _shieldRechargeCoroutine = null;
 
-      EnableShield();
+      UpdateShieldState();
    }
 }

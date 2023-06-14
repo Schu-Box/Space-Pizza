@@ -95,7 +95,7 @@ public class ShipModule : MonoBehaviour
 
     private void Start()
     {
-        moduleColorController.ShowDamage();
+        // moduleColorController.ShowDamage();
     }
 
     public void HitByHazard(Hazard hazard)

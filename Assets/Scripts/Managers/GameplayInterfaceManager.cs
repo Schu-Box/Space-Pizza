@@ -77,7 +77,7 @@ public class GameplayInterfaceManager : MonoBehaviour
         GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
 
         Ship ship = ShipManager.Current.PlayerShip;
-        ship.RootTransform.position = Vector3.zero;
+        ship.RootTransform.position = ShipGridController.Current.CorePosition;
         ship.RootTransform.eulerAngles = Vector3.zero;
         ship.StopPhysics();
     }
