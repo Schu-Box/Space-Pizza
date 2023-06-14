@@ -114,7 +114,7 @@ public class ShipModule : MonoBehaviour
         moduleColorController.ShowDamage();
     }
 
-    private void DestroyShipModule()
+    public void DestroyShipModule()
     {
         if (_explosionCoroutine == null)
         {
@@ -148,5 +148,42 @@ public class ShipModule : MonoBehaviour
         }
         
         _neighboringShipModules.Add(neighbor);
+    }
+
+    public bool IsConnectedToCoreModule()
+    {
+        List<ShipModule> connectedModules = new List<ShipModule>();
+        
+        //TODO: Make this work!
+        
+        //loop through all neighbors of this shipModule and all neighbors of those neighbors and so on
+        //if a neighbor is a core module, return true
+        //if no core module is found, return false
+        foreach (ShipModule neighbor in _neighboringShipModules)
+        {
+            if (!connectedModules.Contains(neighbor))
+            {
+                connectedModules.Add(neighbor);
+                
+                //and add all neighbors of neighbors and so on that haven't been added to modulestocheck yet
+                foreach (ShipModule neighborOfNeighbor in neighbor._neighboringShipModules)
+                {
+                    if (!connectedModules.Contains(neighborOfNeighbor))
+                    {
+                        connectedModules.Add(neighborOfNeighbor);
+                    }
+                }
+            }
+        }
+
+        foreach (ShipModule module in connectedModules)
+        {
+            if (module.coreModule)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

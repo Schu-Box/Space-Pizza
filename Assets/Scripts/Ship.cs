@@ -239,5 +239,19 @@ public class Ship : MonoBehaviour
     private void RemoveDisconnectedNeighboringShipModules()
     {
         //TODO: Iterate through all ship modules and remove any that are not connected to the core module
+        
+        foreach(ShipModule shipModule in shipModules)
+        {
+            if (shipModule.coreModule)
+            {
+                continue;
+            }
+            
+            if (!shipModule.IsConnectedToCoreModule())
+            {
+                shipModule.DestroyShipModule();
+                return;
+            }
+        }
     }
 }

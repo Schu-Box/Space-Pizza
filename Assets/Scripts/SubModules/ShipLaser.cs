@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShipLaser : ShipSubModule
 { 
     public Laser laserPrefab;
+    public Transform laserSpawnTransform;
     public int laserDamage = 1;
     public float laserDuration = 0.1f;
     public float laserCooldownDuration = 2f;
@@ -32,7 +33,7 @@ public class ShipLaser : ShipSubModule
 
         _laserCooldownTimeRemaining = laserCooldownDuration;
 
-        Laser laser = Instantiate(laserPrefab, transform.position, Quaternion.identity).GetComponent<Laser>();
+        Laser laser = Instantiate(laserPrefab, laserSpawnTransform.position, Quaternion.identity).GetComponent<Laser>();
         laser.Fire(this);
     }
     
