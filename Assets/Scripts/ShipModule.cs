@@ -26,6 +26,11 @@ public class ShipModule : MonoBehaviour
     [SerializeField]
     private ShipModuleDefinition _moduleDefinition;
 
+    [SerializeField]
+    private ModuleMover _moduleMover;
+
+    public ModuleMover ModuleMover => _moduleMover;
+
     public int[,] Shape { get; } = new int[5, 5];
 
     public List<(int, int)> ShapeAsList { get; } = new();
