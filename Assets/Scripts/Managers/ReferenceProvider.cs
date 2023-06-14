@@ -21,7 +21,10 @@ namespace Managers
 
         [SerializeField]
         private ShipManager shipManager;
-        
         public ShipManager ShipManager => shipManager;
+        
+        [SerializeField]
+        private InputManager inputManager;
+        public InputManager InputManager => inputManager;
     }
 }

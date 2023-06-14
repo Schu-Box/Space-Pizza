@@ -15,7 +15,8 @@ public class ConstructionInterfaceManager : MonoBehaviour
     private float constructionDuration = 15f;
     private float constructionTimer = 0f;
 
-    private bool timerStarted = true;
+    private bool timerStarted = false;
+    public bool TimerStarted => timerStarted;
     
     private void Start()
     {
@@ -39,9 +40,13 @@ public class ConstructionInterfaceManager : MonoBehaviour
         }
     }
 
+    public void StartTimer()
+    {
+        timerStarted = true;
+    }
+
     public void TimerFinished()
     {
-        Debug.Log("time's up!");
         PhaseManager.Current.SwitchPhase(GamePhase.Fighting);
     }
 }

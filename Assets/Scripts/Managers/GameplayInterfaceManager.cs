@@ -29,10 +29,7 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.R))
-        {
-          Restart();
-        }
+       
     }
 
     public void UpdateJumpDriveSlider(float value)
@@ -61,13 +58,6 @@ public class GameplayInterfaceManager : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Success!";
-    }
-    
-    public void Restart()
-    {
-        Destroy(ShipManager.Current.PlayerShip.RootTransform.gameObject);
-        Destroy(GameManager.Instance.gameObject);
-        SceneManager.LoadScene(0);  
     }
 
     public void ActivateJumpDrive()

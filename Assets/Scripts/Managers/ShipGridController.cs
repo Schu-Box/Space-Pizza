@@ -144,6 +144,11 @@ namespace Managers
 
         public void PlacePart(Vector3 partPosition, ShipModule placedModule)
         {
+            if (ConstructionInterfaceManager.Instance.TimerStarted == false && !placedModule.coreModule)
+            {
+                ConstructionInterfaceManager.Instance.StartTimer();
+            }
+            
             ConvertPositionToIndices(partPosition, out int row, out int column);
 
             // store list of which position in the grid the module is occupying for easy lookup

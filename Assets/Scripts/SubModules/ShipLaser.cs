@@ -1,4 +1,5 @@
 using System.Collections;
+using GamePhases;
 using Unity.VisualScripting;
 using UnityEngine;
 public class ShipLaser : ShipSubModule
@@ -23,11 +24,10 @@ public class ShipLaser : ShipSubModule
             FireLaser();
         }
     }
-    
+
     public void FireLaser()
     {
-        if(_laserCooldownTimeRemaining > 0f)
-        {
+        if (_laserCooldownTimeRemaining > 0f || PhaseManager.Current.CurrentPhase == GamePhase.Construction) {
             return;
         }
 
