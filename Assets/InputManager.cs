@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePhases;
 using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,14 @@ public class InputManager : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             Restart();
+        }
+
+        if (PhaseManager.Current.CurrentPhase == GamePhase.Fighting && GameplayInterfaceManager.Instance.WASDTutorialShown)
+        {
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                GameplayInterfaceManager.Instance.HideWASDTutorial();
+            }
         }
     }
     
