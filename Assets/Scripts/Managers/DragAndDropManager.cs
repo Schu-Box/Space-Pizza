@@ -42,10 +42,12 @@ namespace Managers
             bool canBePlaced = ShipGridController.Current.CanBePlaced(objectPosition, _currentlyDraggedPart);
             
             _currentlyDraggedPart.ModuleColorController.ShowPositionValidity(canBePlaced);
+
+            bool doesPlayerTryToPlace = Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0);
             
-            if (canBePlaced &&
-                !startedDraggingThisFrame &&
-                Input.GetMouseButtonDown(0))
+            if (doesPlayerTryToPlace &&
+                canBePlaced &&
+                !startedDraggingThisFrame)
             {
                 ShipGridController.Current.PlacePart(objectPosition, _currentlyDraggedPart);
                 StopDragging(_currentlyDraggedPart);
