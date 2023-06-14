@@ -18,6 +18,11 @@ public class GameplayInterfaceManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI coinCountText;
 
+    public GameObject tutorial_WASD;
+
+    private bool wASDTutorialShown = true;
+    public bool WASDTutorialShown => wASDTutorialShown;
+
     private int coinCount = 0;
 
     private void Start()
@@ -25,11 +30,21 @@ public class GameplayInterfaceManager : MonoBehaviour
         Instance = this;
         
         gameOverText.gameObject.SetActive(false);
+
+        wASDTutorialShown = true;
+        tutorial_WASD.SetActive(true);
     }
 
     void Update()
     {
        
+    }
+
+    public void HideWASDTutorial()
+    {
+        Debug.Log("CALED");
+        wASDTutorialShown = false;
+        tutorial_WASD.SetActive(false);
     }
 
     public void UpdateJumpDriveSlider(float value)
