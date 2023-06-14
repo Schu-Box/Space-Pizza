@@ -21,6 +21,8 @@ public class InputManager : MonoBehaviour
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
                 GameplayInterfaceManager.Instance.HideWASDTutorial();
+                
+                HazardManager.Instance.StartSpawningHazards();
             }
         }
     }

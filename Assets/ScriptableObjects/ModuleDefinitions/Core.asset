@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Core
   m_EditorClassIdentifier: 
   displayName: Bridge
-  shapeDefinition: 1
+  shapeDefinition: '11,
+
+    11'

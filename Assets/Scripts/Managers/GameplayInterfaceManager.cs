@@ -25,7 +25,7 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     private int coinCount = 0;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
         

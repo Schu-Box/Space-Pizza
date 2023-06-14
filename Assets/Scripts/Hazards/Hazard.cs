@@ -89,6 +89,8 @@ public class Hazard : MonoBehaviour
 
     public void DestroyHazard()
     {
+        //Send score value to highscoreManager
+        
         collider.enabled = false;
         _rigidbody.velocity = Vector2.zero;
         spriteRenderer.gameObject.SetActive(false);

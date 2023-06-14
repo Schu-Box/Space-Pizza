@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HazardManager : MonoBehaviour
 {
+   public static HazardManager Instance;
+   
    public Transform hazardParent;
    public Hazard asteroidPrefab;
    public Hazard coinPrefab;
@@ -15,9 +17,21 @@ public class HazardManager : MonoBehaviour
 
    public float spawnRate = 1f;
    private float _spawnTimer = 0f;
+   
+   private bool spawningHazards = false;
+   
+   private void Awake()
+   {
+      Instance = this;
+   }
 
    public void Update()
    {
+      if(!spawningHazards)
+      {
+         return;
+      }
+      
       _spawnTimer += Time.deltaTime;
       if (_spawnTimer >= spawnRate)
       {
@@ -47,5 +61,10 @@ public class HazardManager : MonoBehaviour
          
          hazardObject.SetTrajectory(targetPosition);
       }
+   }
+
+   public void StartSpawningHazards()
+   {
+      spawningHazards = true;
    }
 }

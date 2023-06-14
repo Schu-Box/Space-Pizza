@@ -18,7 +18,7 @@ public class ConstructionInterfaceManager : MonoBehaviour
     private bool timerStarted = false;
     public bool TimerStarted => timerStarted;
     
-    private void Start()
+    private void Awake()
     {
         Instance = this;
 
