@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using ShipParts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -137,5 +138,15 @@ public class ShipModule : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         Destroy(rootTransform.gameObject);
+    }
+
+    public void AddNeighbor(ShipModule neighbor)
+    {
+        if (_neighboringShipModules.Contains(neighbor))
+        {
+            return;
+        }
+        
+        _neighboringShipModules.Add(neighbor);
     }
 }

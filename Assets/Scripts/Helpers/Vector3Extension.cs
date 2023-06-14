@@ -11,7 +11,7 @@ namespace Helpers
             gridPosition.x = Mathf.RoundToInt(worldPosition.x);
             gridPosition.y = Mathf.RoundToInt(worldPosition.y);
             gridPosition.z = 0;
-
+            
             return gridPosition;
         }
     }

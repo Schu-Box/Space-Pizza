@@ -1,5 +1,6 @@
 using GamePhases;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -13,9 +14,10 @@ namespace Managers
 
         public PhaseManager PhaseManager => phaseManager;
 
-        [SerializeField] private ConstructionManager constructionManager;
+        [FormerlySerializedAs("constructionManager")]
+        [SerializeField] private ShipGridController shipGridController;
 
-        public ConstructionManager ConstructionManager => constructionManager;
+        public ShipGridController ShipGridController => shipGridController;
 
         [SerializeField]
         private ShipManager shipManager;
