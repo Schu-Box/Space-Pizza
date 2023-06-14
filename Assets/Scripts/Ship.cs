@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GamePhases;
+using Helpers;
 using Managers;
 using UnityEngine;
 
@@ -46,6 +47,9 @@ public class Ship : MonoBehaviour
         {
             if (shipModule != null && shipModule.gameObject.activeInHierarchy)
             {
+                ShipGridController.Current.PlacePart(shipModule.transform.position.GridPosition(),
+                    shipModule);
+                
                 AddModule(shipModule);
             }
         }
@@ -171,8 +175,10 @@ public class Ship : MonoBehaviour
 
         shipModule.RootTransform.parent = moduleParent;
         CaclulcateShipStats();
+
+        SetUpNeighbors(shipModule);
     }
-    
+
     public void RemoveModule(ShipModule shipModule)
     {
         shipModule.ModuleDestroyedEvent -= RemoveModule;
@@ -186,6 +192,17 @@ public class Ship : MonoBehaviour
 
         RemoveDisconnectedNeighboringShipModules();
         CaclulcateShipStats();
+    }
+    
+    private void SetUpNeighbors(ShipModule shipModule)
+    {
+        List<ShipModule> neighbors = ShipGridController.Current.FindNeighbors(shipModule);
+
+        foreach (ShipModule neighbor in neighbors)
+        {
+            shipModule.AddNeighbor(neighbor);
+            neighbor.AddNeighbor(shipModule);
+        }
     }
     
     public void CaclulcateShipStats()

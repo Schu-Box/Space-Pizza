@@ -3,33 +3,37 @@ using System.Collections.Generic;
 using GamePhases;
 using Helpers;
 using UnityEngine;
-using ShipParts;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
-    public class ConstructionManager: MonoBehaviour
+    public class ShipGridController : MonoBehaviour
     {
-        public static ConstructionManager Current => GameManager.Instance.ReferenceProvider.ConstructionManager;
+        public static ShipGridController Current => GameManager.Instance.ReferenceProvider.ShipGridController;
 
-        [SerializeField] 
+        [SerializeField]
         private GameObject shipCorePrefab;
 
-        [SerializeField] 
+        [SerializeField]
         private Vector3 corePosition;
-        
-        [SerializeField] 
-        private int constructionAreaWidth = 64;
-        
-        [SerializeField] 
-        private int constructionAreaHeight = 64;
-        
-        [SerializeField] private int areaStartX = 0;
-        
-        [SerializeField] private int areaStartY = 0;
+
+        [FormerlySerializedAs("constructionAreaWidth")]
+        [SerializeField]
+        private int shipGridWidth = 64;
+
+        [FormerlySerializedAs("constructionAreaHeight")]
+        [SerializeField]
+        private int shipGridHeight = 64;
+
+        [SerializeField]
+        private int areaStartX = 0;
+
+        [SerializeField]
+        private int areaStartY = 0;
 
         private Dictionary<ShipModule, List<(int, int)>> occupiedSpacesByPart = new();
 
-        private ShipModule[,] occupiedSpaces;
+        private ShipModule[,] shipGrid;
 
         private List<(int, int)> validNeighborPositions = new List<(int, int)>
         {
@@ -39,17 +43,25 @@ namespace Managers
             (1, 0)
         };
 
+        private void Awake()
+        {
+            shipGrid = new ShipModule[shipGridHeight, shipGridWidth];
+        }
+
         private void Start()
+        {
+            SpawnStartingShip();
+        }
+
+        private void SpawnStartingShip()
         {
             if (PhaseManager.Current.CurrentPhase != GamePhase.Construction)
             {
                 return;
             }
-            
-            occupiedSpaces = new ShipModule[constructionAreaHeight,constructionAreaWidth];
 
             Vector3 coreGridPosition = corePosition.GridPosition();
-            
+
             GameObject shipCore = Instantiate(shipCorePrefab, coreGridPosition, Quaternion.identity);
 
             ShipModule coreLogic = shipCore.GetComponentInChildren<ShipModule>();
@@ -59,7 +71,7 @@ namespace Managers
                 Debug.LogError($"[ConstructionManager] The ship core prefab is missing a ship" +
                                $" part component!");
             }
-            
+
             PlacePart(coreGridPosition, coreLogic);
         }
 
@@ -67,26 +79,26 @@ namespace Managers
         {
             ConvertPositionToIndices(position, out int row, out int column);
 
-            if (column < 0 || column >= constructionAreaWidth)
+            if (column < 0 || column >= shipGridWidth)
             {
                 return false;
             }
 
-            if (row < 0 || row >= constructionAreaHeight)
+            if (row < 0 || row >= shipGridHeight)
             {
                 return false;
             }
 
             bool isShapeConnectedToExistingPart = false;
-            
+
             List<(int, int)> shapeInformation = partToPlace.ShapeAsList;
 
             foreach ((int, int) takenPosition in shapeInformation)
             {
                 int shapeRow = row + takenPosition.Item1;
                 int shapeColumn = column + takenPosition.Item2;
-                
-                if (occupiedSpaces[shapeRow, shapeColumn] != null)
+
+                if (shipGrid[shapeRow, shapeColumn] != null)
                 {
                     return false;
                 }
@@ -101,17 +113,17 @@ namespace Managers
                     int neighborRow = shapeRow + validNeighborPosition.Item1;
                     int neighborColumn = shapeColumn + validNeighborPosition.Item2;
 
-                    if (neighborRow < 0 || neighborRow >= constructionAreaHeight)
-                    {
-                        continue;
-                    }
-                        
-                    if (neighborColumn < 0 || neighborColumn >= constructionAreaWidth)
+                    if (neighborRow < 0 || neighborRow >= shipGridHeight)
                     {
                         continue;
                     }
 
-                    if (occupiedSpaces[neighborRow, neighborColumn] != null)
+                    if (neighborColumn < 0 || neighborColumn >= shipGridWidth)
+                    {
+                        continue;
+                    }
+
+                    if (shipGrid[neighborRow, neighborColumn] != null)
                     {
                         // there is an existing part of the ship next to this part of the shape :)
                         isShapeConnectedToExistingPart = true;
@@ -119,22 +131,6 @@ namespace Managers
                     }
                 }
             }
-            
-            // for(int i = 0; i < shape.GetLength(0); i++)
-            // {
-            //     for (int j = 0; j < shape.GetLength(1); j++)
-            //     {
-            //         if (shape[i, j] != 0 &&
-            //             occupiedSpaces[row + i, column + j] != null)
-            //         {
-            //             Debug.LogError($"Cannot be placed at ({row}, {column}) because shape part" +
-            //                            $" ({i}, {j}) is overlapping the occupied space" +
-            //                            $" ({row + i}, {column + j})");
-            //             
-            //             return false;
-            //         }
-            //     }
-            // }
 
             return isShapeConnectedToExistingPart;
         }
@@ -149,43 +145,71 @@ namespace Managers
         {
             ConvertPositionToIndices(partPosition, out int row, out int column);
 
+            // store list of which position in the grid the module is occupying for easy lookup
+            List<(int, int)> partPositions = new();
+
             int[,] shape = placedModule.Shape;
-            
-            for(int i = 0; i < shape.GetLength(0); i++)
+
+            for (int i = 0; i < shape.GetLength(0); i++)
             {
                 for (int j = 0; j < shape.GetLength(1); j++)
                 {
                     if (shape[i, j] != 0)
                     {
-                        occupiedSpaces[row + i, column + j] = placedModule;
+                        int gridRow = row + i;
+                        int gridColumn = column + j;
+                        
+                        partPositions.Add((gridRow, gridColumn));
+                        shipGrid[gridRow, gridColumn] = placedModule;
                     }
                 }
             }
 
+            occupiedSpacesByPart[placedModule] = partPositions;
+            
             ShipManager.Current.PlayerShip.AddModule(placedModule);
-            // PrintArray();
         }
 
-        private void PrintArray()
+        public List<ShipModule> FindNeighbors(ShipModule shipModule)
         {
-            for (int i = 0; i < constructionAreaHeight; i++)
+            if (!occupiedSpacesByPart.TryGetValue(shipModule, out List<(int, int)> occupiedSpaces))
             {
-                string rowString = "";
-                
-                for (int j = 0; j < constructionAreaWidth; j++)
+                Debug.LogError($"[ShipGridController] FindNeighbors called with {shipModule.name}" +
+                               $" which does not seem to be part of the ship!");
+                return new();
+            }
+
+            List<ShipModule> neighbors = new();
+
+            foreach ((int, int) gridCoordinate in occupiedSpaces)
+            {
+                foreach ((int, int) validNeighborPosition in validNeighborPositions)
                 {
-                    if (occupiedSpaces[i, j] != null)
+                    int neighbourRow = gridCoordinate.Item1 + validNeighborPosition.Item1;
+                    int neighbourColumn = gridCoordinate.Item2 + validNeighborPosition.Item2;
+
+                    if (neighbourRow < 0 || neighbourRow >= shipGridHeight)
                     {
-                        rowString += "x";
+                        continue;
                     }
-                    else
+                    
+                    if (neighbourColumn < 0 || neighbourColumn >= shipGridWidth)
                     {
-                        rowString += "O";
+                        continue;
+                    }
+
+                    ShipModule possibleNeighbor = shipGrid[neighbourRow, neighbourColumn];
+
+                    if (possibleNeighbor != null &&
+                        possibleNeighbor != shipModule &&
+                        !neighbors.Contains(possibleNeighbor))
+                    {
+                        neighbors.Add(possibleNeighbor);
                     }
                 }
-                
-                Debug.LogError($"Row {i}: {rowString}");
             }
+
+            return neighbors;
         }
     }
 }
