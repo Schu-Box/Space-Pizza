@@ -1,7 +1,6 @@
 using System;
 using Helpers;
 using ShipParts;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Managers
@@ -9,6 +8,8 @@ namespace Managers
     public class DragAndDropManager: MonoBehaviour
     {
         public static DragAndDropManager Current => GameManager.Instance.ReferenceProvider.DragAndDropManager;
+
+        public event Action<ShipModuleDefinition> grabbedModuleChangedEvent;
         
         private ShipModule _currentlyDraggedPart = null;
 
@@ -24,6 +25,8 @@ namespace Managers
 
             _currentlyDraggedPart = objectToDrag;
             startedDraggingThisFrame = true;
+            
+            grabbedModuleChangedEvent?.Invoke(_currentlyDraggedPart.ModuleDefinition);
         }
 
         private void Update()
@@ -65,6 +68,8 @@ namespace Managers
             
             _currentlyDraggedPart.ModuleColorController.ResetColor();
             _currentlyDraggedPart = null;
+            
+            grabbedModuleChangedEvent?.Invoke(null);
         }
     }
 }

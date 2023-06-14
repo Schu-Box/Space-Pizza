@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca6726fad0241ba84354f6aef8a338a, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
+  displayName: Shield 1
   shapeDefinition: '11,
 
     11'
