@@ -42,7 +42,6 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     public void HideWASDTutorial()
     {
-        Debug.Log("CALED");
         wASDTutorialShown = false;
         tutorial_WASD.SetActive(false);
     }

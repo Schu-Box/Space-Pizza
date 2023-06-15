@@ -95,16 +95,33 @@ public class ShipModule : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void OnCollisionEnter2D(Collision2D other)
     {
-        // moduleColorController.ShowDamage();
+        if (other.gameObject.GetComponent<Laser>())
+        {
+            Debug.Log("HIT!!!!");
+            HitByProjectile(other.gameObject.GetComponent<Laser>());
+        }
     }
+
+    public void HitByProjectile(Laser projectile)
+    {
+        projectile.DestroyLaser();
+
+        TakeDamage(projectile.damage);
+    }
+
 
     public void HitByHazard(Hazard hazard)
     {
         hazard.TakeDamage(damageDealtOnCollision);
         
-        health -= hazard.damage;
+       TakeDamage(hazard.damage);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
 
         if (health <= 0)
         {
@@ -190,6 +207,10 @@ public class ShipModule : MonoBehaviour
                 return true;
             }
         }
+        
+        //TODO: Fix 
+
+        return true;
 
         return false;
     }

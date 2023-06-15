@@ -58,6 +58,13 @@ public class ShipShield : ShipSubModule
          hazard.TakeDamage(damageDealtOnCollision);
          AbsorbDamage(hazard.damage);
       }
+
+      Laser projectile = other.gameObject.GetComponent<Laser>();
+      if (projectile != null)
+      {
+         projectile.DestroyLaser();
+         AbsorbDamage(projectile.damage);
+      }
    }
     
    public void EnableShield()
