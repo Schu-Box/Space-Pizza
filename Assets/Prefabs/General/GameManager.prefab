@@ -295,8 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipCorePrefab: {fileID: 3690865600368182340, guid: f4f45254b57e45043812082d8ec0585d, type: 3}
-  corePosition: {x: 0, y: 0, z: 0}
+  corePosition: {x: 0, y: -3, z: 0}
   shipGridWidth: 64
   shipGridHeight: 64
-  areaStartX: -17
+  areaStartX: -27
   areaStartY: 5
