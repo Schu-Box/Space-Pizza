@@ -176,11 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.99
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.85
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -217,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_Name
       value: Thruster Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7fcf14225b1170409121550294be0f1, type: 3}
@@ -406,13 +410,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2400006338782763481, guid: d3a896eea425ecc44b7f72fde7f4f554, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8691939163165014621, guid: d3a896eea425ecc44b7f72fde7f4f554, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8691939163165014621, guid: d3a896eea425ecc44b7f72fde7f4f554, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.07
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8691939163165014621, guid: d3a896eea425ecc44b7f72fde7f4f554, type: 3}
       propertyPath: m_LocalPosition.y
@@ -760,11 +768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.34
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.85
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -801,6 +809,10 @@ PrefabInstance:
     - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_Name
       value: Thruster Variant (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7fcf14225b1170409121550294be0f1, type: 3}
@@ -1153,11 +1165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.88
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.85
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1194,6 +1206,10 @@ PrefabInstance:
     - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_Name
       value: Thruster Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7fcf14225b1170409121550294be0f1, type: 3}
@@ -2669,7 +2685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3940951689934855849, guid: a45116d44f8c6f84498c356e2ca23632, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.97
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3940951689934855849, guid: a45116d44f8c6f84498c356e2ca23632, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2710,6 +2726,10 @@ PrefabInstance:
     - target: {fileID: 8025523661557366061, guid: a45116d44f8c6f84498c356e2ca23632, type: 3}
       propertyPath: m_Name
       value: LaserModule Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025523661557366061, guid: a45116d44f8c6f84498c356e2ca23632, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a45116d44f8c6f84498c356e2ca23632, type: 3}
@@ -4571,11 +4591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.85
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 546789054226278010, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4612,6 +4632,10 @@ PrefabInstance:
     - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
       propertyPath: m_Name
       value: Thruster Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793649449738307070, guid: b7fcf14225b1170409121550294be0f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7fcf14225b1170409121550294be0f1, type: 3}
@@ -4665,10 +4689,6 @@ PrefabInstance:
     - target: {fileID: 5971270691217910100, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5971270691217910101, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
-      propertyPath: m_Intensity
-      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5971270691217910102, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
       propertyPath: m_Name

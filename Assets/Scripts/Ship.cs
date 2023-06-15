@@ -102,7 +102,7 @@ public class Ship : MonoBehaviour
                         if (subModule is ShipThruster)
                         {
                             ShipThruster shipThruster = subModule as ShipThruster;
-                            shipThruster.EnableParticles(true);
+                            shipThruster.ToggleParticleLights(true);
                         }
                     }
                 }
@@ -122,7 +122,7 @@ public class Ship : MonoBehaviour
                         if (subModule is ShipThruster)
                         {
                             ShipThruster shipThruster = subModule as ShipThruster;
-                            shipThruster.EnableParticles(false);
+                            shipThruster.ToggleParticleLights(false);
                         }
                     }
                 }

@@ -7,7 +7,6 @@ public class ShipLaser : ShipSubModule
     public Laser laserPrefab;
     public Transform laserSpawnTransform;
     public int laserDamage = 1;
-    public float laserDuration = 0.1f;
     public float laserCooldownDuration = 2f;
     private float _laserCooldownTimeRemaining = 0f;
     
