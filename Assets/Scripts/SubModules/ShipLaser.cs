@@ -33,6 +33,7 @@ public class ShipLaser : ShipSubModule
         _laserCooldownTimeRemaining = laserCooldownDuration;
 
         Laser laser = Instantiate(laserPrefab, laserSpawnTransform.position, Quaternion.identity).GetComponent<Laser>();
+        laser.transform.eulerAngles = transform.eulerAngles;
         laser.Fire(this);
     }
     

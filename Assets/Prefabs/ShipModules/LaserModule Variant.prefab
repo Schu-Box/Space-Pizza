@@ -79,7 +79,6 @@ MonoBehaviour:
   laserPrefab: {fileID: 651223203866784440, guid: f9bca2e4461ded04bac1f92b3b5c03c9, type: 3}
   laserSpawnTransform: {fileID: 7524684121698887465}
   laserDamage: 1
-  laserDuration: 0.1
   laserCooldownDuration: 0.5
 --- !u!1001 &8079644495005529115
 PrefabInstance:
@@ -95,6 +94,14 @@ PrefabInstance:
     - target: {fileID: 24581570820202380, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 672886418004090320, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 672886418004090320, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1458770374371456410, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_RootOrder
