@@ -18,7 +18,7 @@ public class ShipLaser : ShipSubModule
         {
             _laserCooldownTimeRemaining -= Time.deltaTime;
         }
-        else
+        else if(!PhaseManager.Current.IsJumping)
         {
             FireLaser();
         }

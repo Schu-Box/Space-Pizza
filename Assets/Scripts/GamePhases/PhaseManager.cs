@@ -28,6 +28,13 @@ namespace GamePhases
 
         public bool IsFirstConstructionPhase { get; private set; } = true;
 
+        public bool IsJumping { get; private set; } = false;
+
+        public void ChangeJumpState(bool shouldJump)
+        {
+            IsJumping = shouldJump;
+        }
+
         public void SwitchPhase(GamePhase nextPhase)
         {
             foreach (SceneForPhase sceneForPhase in scenePhaseMapping)

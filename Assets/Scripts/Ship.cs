@@ -346,4 +346,12 @@ public class Ship : MonoBehaviour
             shipModule.DestroyShipModule();
         }
     }
+
+    public void ChangeVisibility(bool isVisible)
+    {
+        foreach (ShipModule shipModule in shipModules)
+        {
+            shipModule.ChangeVisibility(isVisible);
+        }
+    }
 }
