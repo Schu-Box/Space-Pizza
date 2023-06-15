@@ -30,6 +30,8 @@ public class Ship : MonoBehaviour
 
     private List<ShipModule> shipModules = new List<ShipModule>();
 
+    private ShipModule coreModule;
+
     private void Awake()
     {
         if (ShipManager.Current.PlayerShip != null)
@@ -190,6 +192,16 @@ public class Ship : MonoBehaviour
             return;
         }
 
+        if (shipModule.coreModule)
+        {
+            if (coreModule != null)
+            {
+                Debug.LogError($"[Ship] Adding more than one core module!", shipModule);
+            }
+            
+            coreModule = shipModule;
+        }
+
         shipModule.ModuleDestroyedEvent += RemoveModule;
         shipModules.Add(shipModule);
 
@@ -199,7 +211,7 @@ public class Ship : MonoBehaviour
         SetUpNeighbors(shipModule);
     }
 
-    public void RemoveModule(ShipModule shipModule)
+    public void RemoveModule(ShipModule shipModule, bool wasChainReaction)
     {
         shipModule.ModuleDestroyedEvent -= RemoveModule;
         shipModules.Remove(shipModule);
@@ -210,7 +222,12 @@ public class Ship : MonoBehaviour
             return;
         }
 
-        RemoveDisconnectedNeighboringShipModules();
+        if(!wasChainReaction)
+        {
+            // in a chain reaction, only the first destroyed module needs to run this code 
+            RemoveDisconnectedNeighboringShipModules(shipModule);
+        }
+        
         CaclulcateShipStats();
     }
     
@@ -255,22 +272,66 @@ public class Ship : MonoBehaviour
         GameplayInterfaceManager.Instance.DisplayGameOver();
     }
 
-    private void RemoveDisconnectedNeighboringShipModules()
+    private void RemoveDisconnectedNeighboringShipModules(ShipModule destroyedModule)
     {
-        //TODO: Iterate through all ship modules and remove any that are not connected to the core module
+        if (coreModule == null)
+        {
+            Debug.LogError($"[Ship] RemoveDisconnectedNeighboringShipModules called but" +
+                           $" no core modules in known!");
+            return;
+        }
         
-        foreach(ShipModule shipModule in shipModules)
+        // remove the destroyed module from the their neighbor's neighbor list
+        foreach (ShipModule neighborModule in destroyedModule.NeighboringShipModules)
+        {
+            neighborModule.RemoveNeighbor(destroyedModule);
+        }
+        
+        // find all modules connected to the core and remove all other modules
+        HashSet<ShipModule> modulesConnectedToCore = new();
+
+        List<ShipModule> nextModules = new() { coreModule };
+
+        while (nextModules.Count > 0)
+        {
+            ShipModule moduleToCheck = nextModules[0];
+            nextModules.RemoveAt(0);
+
+            modulesConnectedToCore.Add(moduleToCheck);
+
+            foreach (ShipModule neighborModule in moduleToCheck.NeighboringShipModules)
+            {
+                if (modulesConnectedToCore.Contains(neighborModule))
+                {
+                    // module already checked
+                    continue;
+                }
+
+                if (nextModules.Contains(neighborModule))
+                {
+                    // module already scheduled to be checked
+                    continue;
+                }
+                
+                nextModules.Add(neighborModule);
+            }
+        }
+
+        List<ShipModule> moduleCopy = new List<ShipModule>(shipModules);
+        
+        foreach(ShipModule shipModule in moduleCopy)
         {
             if (shipModule.coreModule)
             {
                 continue;
             }
             
-            if (!shipModule.IsConnectedToCoreModule())
+            if (modulesConnectedToCore.Contains(shipModule))
             {
-                shipModule.DestroyShipModule();
-                return;
+                continue;
             }
+            
+            shipModule.DestroyShipModule();
         }
     }
 }
