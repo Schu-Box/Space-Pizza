@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GamePhases;
-using Helpers;
 using ShipParts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -15,6 +14,9 @@ public class ShipModule : MonoBehaviour
 
     [SerializeField]
     private Transform rootTransform;
+
+    [SerializeField]
+    private GameObject visualsRoot;
 
     public Transform RootTransform => rootTransform;
 
@@ -161,6 +163,12 @@ public class ShipModule : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (PhaseManager.Current.IsJumping)
+        {
+            // no damage during jumps
+            return;
+        }
+        
         CurrentHealth -= damage;
 
         if (CurrentHealth <= 0)
@@ -257,5 +265,10 @@ public class ShipModule : MonoBehaviour
     public void RemoveNeighbor(ShipModule neighborToRemove)
     {
         NeighboringShipModules.Remove(neighborToRemove);
+    }
+
+    public void ChangeVisibility(bool isVisible)
+    {
+        visualsRoot.SetActive(isVisible);
     }
 }

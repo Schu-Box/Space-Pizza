@@ -1,17 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
+using Effects;
 using GamePhases;
 using Helpers;
 using Managers;
 using TMPro;
-using UnityEditor.Tilemaps;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameplayInterfaceManager : MonoBehaviour
 {
     public static GameplayInterfaceManager Instance;
+
+    [SerializeField]
+    private JumpEffect jumpEffect;
+
+    [SerializeField]
+    private float jumpEffectDuration = 5f;
 
     public TextMeshProUGUI jumpDriveChargeText;
     public Slider jumpDriveChargeSlider;
@@ -40,7 +45,6 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     void Update()
     {
-
     }
 
     public void HideWASDTutorial()
@@ -68,25 +72,39 @@ public class GameplayInterfaceManager : MonoBehaviour
     public void DisplayGameOver()
     {
         _gameOver = true;
-        
+
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Game Over";
 
         HighScoreManager.Instance.FinalizeScore();
     }
 
+    [ContextMenu("ActivateJumpDrive")]
     public void ActivateJumpDrive()
     {
-        // Destroy(GameManager.Instance.gameObject);
-        // SceneManager.LoadScene(0);
-        GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
+        StartCoroutine(RunJumpSequence());
+    }
 
+    private IEnumerator RunJumpSequence()
+    {
+        PhaseManager.Current.ChangeJumpState(true);
+        
+        jumpEffect.StartEffect(jumpEffectDuration);
+
+        yield return new WaitForSecondsRealtime(jumpEffectDuration + 0.5f);
+        
+        PhaseManager.Current.ChangeJumpState(false);
+        
+        GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
+        
         Ship ship = ShipManager.Current.PlayerShip;
+        ship.ChangeVisibility(true);
+
         ship.RootTransform.position = ShipGridController.Current.CorePosition.GridPosition();
         ship.RootTransform.eulerAngles = Vector3.zero;
         ship.StopPhysics();
     }
-
+    
     public void UpdateScoreText(int newScore, bool isHighScore = false)
     {
         if (isHighScore)

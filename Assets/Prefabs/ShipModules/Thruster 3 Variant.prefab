@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  rotationSpeed: 3
+  rotationSpeed: 1.5
   particleLightList:
   - {fileID: 3917362543141980670}
   - {fileID: 2267516834701813079}
