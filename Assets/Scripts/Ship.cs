@@ -268,7 +268,13 @@ public class Ship : MonoBehaviour
             totalWeight += shipModule.weight;
         }
 
-        speed =  speed - (totalWeight * speedLostPerWeight);
+        float subtractionSpeed = (totalWeight * speedLostPerWeight);
+        if (subtractionSpeed < 0f)
+        {
+            subtractionSpeed = 0f;
+        }
+
+        speed =  speed - subtractionSpeed;
         rotationSpeed = rotationSpeed - (totalWeight - rotationSpeedLostPerWeight);
     }
 
