@@ -5,10 +5,20 @@ using UnityEngine.Rendering.Universal;
 
 public class ShipThruster : ShipSubModule
 {
-    public float speed = 2f;
-    public float rotationSpeed = 20f;
+    private float speedIncreaseFactor = 1f;
+    private float rotationSpeedIncreaseFactor = 20f;
+    
+    [SerializeField]
+    private float speed = 1f;
+    public float Speed => speed * speedIncreaseFactor;
+    
+    [SerializeField]
+    private float rotationSpeed = 1f;
+
+    public float RotationSpeed => rotationSpeed * rotationSpeedIncreaseFactor;
 
     public List<ParticleLights> particleLightList;
+    
 
     public void ToggleParticleLights(bool activated)
     {

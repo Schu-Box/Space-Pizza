@@ -41,6 +41,8 @@ public class ShipModule : MonoBehaviour
 
     public bool coreModule = false;
 
+    public float weight = 1f;
+
     [SerializeField]
     [FormerlySerializedAs("health")]
     private int maxHealth = 1;
