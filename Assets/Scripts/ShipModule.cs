@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 public class ShipModule : MonoBehaviour
 {
     public event Action HealthChangedEvent;
-    
+
     public event Action<ShipModule> ModuleDestroyedEvent;
 
     [SerializeField]
@@ -40,7 +40,7 @@ public class ShipModule : MonoBehaviour
     public List<(int, int)> ShapeAsList { get; } = new();
 
     public bool coreModule = false;
-    
+
     [SerializeField]
     [FormerlySerializedAs("health")]
     private int maxHealth = 1;
@@ -64,7 +64,7 @@ public class ShipModule : MonoBehaviour
     }
 
     private int currentHealthInternal = 999;
-    
+
     public int damageDealtOnCollision = 5;
 
     public List<ShipSubModule> shipSubModules = new List<ShipSubModule>();
@@ -81,7 +81,7 @@ public class ShipModule : MonoBehaviour
         }
 
         CurrentHealth = maxHealth;
-        
+
         ParseShapeInformation();
 
         PhaseManager.Current.PhaseChangedEvent += HandlePhaseChange;
@@ -91,7 +91,7 @@ public class ShipModule : MonoBehaviour
     {
         PhaseManager.Current.PhaseChangedEvent -= HandlePhaseChange;
     }
-    
+
     private void HandlePhaseChange()
     {
         if (PhaseManager.Current.CurrentPhase != GamePhase.Construction)
@@ -153,21 +153,19 @@ public class ShipModule : MonoBehaviour
 
     public void HitByHazard(Hazard hazard)
     {
-       hazard.TakeDamage(damageDealtOnCollision);
-        
-       TakeDamage(hazard.damage);
+        hazard.TakeDamage(damageDealtOnCollision);
+
+        TakeDamage(hazard.damage);
     }
 
     public void TakeDamage(int damage)
     {
-     
-        CurrentHealth -= hazard.damage;
+        CurrentHealth -= damage;
 
         if (CurrentHealth <= 0)
         {
             DestroyShipModule();
         }
-       
     }
 
     public void DestroyShipModule()
@@ -175,7 +173,7 @@ public class ShipModule : MonoBehaviour
         if (_explosionCoroutine == null)
         {
             ModuleDestroyedEvent?.Invoke(this);
-            
+
             _explosionCoroutine = StartCoroutine(ExplosionCoroutine());
         }
         else
@@ -202,16 +200,16 @@ public class ShipModule : MonoBehaviour
         {
             return;
         }
-        
+
         _neighboringShipModules.Add(neighbor);
     }
 
     public bool IsConnectedToCoreModule()
     {
         List<ShipModule> connectedModules = new List<ShipModule>();
-        
+
         //TODO: Make this work!
-        
+
         //loop through all neighbors of this shipModule and all neighbors of those neighbors and so on
         //if a neighbor is a core module, return true
         //if no core module is found, return false
@@ -220,7 +218,7 @@ public class ShipModule : MonoBehaviour
             if (!connectedModules.Contains(neighbor))
             {
                 connectedModules.Add(neighbor);
-                
+
                 //and add all neighbors of neighbors and so on that haven't been added to modulestocheck yet
                 foreach (ShipModule neighborOfNeighbor in neighbor._neighboringShipModules)
                 {
@@ -239,7 +237,7 @@ public class ShipModule : MonoBehaviour
                 return true;
             }
         }
-        
+
         //TODO: Fix 
 
         return true;
