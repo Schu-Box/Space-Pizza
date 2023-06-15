@@ -30,6 +30,8 @@ public class Ship : MonoBehaviour
 
     private List<ShipModule> shipModules = new List<ShipModule>();
 
+    public Vector2 Velocity => rb.velocity;
+
     private void Awake()
     {
         if (ShipManager.Current.PlayerShip != null)
