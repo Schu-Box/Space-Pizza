@@ -244,4 +244,12 @@ public class ShipModule : MonoBehaviour
 
         return false;
     }
+
+    public void HandleModuleGrabbed()
+    {
+        foreach (ShipSubModule subModule in shipSubModules)
+        {
+            subModule.HandleModuleGrabbed();
+        }
+    }
 }

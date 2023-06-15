@@ -27,6 +27,7 @@ namespace Managers
             startedDraggingThisFrame = true;
             
             grabbedModuleChangedEvent?.Invoke(_currentlyDraggedPart.ModuleDefinition);
+            _currentlyDraggedPart.HandleModuleGrabbed();
         }
 
         private void Update()

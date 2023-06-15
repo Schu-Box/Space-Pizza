@@ -41,13 +41,30 @@ public class ShipShield : ShipSubModule
    
    private void UpdateShieldState()
    {
-      if (PhaseManager.Current.CurrentPhase == GamePhase.Fighting)
+      if (PhaseManager.Current.CurrentPhase == GamePhase.Construction)
       {
-         EnableShield();
+         // shields in construction are should only show if the has grabbed them (i.e. while dragging
+         // and when it is attached to the ship)
+         if (wasGrabbed)
+         {
+            EnableShield();
+         }
+         else
+         {
+            DisableShield();
+         }
+         
          return;
       }
       
-      DisableShield();
+      EnableShield();
+   }
+
+   public override void HandleModuleGrabbed()
+   {
+      base.HandleModuleGrabbed();
+      
+      UpdateShieldState();
    }
 
    public void OnCollisionEnter2D(Collision2D other)
