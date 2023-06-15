@@ -17,6 +17,10 @@ public class Ship : MonoBehaviour
     private Transform moduleParent;
     
     private Rigidbody2D rb;
+    
+    //Weight Values
+    private float speedLostPerWeight = 0.1f;
+    private float rotationSpeedLostPerWeight = 2f;
 
     private bool jumpDriveCharging = false;
     private bool jumpDriveReady = false;
@@ -245,9 +249,6 @@ public class Ship : MonoBehaviour
         }
     }
 
-    private float speedLostPerWeight = 0.1f;
-    private float rotationSpeedLostPerWeight = 2f;
-    
     public void CaclulcateShipStats()
     {
         totalWeight = 0f;
@@ -267,7 +268,13 @@ public class Ship : MonoBehaviour
             totalWeight += shipModule.weight;
         }
 
-        speed =  speed - (totalWeight * speedLostPerWeight);
+        float subtractionSpeed = (totalWeight * speedLostPerWeight);
+        if (subtractionSpeed < 0f)
+        {
+            subtractionSpeed = 0f;
+        }
+
+        speed =  speed - subtractionSpeed;
         rotationSpeed = rotationSpeed - (totalWeight - rotationSpeedLostPerWeight);
     }
 
