@@ -17,7 +17,7 @@ namespace ShipParts
             {
                 return;
             }
-            
+
             _shipPart.ModuleMover.StopMoving();
             
             DragAndDropManager.Current.StartDragging(_shipPart);

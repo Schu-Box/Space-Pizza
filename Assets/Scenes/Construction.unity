@@ -162,6 +162,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 724149009298488317, guid: 311f0d2e7a5147a4799b5f5501818dac, type: 3}
+      propertyPath: scrapMoveDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4420766474320377965, guid: 311f0d2e7a5147a4799b5f5501818dac, type: 3}
       propertyPath: m_Name
       value: ScrapInfrastructure
