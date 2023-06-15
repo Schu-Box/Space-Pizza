@@ -11,7 +11,7 @@ namespace ShipParts
 
         private bool canBeSelected = true;
 
-        private void OnMouseDown()
+        public void HandleModuleSelected()
         {
             if (!canBeSelected)
             {

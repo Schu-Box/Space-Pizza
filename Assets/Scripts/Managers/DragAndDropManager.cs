@@ -17,6 +17,11 @@ namespace Managers
 
         public void StartDragging(ShipModule objectToDrag)
         {
+            if (_currentlyDraggedPart == objectToDrag)
+            {
+                return;
+            }
+            
             if (_currentlyDraggedPart != null)
             {
                 Debug.LogError("Already dragging something!");

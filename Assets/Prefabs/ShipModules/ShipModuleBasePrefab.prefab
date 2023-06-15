@@ -43,8 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1458770374371456410}
   - component: {fileID: 3689055032664869574}
-  - component: {fileID: 6537576907751565223}
-  m_Layer: 6
+  - component: {fileID: 672886418004090320}
+  m_Layer: 7
   m_Name: ModuleSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipPart: {fileID: 6135720174285442645}
---- !u!61 &6537576907751565223
+--- !u!61 &672886418004090320
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
