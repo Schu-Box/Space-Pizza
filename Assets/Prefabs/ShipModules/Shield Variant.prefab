@@ -342,6 +342,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: c1bd2f8ec118deb4d9e86e29beb97efb, type: 2}
     - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: _moduleDefinition
       value: 
       objectReference: {fileID: 11400000, guid: 2fa091cc5ad61ba43b93bc8f70d24a09, type: 2}

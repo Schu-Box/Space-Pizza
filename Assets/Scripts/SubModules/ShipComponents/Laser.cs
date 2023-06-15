@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
@@ -24,8 +25,14 @@ public class Laser : MonoBehaviour
         damage = shipLaser.laserDamage;
         
         transform.eulerAngles = shipLaser.transform.eulerAngles;
+
+        float shipVelocity = 0f;
+        if (ShipManager.Current.PlayerShip != null)
+        {
+            shipVelocity = ShipManager.Current.PlayerShip.Velocity.magnitude;
+        }
         
-        _rigidbody.velocity = transform.up * speed;
+        _rigidbody.velocity =  transform.up * (speed + shipVelocity);
     }
     
     public void DestroyLaser()

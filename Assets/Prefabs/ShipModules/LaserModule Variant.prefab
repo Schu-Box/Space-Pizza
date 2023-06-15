@@ -79,7 +79,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 651223203866784440, guid: f9bca2e4461ded04bac1f92b3b5c03c9, type: 3}
   laserSpawnTransform: {fileID: 7524684121698887465}
   laserDamage: 1
-  laserCooldownDuration: 0.5
+  laserCooldownDuration: 0.6
 --- !u!1001 &8079644495005529115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3d1f16bf3c27f0746be9546426c5b51b, type: 2}
+    - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: weight
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: _moduleDefinition
       value: 

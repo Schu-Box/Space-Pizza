@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Hazard : MonoBehaviour
 {
+    public int scoreValue = 10;
+    
     public int damage = 1;
     public int health = 1;
     public Vector2 speedRange = new Vector2(3f, 8f);
@@ -98,7 +100,7 @@ public class Hazard : MonoBehaviour
 
     public void DestroyHazard()
     {
-        //Send score value to highscoreManager
+        HighScoreManager.Instance.AddScore(scoreValue);
         
         collider.enabled = false;
         _rigidbody.velocity = Vector2.zero;

@@ -12,11 +12,11 @@ using UnityEngine.UI;
 public class GameplayInterfaceManager : MonoBehaviour
 {
     public static GameplayInterfaceManager Instance;
-    
+
     public TextMeshProUGUI jumpDriveChargeText;
     public Slider jumpDriveChargeSlider;
     public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI coinCountText;
+    public TextMeshProUGUI highScoreText;
 
     public GameObject tutorial_WASD;
 
@@ -25,10 +25,13 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     private int coinCount = 0;
 
+    private bool _gameOver = false;
+    public bool IsGameOver => _gameOver;
+
     private void Awake()
     {
         Instance = this;
-        
+
         gameOverText.gameObject.SetActive(false);
 
         wASDTutorialShown = true;
@@ -37,7 +40,7 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     void Update()
     {
-       
+
     }
 
     public void HideWASDTutorial()
@@ -53,8 +56,8 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     public void AddCoin(int coins)
     {
-        coinCount += coins;
-        coinCountText.text = "Coins: " + coinCount;
+        // coinCount += coins;
+        // coinCountText.text = "Coins: " + coinCount;
     }
 
     public void DisplayJumpDriveReady()
@@ -64,14 +67,12 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     public void DisplayGameOver()
     {
+        _gameOver = true;
+        
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Game Over";
-    }
 
-    public void DisplaySuccess()
-    {
-        gameOverText.gameObject.SetActive(true);
-        gameOverText.text = "Success!";
+        HighScoreManager.Instance.FinalizeScore();
     }
 
     public void ActivateJumpDrive()
@@ -84,5 +85,22 @@ public class GameplayInterfaceManager : MonoBehaviour
         ship.RootTransform.position = ShipGridController.Current.CorePosition.GridPosition();
         ship.RootTransform.eulerAngles = Vector3.zero;
         ship.StopPhysics();
+    }
+
+    public void UpdateScoreText(int newScore, bool isHighScore = false)
+    {
+        if (isHighScore)
+        {
+            highScoreText.text = "High Score: " + newScore;
+        }
+        else
+        {
+            highScoreText.text = "Score: " + newScore;
+        }
+    }
+
+    public void DisplayHighScoreAchieved(int newScore)
+    {
+        highScoreText.color = Color.yellow;
     }
 }
