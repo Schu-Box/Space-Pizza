@@ -11,7 +11,7 @@ public class ShipModule : MonoBehaviour
 {
     public event Action HealthChangedEvent;
 
-    public event Action<ShipModule> ModuleDestroyedEvent;
+    public event Action<ShipModule, bool> ModuleDestroyedEvent;
 
     [SerializeField]
     private Transform rootTransform;
@@ -70,8 +70,8 @@ public class ShipModule : MonoBehaviour
     public int damageDealtOnCollision = 5;
 
     public List<ShipSubModule> shipSubModules = new List<ShipSubModule>();
-
-    private List<ShipModule> _neighboringShipModules = new List<ShipModule>();
+    
+    public List<ShipModule> NeighboringShipModules { get; } = new List<ShipModule>();
 
     private Coroutine _explosionCoroutine;
 
@@ -169,11 +169,11 @@ public class ShipModule : MonoBehaviour
         }
     }
 
-    public void DestroyShipModule()
+    public void DestroyShipModule(bool isChainReaction = false)
     {
         if (_explosionCoroutine == null)
         {
-            ModuleDestroyedEvent?.Invoke(this);
+            ModuleDestroyedEvent?.Invoke(this, isChainReaction);
 
             _explosionCoroutine = StartCoroutine(ExplosionCoroutine());
         }
@@ -197,54 +197,54 @@ public class ShipModule : MonoBehaviour
 
     public void AddNeighbor(ShipModule neighbor)
     {
-        if (_neighboringShipModules.Contains(neighbor))
+        if (NeighboringShipModules.Contains(neighbor))
         {
             return;
         }
 
-        _neighboringShipModules.Add(neighbor);
+        NeighboringShipModules.Add(neighbor);
     }
 
-    public bool IsConnectedToCoreModule()
-    {
-        List<ShipModule> connectedModules = new List<ShipModule>();
-
-        //TODO: Make this work!
-
-        //loop through all neighbors of this shipModule and all neighbors of those neighbors and so on
-        //if a neighbor is a core module, return true
-        //if no core module is found, return false
-        foreach (ShipModule neighbor in _neighboringShipModules)
-        {
-            if (!connectedModules.Contains(neighbor))
-            {
-                connectedModules.Add(neighbor);
-
-                //and add all neighbors of neighbors and so on that haven't been added to modulestocheck yet
-                foreach (ShipModule neighborOfNeighbor in neighbor._neighboringShipModules)
-                {
-                    if (!connectedModules.Contains(neighborOfNeighbor))
-                    {
-                        connectedModules.Add(neighborOfNeighbor);
-                    }
-                }
-            }
-        }
-
-        foreach (ShipModule module in connectedModules)
-        {
-            if (module.coreModule)
-            {
-                return true;
-            }
-        }
-
-        //TODO: Fix 
-
-        return true;
-
-        return false;
-    }
+    // public bool IsConnectedToCoreModule()
+    // {
+    //     List<ShipModule> connectedModules = new List<ShipModule>();
+    //
+    //     //TODO: Make this work!
+    //
+    //     //loop through all neighbors of this shipModule and all neighbors of those neighbors and so on
+    //     //if a neighbor is a core module, return true
+    //     //if no core module is found, return false
+    //     foreach (ShipModule neighbor in NeighboringShipModules)
+    //     {
+    //         if (!connectedModules.Contains(neighbor))
+    //         {
+    //             connectedModules.Add(neighbor);
+    //
+    //             //and add all neighbors of neighbors and so on that haven't been added to modulestocheck yet
+    //             foreach (ShipModule neighborOfNeighbor in neighbor.NeighboringShipModules)
+    //             {
+    //                 if (!connectedModules.Contains(neighborOfNeighbor))
+    //                 {
+    //                     connectedModules.Add(neighborOfNeighbor);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     foreach (ShipModule module in connectedModules)
+    //     {
+    //         if (module.coreModule)
+    //         {
+    //             return true;
+    //         }
+    //     }
+    //
+    //     //TODO: Fix 
+    //
+    //     return true;
+    //
+    //     return false;
+    // }
 
     public void HandleModuleGrabbed()
     {
@@ -252,5 +252,10 @@ public class ShipModule : MonoBehaviour
         {
             subModule.HandleModuleGrabbed();
         }
+    }
+
+    public void RemoveNeighbor(ShipModule neighborToRemove)
+    {
+        NeighboringShipModules.Remove(neighborToRemove);
     }
 }
