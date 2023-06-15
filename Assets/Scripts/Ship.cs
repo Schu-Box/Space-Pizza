@@ -23,6 +23,7 @@ public class Ship : MonoBehaviour
     private float jumpDriveChargeDuration = 45f;
     private float jumpDriveChargeTimer = 0f;
 
+    private float totalWeight = 0f;
     private float speed = 0f;
     private float rotationSpeed = 0f;
 
@@ -226,9 +227,13 @@ public class Ship : MonoBehaviour
             neighbor.AddNeighbor(shipModule);
         }
     }
+
+    private float speedLostPerWeight = 0.1f;
+    private float rotationSpeedLostPerWeight = 2f;
     
     public void CaclulcateShipStats()
     {
+        totalWeight = 0f;
         speed = 0f;
         rotationSpeed = 0f;
         foreach (ShipModule shipModule in shipModules)
@@ -237,11 +242,16 @@ public class Ship : MonoBehaviour
             {
                 if (shipSubModule is ShipThruster shipThruster)
                 {
-                    speed += shipThruster.speed;
-                    rotationSpeed += shipThruster.rotationSpeed;
+                    speed += shipThruster.Speed;
+                    rotationSpeed += shipThruster.RotationSpeed;
                 }
             }
+
+            totalWeight += shipModule.weight;
         }
+
+        speed =  speed - (totalWeight * speedLostPerWeight);
+        rotationSpeed = rotationSpeed - (totalWeight - rotationSpeedLostPerWeight);
     }
 
     public void StopPhysics()

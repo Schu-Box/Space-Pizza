@@ -7,6 +7,8 @@ public class HighScoreManager : MonoBehaviour
     public static HighScoreManager Instance;
     private int currentScore = 0;
     private bool highScoreAchieved = false;
+    
+    
 
     private void Awake()
     {
@@ -34,5 +36,11 @@ public class HighScoreManager : MonoBehaviour
     public void FinalizeScore()
     {
         PlayerPrefs.SetInt("highScore1", currentScore);
+    }
+
+    [ContextMenu("Clear Scores")]
+    public void ClearScores()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
