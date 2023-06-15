@@ -11,7 +11,7 @@ namespace ShipParts
 
         private void Start()
         {
-            tutorialUiRoot.SetActive(PhaseManager.Current.IsFirstConstructionPhase);
+            // tutorialUiRoot.SetActive(PhaseManager.Current.IsFirstConstructionPhase);
         }
     }
 }
