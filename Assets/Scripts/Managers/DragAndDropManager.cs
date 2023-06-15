@@ -12,6 +12,7 @@ namespace Managers
         public event Action<ShipModuleDefinition> grabbedModuleChangedEvent;
         
         private ShipModule _currentlyDraggedPart = null;
+        public ShipModule CurrentlyDraggedPart => _currentlyDraggedPart;
 
         private bool startedDraggingThisFrame = false;
 

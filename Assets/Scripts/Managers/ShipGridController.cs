@@ -58,7 +58,7 @@ namespace Managers
 
         private void SpawnStartingShip()
         {
-            if (PhaseManager.Current.CurrentPhase != GamePhase.Construction)
+            if (PhaseManager.Current.CurrentPhase != GamePhase.Construction || ShipManager.Current.PlayerShip != null)
             {
                 return;
             }
@@ -149,7 +149,6 @@ namespace Managers
             if (PhaseManager.Current.CurrentPhase == GamePhase.Construction && ConstructionInterfaceManager.Instance.TimerStarted == false && !placedModule.coreModule)
             {
                 ConstructionInterfaceManager.Instance.StartTimer();
-                ConstructionInterfaceManager.Instance.HideBuildTutorial();
             }
             
             ConvertPositionToIndices(partPosition, out int row, out int column);
@@ -175,8 +174,11 @@ namespace Managers
             }
 
             occupiedSpacesByPart[placedModule] = partPositions;
-            
-            ShipManager.Current.PlayerShip.AddModule(placedModule);
+
+            // if (!ShipManager.Current.PlayerShip.HasCore)
+            // {
+                ShipManager.Current.PlayerShip.AddModule(placedModule);
+            // }
         }
 
         public List<ShipModule> FindNeighbors(ShipModule shipModule)

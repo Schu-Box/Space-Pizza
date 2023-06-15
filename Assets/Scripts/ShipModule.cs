@@ -256,6 +256,11 @@ public class ShipModule : MonoBehaviour
 
     public void HandleModuleGrabbed()
     {
+        if (PhaseManager.Current.CurrentPhase == GamePhase.Construction && ConstructionInterfaceManager.Instance.BuildTutorialShown)
+        {
+            ConstructionInterfaceManager.Instance.HideBuildTutorial();
+        }
+        
         foreach (ShipSubModule subModule in shipSubModules)
         {
             subModule.HandleModuleGrabbed();
