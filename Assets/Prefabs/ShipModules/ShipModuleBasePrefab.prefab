@@ -151,10 +151,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootTransform: {fileID: 5085051556197591730}
+  visualsRoot: {fileID: 5673046196014693613}
   moduleColorController: {fileID: 2089820824628197670}
   _moduleDefinition: {fileID: 0}
   _moduleMover: {fileID: 1361852874512600677}
   coreModule: 0
+  weight: 1
   maxHealth: 2
   damageDealtOnCollision: 5
   shipSubModules: []
