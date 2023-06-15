@@ -17,9 +17,15 @@ public class ShipThruster : ShipSubModule
 
     public void EnableParticles(bool activate)
     {
-        var emission = particleSystem.emission;
-        emission.enabled = activate;
+        if (particleSystem != null)
+        {
+            var emission = particleSystem.emission;
+            emission.enabled = activate;
+        }
 
-        light2D.gameObject.SetActive(activate);
+        if (light2D != null)
+        {
+            light2D.gameObject.SetActive(activate);
+        }
     }
 }
