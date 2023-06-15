@@ -99,7 +99,6 @@ public class ShipModule : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Laser>())
         {
-            Debug.Log("HIT!!!!");
             HitByProjectile(other.gameObject.GetComponent<Laser>());
         }
     }
