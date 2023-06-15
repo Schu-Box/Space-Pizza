@@ -11,6 +11,9 @@ namespace ShipParts
         
         [SerializeField]
         private Color moduleDamagedColor = Color.gray;
+
+        [SerializeField]
+        private ShipModule _shipModule;
         
         [SerializeField] 
         private List<SpriteRenderer> renderersToColor = new();
@@ -23,6 +26,24 @@ namespace ShipParts
             {
                 defaultColors.Add(spriteRenderer.color);
             }
+
+            _shipModule.HealthChangedEvent += UpdateHealthRelatedColoring;
+        }
+
+        private void OnDestroy()
+        {
+            _shipModule.HealthChangedEvent -= UpdateHealthRelatedColoring;
+        }
+
+        private void UpdateHealthRelatedColoring()
+        {
+            if (_shipModule.CurrentHealth >= _shipModule.MaxHealth)
+            {
+                ResetColor();
+                return;
+            }
+            
+            ShowDamage();
         }
 
         public void ShowPositionValidity(bool isPlacementValid)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GamePhases;
 using Helpers;
 using ShipParts;
 using UnityEngine;
@@ -8,7 +9,9 @@ using UnityEngine.Serialization;
 
 public class ShipModule : MonoBehaviour
 {
-    public event Action<ShipModule> ModuleDestroyedEvent; 
+    public event Action HealthChangedEvent;
+    
+    public event Action<ShipModule> ModuleDestroyedEvent;
 
     [SerializeField]
     private Transform rootTransform;
@@ -17,7 +20,6 @@ public class ShipModule : MonoBehaviour
 
     [FormerlySerializedAs("shipColorController")]
     [FormerlySerializedAs("placementVisualizer")]
-    
     [SerializeField]
     private ModuleColorController moduleColorController;
 
@@ -38,7 +40,31 @@ public class ShipModule : MonoBehaviour
     public List<(int, int)> ShapeAsList { get; } = new();
 
     public bool coreModule = false;
-    public int health = 1;
+    
+    [SerializeField]
+    [FormerlySerializedAs("health")]
+    private int maxHealth = 1;
+
+    public int MaxHealth => maxHealth;
+
+    public int CurrentHealth
+    {
+        get => currentHealthInternal;
+
+        set
+        {
+            if (value == currentHealthInternal)
+            {
+                return;
+            }
+
+            currentHealthInternal = value;
+            HealthChangedEvent?.Invoke();
+        }
+    }
+
+    private int currentHealthInternal = 999;
+    
     public int damageDealtOnCollision = 5;
 
     public List<ShipSubModule> shipSubModules = new List<ShipSubModule>();
@@ -54,6 +80,30 @@ public class ShipModule : MonoBehaviour
             Debug.LogError($"[ShipPart] is missing its module definition!", this);
         }
 
+        CurrentHealth = maxHealth;
+        
+        ParseShapeInformation();
+
+        PhaseManager.Current.PhaseChangedEvent += HandlePhaseChange;
+    }
+
+    private void OnDestroy()
+    {
+        PhaseManager.Current.PhaseChangedEvent -= HandlePhaseChange;
+    }
+    
+    private void HandlePhaseChange()
+    {
+        if (PhaseManager.Current.CurrentPhase != GamePhase.Construction)
+        {
+            return;
+        }
+
+        CurrentHealth = maxHealth;
+    }
+
+    private void ParseShapeInformation()
+    {
         string shapeDefinition = _moduleDefinition.ShapeDefinition;
 
         string[] rows = shapeDefinition.Split(',');
@@ -82,17 +132,6 @@ public class ShipModule : MonoBehaviour
                 parsedValidSymbols += 1;
             }
         }
-
-        // TODO debug only, delete if things seem to work
-        for (int i = 0; i < Shape.GetLength(0); i++)
-        {
-            string rowString = "";
-
-            for (int j = 0; j < Shape.GetLength(1); j++)
-            {
-                rowString += Shape[i, j];
-            }
-        }
     }
 
     private void Start()
@@ -104,21 +143,13 @@ public class ShipModule : MonoBehaviour
     {
         hazard.TakeDamage(damageDealtOnCollision);
         
-        health -= hazard.damage;
+        CurrentHealth -= hazard.damage;
 
-        if (health <= 0)
+        if (CurrentHealth <= 0)
         {
             DestroyShipModule();
         }
-        else if (health <= 1)
-        {
-            ShowDamage();
-        }
-    }
-
-    private void ShowDamage()
-    {
-        moduleColorController.ShowDamage();
+       
     }
 
     public void DestroyShipModule()
