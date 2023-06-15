@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoreModule Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4879853995138821285, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5085051556197591730, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_RootOrder
       value: 0

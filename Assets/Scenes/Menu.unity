@@ -2906,6 +2906,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: currentPhase
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.data[0].phase
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.data[1].phase
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.data[2].phase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.data[0].sceneName
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.data[1].sceneName
+      value: Construction
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720334585842877734, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
+      propertyPath: scenePhaseMapping.Array.data[2].sceneName
+      value: Main
+      objectReference: {fileID: 0}
     - target: {fileID: 5917812393324384845, guid: 03f41d91d58ce444386e0f9f1cb1b5ce, type: 3}
       propertyPath: m_RootOrder
       value: 5

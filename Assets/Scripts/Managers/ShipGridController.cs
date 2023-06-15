@@ -51,6 +51,8 @@ namespace Managers
 
         private void Start()
         {
+            PhaseManager.Current.PhaseChangedEvent += SpawnStartingShip;
+            
             SpawnStartingShip();
         }
 
@@ -147,6 +149,7 @@ namespace Managers
             if (PhaseManager.Current.CurrentPhase == GamePhase.Construction && ConstructionInterfaceManager.Instance.TimerStarted == false && !placedModule.coreModule)
             {
                 ConstructionInterfaceManager.Instance.StartTimer();
+                ConstructionInterfaceManager.Instance.HideBuildTutorial();
             }
             
             ConvertPositionToIndices(partPosition, out int row, out int column);
@@ -216,6 +219,11 @@ namespace Managers
             }
 
             return neighbors;
+        }
+
+        private void OnDestroy()
+        {
+            PhaseManager.Current.PhaseChangedEvent -= SpawnStartingShip;
         }
     }
 }

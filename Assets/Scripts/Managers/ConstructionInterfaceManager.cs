@@ -11,6 +11,7 @@ public class ConstructionInterfaceManager : MonoBehaviour
 
     public TextMeshProUGUI countdownText;
     public Slider countdownSlider;
+    public GameObject tutorial_building;
 
     private float constructionDuration = 15f;
     private float constructionTimer = 0f;
@@ -18,11 +19,17 @@ public class ConstructionInterfaceManager : MonoBehaviour
     private bool timerStarted = false;
     public bool TimerStarted => timerStarted;
     
+    private bool _buildTutorialShown = true;
+    public bool BuildTutorialShown => _buildTutorialShown;
+    
     private void Awake()
     {
         Instance = this;
 
         constructionTimer = constructionDuration;
+        
+        _buildTutorialShown = true;
+        tutorial_building.SetActive(true);
     }
 
     void Update()
@@ -48,5 +55,11 @@ public class ConstructionInterfaceManager : MonoBehaviour
     public void TimerFinished()
     {
         PhaseManager.Current.SwitchPhase(GamePhase.Fighting);
+    }
+
+    public void HideBuildTutorial()
+    {
+        _buildTutorialShown = false;
+        tutorial_building.SetActive(false);
     }
 }

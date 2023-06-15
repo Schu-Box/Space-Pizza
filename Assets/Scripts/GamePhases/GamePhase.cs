@@ -4,10 +4,10 @@ namespace GamePhases
     {
         None = 0,
         
+        MainMenu = 5,
+        
         Construction = 10,
         
-        Fighting = 20,
-        
-        Landing = 30,
+        Fighting = 20
     }
 }
