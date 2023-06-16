@@ -100,7 +100,7 @@ public class Hazard : MonoBehaviour
 
     public void DestroyHazard()
     {
-        HighScoreManager.Instance.AddScore(scoreValue);
+        HighScoreManager.Current.AddScore(scoreValue);
         
         collider.enabled = false;
         _rigidbody.velocity = Vector2.zero;

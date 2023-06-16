@@ -26,5 +26,10 @@ namespace Managers
         [SerializeField]
         private InputManager inputManager;
         public InputManager InputManager => inputManager;
+
+        [SerializeField]
+        private HighScoreManager _highScoreManager;
+
+        public HighScoreManager HighScoreManager => _highScoreManager;
     }
 }

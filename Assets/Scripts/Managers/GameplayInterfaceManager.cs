@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Effects;
 using GamePhases;
@@ -43,6 +44,11 @@ public class GameplayInterfaceManager : MonoBehaviour
         tutorial_WASD.SetActive(true);
     }
 
+    private void Start()
+    {
+        UpdateScoreColor();
+    }
+
     void Update()
     {
     }
@@ -76,7 +82,7 @@ public class GameplayInterfaceManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Game Over";
 
-        HighScoreManager.Instance.FinalizeScore();
+        HighScoreManager.Current.FinalizeScore();
     }
 
     [ContextMenu("ActivateJumpDrive")]
@@ -88,15 +94,15 @@ public class GameplayInterfaceManager : MonoBehaviour
     private IEnumerator RunJumpSequence()
     {
         PhaseManager.Current.ChangeJumpState(true);
-        
+
         jumpEffect.StartEffect(jumpEffectDuration);
 
         yield return new WaitForSecondsRealtime(jumpEffectDuration + 0.5f);
-        
+
         PhaseManager.Current.ChangeJumpState(false);
-        
+
         GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
-        
+
         Ship ship = ShipManager.Current.PlayerShip;
         ship.ChangeVisibility(true);
 
@@ -104,7 +110,7 @@ public class GameplayInterfaceManager : MonoBehaviour
         ship.RootTransform.eulerAngles = Vector3.zero;
         ship.StopPhysics();
     }
-    
+
     public void UpdateScoreText(int newScore, bool isHighScore = false)
     {
         if (isHighScore)
@@ -117,8 +123,14 @@ public class GameplayInterfaceManager : MonoBehaviour
         }
     }
 
-    public void DisplayHighScoreAchieved(int newScore)
+    public void UpdateScoreColor()
     {
-        highScoreText.color = Color.yellow;
+        if (HighScoreManager.Current.HighScoreAchieved)
+        {
+            highScoreText.color = Color.yellow;
+            return;
+        }
+
+        highScoreText.color = Color.white;
     }
 }

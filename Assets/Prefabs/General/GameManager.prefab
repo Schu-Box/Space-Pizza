@@ -300,6 +300,7 @@ MonoBehaviour:
   shipGridController: {fileID: 2270368252101788938}
   shipManager: {fileID: 607901460370984089}
   inputManager: {fileID: 4482871198380905214}
+  _highScoreManager: {fileID: 963398238}
 --- !u!1 &9009405254120581853
 GameObject:
   m_ObjectHideFlags: 0
