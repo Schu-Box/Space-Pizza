@@ -7,6 +7,9 @@ namespace Helpers
 {
     public class RandomizedAudioPlayer: MonoBehaviour
     {
+        private Vector2 pitchRange = new Vector2(0.9f, 1.1f);
+        private Vector2 volumeRange = new Vector2(0.9f, 1.1f);
+        
         [SerializeField]
         private List<AudioClip> audioClips = new();
 
@@ -28,6 +31,9 @@ namespace Helpers
         {
             AudioClip randomClip = audioClips[Random.Range(0, audioClips.Count)];
 
+            _audioSource.pitch = Random.Range(pitchRange.x, pitchRange.y);
+            _audioSource.volume = Random.Range(volumeRange.x, volumeRange.y);
+            
             _audioSource.clip = randomClip;
             _audioSource.Play();
         }
