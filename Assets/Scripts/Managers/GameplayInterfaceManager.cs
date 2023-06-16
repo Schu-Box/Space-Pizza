@@ -7,6 +7,7 @@ using Managers;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameplayInterfaceManager : MonoBehaviour
@@ -29,6 +30,9 @@ public class GameplayInterfaceManager : MonoBehaviour
     [SerializeField]
     private TMP_Text levelTextField;
 
+    [SerializeField]
+    private TMP_InputField highScoreNameInputField;
+    
     public GameObject tutorial_WASD;
 
     private bool wASDTutorialShown = true;
@@ -93,8 +97,15 @@ public class GameplayInterfaceManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Game Over";
+    }
 
-        HighScoreManager.Current.FinalizeScore();
+    public void SaveScoreAndRestartGame()
+    {
+        string playerName = highScoreNameInputField.text.Trim();
+
+        HighScoreManager.Current.FinalizeScore(playerName);
+
+        InputManager.Current.Restart();
     }
 
     [ContextMenu("ActivateJumpDrive")]
