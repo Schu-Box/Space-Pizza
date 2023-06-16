@@ -39,6 +39,8 @@ public class GameplayInterfaceManager : MonoBehaviour
     private bool wASDTutorialShown = true;
     public bool WASDTutorialShown => wASDTutorialShown;
 
+    public GameObject tutorial_jumpDrive;
+
     private int coinCount = 0;
 
     private bool _gameOver = false;
@@ -90,6 +92,8 @@ public class GameplayInterfaceManager : MonoBehaviour
         HighScoreManager.Current.LockScore();
         
         jumpDriveChargeText.text = "Jump Drive Ready! Press Space!";
+
+        tutorial_jumpDrive.SetActive(true);
     }
 
     public void DisplayGameOver()
@@ -122,6 +126,8 @@ public class GameplayInterfaceManager : MonoBehaviour
         PhaseManager.Current.StartJump();
 
         jumpEffect.StartEffect(jumpEffectDuration);
+
+        tutorial_jumpDrive.SetActive(false);
         
         Ship ship = ShipManager.Current.PlayerShip;
         
