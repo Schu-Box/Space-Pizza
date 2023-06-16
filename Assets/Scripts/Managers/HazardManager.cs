@@ -11,13 +11,15 @@ public class HazardManager : MonoBehaviour
    public static HazardManager Instance;
    
    public Transform hazardParent;
-   public Hazard asteroidPrefab;
    public Hazard coinPrefab;
 
    public Vector2 spawnRadiusRange = new Vector2(35f, 55f);
 
    public Vector2 targetRadiusRange = new Vector2(0f, 20f);
 
+   [SerializeField]
+   private DropTable enemyComposition;
+   
    [SerializeField]
    private AnimationCurve spawnRateOverTime;
 
@@ -48,32 +50,35 @@ public class HazardManager : MonoBehaviour
       _spawnTimer += Time.deltaTime;
       if (_spawnTimer >= currentSpawnRate)
       {
-         _spawnTimer = 0f;
-         Vector2 randomPosition = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusRange.x, spawnRadiusRange.y);
-
-         Hazard hazardPrefab;
-         float randomValue = Random.value;
-         if (randomValue < 0)
-         {
-            hazardPrefab = coinPrefab;
-         }
-         else
-         {
-            hazardPrefab = asteroidPrefab;
-         }
-         
-         Ship playerShip = ShipManager.Current.PlayerShip;
-         if(playerShip == null)
-         {
-            return;
-         }
-         
-         Hazard hazardObject = Instantiate(hazardPrefab, playerShip.RootTransform.position + (Vector3)randomPosition, Quaternion.identity, hazardParent).GetComponent<Hazard>();
-
-         Vector3 targetPosition = playerShip.RootTransform.position + (Random.insideUnitSphere * Random.Range(targetRadiusRange.x, targetRadiusRange.y));
-         
-         hazardObject.SetTrajectory(targetPosition);
+         SpawnHazard();
       }
+   }
+
+   private void SpawnHazard()
+   {
+      _spawnTimer = 0f;
+      Vector2 randomPosition = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusRange.x, spawnRadiusRange.y);
+
+      if (!enemyComposition.TrySelectDrop(out GameObject hazardPrefab))
+      {
+         Debug.LogError($"[HazardManager] Unable to select a hazard to spawn!");
+         return;
+      }
+
+      Ship playerShip = ShipManager.Current.PlayerShip;
+      
+      if (playerShip == null)
+      {
+         return;
+      }
+
+      Hazard hazardObject = Instantiate(hazardPrefab, playerShip.RootTransform.position + (Vector3)randomPosition,
+         Quaternion.identity, hazardParent).GetComponent<Hazard>();
+
+      Vector3 targetPosition = playerShip.RootTransform.position +
+                               (Random.insideUnitSphere * Random.Range(targetRadiusRange.x, targetRadiusRange.y));
+
+      hazardObject.SetTrajectory(targetPosition);
    }
 
    private void OnDestroy()
