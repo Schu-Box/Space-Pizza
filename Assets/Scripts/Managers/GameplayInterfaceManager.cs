@@ -26,6 +26,7 @@ public class GameplayInterfaceManager : MonoBehaviour
     public Slider jumpDriveChargeSlider;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI highScoreText;
+    public TMP_InputField highScoreInputField;
 
     [SerializeField]
     private TMP_Text levelTextField;
@@ -97,6 +98,8 @@ public class GameplayInterfaceManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = "Game Over";
+        
+        highScoreInputField.Select();
     }
 
     public void SaveScoreAndRestartGame()

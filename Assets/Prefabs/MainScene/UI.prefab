@@ -401,6 +401,7 @@ MonoBehaviour:
   jumpDriveChargeSlider: {fileID: 466026346301823085}
   gameOverText: {fileID: 466026345726758471}
   highScoreText: {fileID: 466026345815855675}
+  highScoreInputField: {fileID: 2722261105491735396}
   levelTextField: {fileID: 466026346771585890}
   highScoreNameInputField: {fileID: 2722261105491735396}
   tutorial_WASD: {fileID: 466026347200588516}
@@ -1664,20 +1665,32 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 5
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 5
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 466026345909059401}
+        m_TargetAssemblyTypeName: GameplayInterfaceManager, Assembly-CSharp
+        m_MethodName: SaveScoreAndRestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1967,7 +1980,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 7588426582286069753}
   m_OnClick:
     m_PersistentCalls:
@@ -2064,7 +2077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Submit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd5319e179393eb45a11bd72a22856fb, type: 2}
   m_sharedMaterial: {fileID: -2882601292093218044, guid: dd5319e179393eb45a11bd72a22856fb, type: 2}
