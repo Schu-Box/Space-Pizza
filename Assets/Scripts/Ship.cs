@@ -15,7 +15,7 @@ public class Ship : MonoBehaviour
 
     [SerializeField]
     private Transform moduleParent;
-    
+
     private Rigidbody2D rb;
     
     //Weight Values

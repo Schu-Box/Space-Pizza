@@ -1448,6 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpEffect: {fileID: 184104855}
   jumpEffectDuration: 5
+  jumpDriveAnimation: {fileID: 8248140024012263850, guid: 8968deb9ff3d4bd45912f5c66a6b8b25, type: 3}
   jumpDriveChargeText: {fileID: 163197197}
   jumpDriveChargeSlider: {fileID: 66278995}
   gameOverText: {fileID: 565969017}
@@ -1821,7 +1822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333276329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8121858, y: 1.4030719, z: 0.036560494}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

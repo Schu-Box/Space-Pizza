@@ -18,6 +18,8 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     [SerializeField]
     private float jumpEffectDuration = 5f;
+    
+    public GameObject jumpDriveAnimation;
 
     public TextMeshProUGUI jumpDriveChargeText;
     public Slider jumpDriveChargeSlider;
@@ -102,13 +104,17 @@ public class GameplayInterfaceManager : MonoBehaviour
         PhaseManager.Current.ChangeJumpState(false);
 
         GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
-
+        
         Ship ship = ShipManager.Current.PlayerShip;
         ship.ChangeVisibility(true);
 
+        Vector3 jumpPositioning = ship.RootTransform.position;
+        
         ship.RootTransform.position = ShipGridController.Current.CorePosition.GridPosition();
         ship.RootTransform.eulerAngles = Vector3.zero;
         ship.StopPhysics();
+
+        Instantiate(jumpDriveAnimation, jumpPositioning, Quaternion.identity);
     }
 
     public void UpdateScoreText(int newScore, bool isHighScore = false)
