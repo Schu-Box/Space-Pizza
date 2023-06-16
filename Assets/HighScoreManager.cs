@@ -1,20 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using GamePhases;
+using Managers;
 using UnityEngine;
 
 public class HighScoreManager : MonoBehaviour
 {
-    public static HighScoreManager Instance;
+    public static HighScoreManager Current => GameManager.Instance
+        .ReferenceProvider.HighScoreManager;
+    
     private int currentScore = 0;
     private bool highScoreAchieved = false;
-    
-    
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-    
+    public bool HighScoreAchieved => highScoreAchieved;
+
     public void AddScore(int score)
     {
         if (GameplayInterfaceManager.Instance.IsGameOver)
@@ -23,14 +23,14 @@ public class HighScoreManager : MonoBehaviour
         }
         
         currentScore += score;
-
-        GameplayInterfaceManager.Instance.UpdateScoreText(currentScore, highScoreAchieved);
-
+        
         if (!highScoreAchieved && currentScore > PlayerPrefs.GetInt("highScore1"))
         {
             highScoreAchieved = true;
-            GameplayInterfaceManager.Instance.DisplayHighScoreAchieved(currentScore);
+            GameplayInterfaceManager.Instance.UpdateScoreColor();
         }
+        
+        GameplayInterfaceManager.Instance.UpdateScoreText(currentScore, highScoreAchieved);
     }
 
     public void FinalizeScore()
