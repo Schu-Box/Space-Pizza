@@ -178,7 +178,7 @@ public class ShipModule : MonoBehaviour
             return;
         }
         
-        Instantiate(damageAnimationPrefab, visualCenterPoint.position, Quaternion.identity);
+        Instantiate(damageAnimationPrefab, visualCenterPoint.position, Quaternion.identity, visualCenterPoint);
         
         CurrentHealth -= damage;
 
