@@ -17,8 +17,12 @@ public class ShipModule : MonoBehaviour
 
     [SerializeField]
     private GameObject visualsRoot;
+    
+    [SerializeField] 
+    private Transform visualCenterPoint;
 
-    public Animator explosionAnimator;
+    // public Animator explosionAnimator;
+    public GameObject explosionPrefab;
 
     public Transform RootTransform => rootTransform;
 
@@ -91,6 +95,8 @@ public class ShipModule : MonoBehaviour
         ParseShapeInformation();
 
         PhaseManager.Current.PhaseChangedEvent += HandlePhaseChange;
+        
+        // explosionAnimator.Play("ModuleExplosion");
     }
 
     private void OnDestroy()
@@ -197,12 +203,16 @@ public class ShipModule : MonoBehaviour
     {
         rootTransform.SetParent(null);
         rootTransform.gameObject.AddComponent<Rigidbody2D>();
-        
-        explosionAnimator.Play("ModuleExplosion");
 
+        // explosionAnimator.gameObject.SetActive(true);
+        // explosionAnimator.Play("ModuleExplosion");
+
+        GameObject explosionGameObject = Instantiate(explosionPrefab, visualCenterPoint.position, Quaternion.identity);
+        //TODO: Delete prefab after animation
+        
         //TODO: Apply force
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         Destroy(rootTransform.gameObject);
     }

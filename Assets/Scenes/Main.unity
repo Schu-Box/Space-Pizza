@@ -2421,6 +2421,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KillZoneBorder
       objectReference: {fileID: 0}
+    - target: {fileID: 4869117558326316909, guid: e7b120b2068b3a4429f137ed6a8c4e20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4869117558326316910, guid: e7b120b2068b3a4429f137ed6a8c4e20, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2696,6 +2700,14 @@ PrefabInstance:
     - target: {fileID: 5971270691217910100, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971270691217910101, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971270691217910101, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[8]
+      value: -1214457833
       objectReference: {fileID: 0}
     - target: {fileID: 5971270691217910102, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
       propertyPath: m_Name

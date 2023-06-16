@@ -57,6 +57,9 @@ TagManager:
   - name: Ship
     uniqueID: 3041848733
     locked: 0
+  - name: Explosion
+    uniqueID: 3080509463
+    locked: 0
   - name: Border
     uniqueID: 3589256403
     locked: 0

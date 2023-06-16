@@ -99,5 +99,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.35
       objectReference: {fileID: 0}
+    - target: {fileID: 9082462720592391002, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082462720592391002, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082462720592391002, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b835330c51fe92d48951217f17b59968, type: 3}

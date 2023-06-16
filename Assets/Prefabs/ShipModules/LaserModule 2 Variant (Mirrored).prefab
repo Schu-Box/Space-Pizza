@@ -91,5 +91,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserModule 2 Variant (Mirrored)
       objectReference: {fileID: 0}
+    - target: {fileID: 9082462720592391002, guid: ae8743d8425aac24298370015229717b, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082462720592391002, guid: ae8743d8425aac24298370015229717b, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082462720592391002, guid: ae8743d8425aac24298370015229717b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae8743d8425aac24298370015229717b, type: 3}
