@@ -1,0 +1,12 @@
+lasershot
+asteroid destroy
+take dmg
+shield hit
+shield online
+jumpdrive charge
+jumpdrive out
+
+ship module pickup
+ship module construct
+asteroid level start
+btn press
