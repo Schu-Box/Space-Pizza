@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using GamePhases;
+using Helpers;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 public class ShipLaser : ShipSubModule
 {
@@ -14,6 +16,9 @@ public class ShipLaser : ShipSubModule
 
     [SerializeField]
     private GameObject shootDirectionPreview;
+
+    [SerializeField]
+    private RandomizedAudioPlayer laserAudio;
 
     private void Start()
     {
@@ -43,6 +48,8 @@ public class ShipLaser : ShipSubModule
         if (_laserCooldownTimeRemaining > 0f || PhaseManager.Current.CurrentPhase == GamePhase.Construction) {
             return;
         }
+        
+        laserAudio.Play();
 
         _laserCooldownTimeRemaining = laserCooldownDuration;
 
