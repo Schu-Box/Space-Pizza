@@ -237,7 +237,8 @@ MonoBehaviour:
   rootTransform: {fileID: 5085051556197591730}
   visualsRoot: {fileID: 5673046196014693613}
   visualCenterPoint: {fileID: 9212840308517581608}
-  explosionPrefab: {fileID: 5247456237176740237, guid: dc0262fb89ce844469f62757de2b8bab, type: 3}
+  explosionAnimationPrefab: {fileID: 5247456237176740237, guid: dc0262fb89ce844469f62757de2b8bab, type: 3}
+  damageAnimationPrefab: {fileID: 1596341105346428034, guid: 6f8e19278b18227498ac707fdf3257fc, type: 3}
   moduleColorController: {fileID: 2089820824628197670}
   _moduleDefinition: {fileID: 0}
   _moduleMover: {fileID: 1361852874512600677}

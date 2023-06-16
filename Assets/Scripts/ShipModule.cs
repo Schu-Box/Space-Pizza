@@ -22,7 +22,8 @@ public class ShipModule : MonoBehaviour
     private Transform visualCenterPoint;
 
     // public Animator explosionAnimator;
-    public GameObject explosionPrefab;
+    public GameObject explosionAnimationPrefab;
+    public GameObject damageAnimationPrefab;
 
     public Transform RootTransform => rootTransform;
 
@@ -177,6 +178,8 @@ public class ShipModule : MonoBehaviour
             return;
         }
         
+        Instantiate(damageAnimationPrefab, visualCenterPoint.position, Quaternion.identity);
+        
         CurrentHealth -= damage;
 
         if (CurrentHealth <= 0)
@@ -204,13 +207,7 @@ public class ShipModule : MonoBehaviour
         rootTransform.SetParent(null);
         rootTransform.gameObject.AddComponent<Rigidbody2D>();
 
-        // explosionAnimator.gameObject.SetActive(true);
-        // explosionAnimator.Play("ModuleExplosion");
-
-        GameObject explosionGameObject = Instantiate(explosionPrefab, visualCenterPoint.position, Quaternion.identity);
-        //TODO: Delete prefab after animation
-        
-        //TODO: Apply force
+        Instantiate(explosionAnimationPrefab, visualCenterPoint.position, Quaternion.identity);
 
         yield return new WaitForSeconds(0.1f);
 
