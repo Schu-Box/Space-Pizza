@@ -133,7 +133,7 @@ MonoBehaviour:
   activeShieldVisuals: {fileID: 542865917659681378}
   shieldCollider: {fileID: 4837721084888377525}
   shieldMaxHealth: 1
-  shieldRechargeDuration: 2.5
+  shieldRechargeDuration: 3
   damageDealtOnCollision: 1
   onlyBlockProjectiles: 0
   shieldPopSfx: {fileID: 8737329502153961656}
