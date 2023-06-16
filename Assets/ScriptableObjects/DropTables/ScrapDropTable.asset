@@ -354,18 +354,18 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 0.1
+        inSlope: 0.1
+        outSlope: 0.1
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10
-        value: 0.1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        time: 5
+        value: 0.6
+        inSlope: 0.1
+        outSlope: 0.1
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -379,18 +379,18 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 0.1
+        inSlope: 0.1
+        outSlope: 0.1
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10
-        value: 0.1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        time: 5
+        value: 0.6
+        inSlope: 0.1
+        outSlope: 0.1
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -404,18 +404,27 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 3
+        value: 0.01
+        inSlope: 0
+        outSlope: 0.14142857
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 10
-        value: 0.1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 1
+        inSlope: 0.14142857
+        outSlope: 0.14142857
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -429,18 +438,27 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 3
+        value: 0.01
+        inSlope: 0
+        outSlope: 0.14142857
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 10
-        value: 0.1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 1
+        inSlope: 0.14142857
+        outSlope: 0.14142857
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -454,18 +472,27 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10
-        value: 0.1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        time: 5
+        value: 0.01
+        inSlope: -0
+        outSlope: 0.099
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 15
+        value: 1
+        inSlope: 0.099
+        outSlope: 0.099
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -479,18 +506,27 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10
-        value: 0.1
-        inSlope: -0.089999996
-        outSlope: -0.089999996
+        time: 5
+        value: 0.01
+        inSlope: 0
+        outSlope: 0.099
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 15
+        value: 1
+        inSlope: 0.099
+        outSlope: 0.099
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
