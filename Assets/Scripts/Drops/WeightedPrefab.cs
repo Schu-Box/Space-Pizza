@@ -1,4 +1,6 @@
 using System;
+using Helpers;
+using Managers;
 using UnityEngine;
 
 namespace Drops
@@ -6,12 +8,13 @@ namespace Drops
     [Serializable]
     public struct WeightedPrefab
     {
-        [SerializeField] private int weight;
+        [SerializeField] private AnimationCurve weightOverTime;
 
         [SerializeField] private GameObject prefab;
 
-        public int Weight => weight;
+        public AnimationCurve WeightOverTime => weightOverTime;
 
         public GameObject Prefab => prefab;
+        public float CurrentWeight => weightOverTime.EvaluateLimitless(ProgressTracker.Current.CurrentLevel);
     }
 }

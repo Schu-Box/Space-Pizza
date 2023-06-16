@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using Managers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class HazardManager : MonoBehaviour
 {
@@ -15,7 +18,11 @@ public class HazardManager : MonoBehaviour
 
    public Vector2 targetRadiusRange = new Vector2(0f, 20f);
 
-   public float spawnRate = 1f;
+   [SerializeField]
+   private AnimationCurve spawnRateOverTime;
+
+   private float currentSpawnRate = 1f;
+   
    private float _spawnTimer = 0f;
    
    private bool spawningHazards = false;
@@ -23,6 +30,12 @@ public class HazardManager : MonoBehaviour
    private void Awake()
    {
       Instance = this;
+   }
+
+   private void Start()
+   {
+      ProgressTracker.Current.CurrentLevelChangedEvent += UpdateSpawnRate;
+      UpdateSpawnRate();
    }
 
    public void Update()
@@ -33,7 +46,7 @@ public class HazardManager : MonoBehaviour
       }
       
       _spawnTimer += Time.deltaTime;
-      if (_spawnTimer >= spawnRate)
+      if (_spawnTimer >= currentSpawnRate)
       {
          _spawnTimer = 0f;
          Vector2 randomPosition = Random.insideUnitCircle.normalized * Random.Range(spawnRadiusRange.x, spawnRadiusRange.y);
@@ -63,6 +76,16 @@ public class HazardManager : MonoBehaviour
       }
    }
 
+   private void OnDestroy()
+   {
+      ProgressTracker.Current.CurrentLevelChangedEvent -= UpdateSpawnRate;
+   }
+
+   private void UpdateSpawnRate()
+   {
+      currentSpawnRate = spawnRateOverTime.EvaluateLimitless(ProgressTracker.Current.CurrentLevel);
+   }
+   
    public void StartSpawningHazards()
    {
       spawningHazards = true;
