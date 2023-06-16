@@ -142,6 +142,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3089041592324380830}
     m_Modifications:
     - target: {fileID: 3424836341376690812, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: laserPrefab
+      value: 
+      objectReference: {fileID: 1892804305853138969, guid: 3e9e28e85cde35145a5cc21ce9300ce4, type: 3}
+    - target: {fileID: 3424836341376690812, guid: b835330c51fe92d48951217f17b59968, type: 3}
       propertyPath: laserCooldownDuration
       value: 2.3
       objectReference: {fileID: 0}

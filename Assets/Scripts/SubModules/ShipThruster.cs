@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class ShipThruster : ShipSubModule
 {
-    private float speedIncreaseFactor = 1f;
+    private float speedIncreaseFactor = 0.9f;
     private float rotationSpeedIncreaseFactor = 20f;
     
     [SerializeField]
