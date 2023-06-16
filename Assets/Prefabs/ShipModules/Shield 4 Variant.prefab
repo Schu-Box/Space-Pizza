@@ -50,6 +50,7 @@ MonoBehaviour:
   shieldMaxHealth: 1
   shieldRechargeDuration: 2.5
   damageDealtOnCollision: 1
+  onlyBlockProjectiles: 0
 --- !u!58 &6675487531876615864
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
   shieldMaxHealth: 2
   shieldRechargeDuration: 3
   damageDealtOnCollision: 1
+  onlyBlockProjectiles: 0
 --- !u!58 &1544575132723654787
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -565,12 +567,16 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 12147be40fb5caf46b809e2be49bbc8d, type: 2}
     - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: shipSubModules.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: shipSubModules.Array.data[0]
       value: 
       objectReference: {fileID: 5892048587606855132}
+    - target: {fileID: 6135720174285442645, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: shipSubModules.Array.data[1]
+      value: 
+      objectReference: {fileID: 5868410124286507360}
     - target: {fileID: 8871726158729930613, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_RootOrder
       value: 3
