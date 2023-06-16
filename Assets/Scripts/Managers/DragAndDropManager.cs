@@ -10,6 +10,9 @@ namespace Managers
         public static DragAndDropManager Current => GameManager.Instance.ReferenceProvider.DragAndDropManager;
 
         public event Action<ShipModuleDefinition> grabbedModuleChangedEvent;
+
+        [SerializeField]
+        private AudioSource startDragSound;
         
         private ShipModule _currentlyDraggedPart = null;
         public ShipModule CurrentlyDraggedPart => _currentlyDraggedPart;
@@ -27,6 +30,11 @@ namespace Managers
             {
                 Debug.LogError("Already dragging something!");
                 return;
+            }
+
+            if (startDragSound != null)
+            {
+                startDragSound.Play();
             }
 
             _currentlyDraggedPart = objectToDrag;

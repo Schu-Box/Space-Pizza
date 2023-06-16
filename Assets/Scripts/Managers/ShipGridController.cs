@@ -32,6 +32,10 @@ namespace Managers
         [SerializeField]
         private int areaStartY = 0;
 
+        [FormerlySerializedAs("placeSfxPlayer")]
+        [SerializeField]
+        private RandomizedAudioPlayer placeModuleSfxPlayer;
+
         private Dictionary<ShipModule, List<(int, int)>> occupiedSpacesByPart = new();
 
         private ShipModule[,] shipGrid;
@@ -146,11 +150,15 @@ namespace Managers
 
         public void PlacePart(Vector3 partPosition, ShipModule placedModule)
         {
-            if (!placedModule.coreModule && PhaseManager.Current.CurrentPhase == GamePhase.Construction && ConstructionInterfaceManager.Instance.TimerStarted == false)
+            placeModuleSfxPlayer.Play();
+            
+            if (!placedModule.coreModule && 
+                PhaseManager.Current.CurrentPhase == GamePhase.Construction && 
+                ConstructionInterfaceManager.Instance.TimerStarted == false)
             {
                 ConstructionInterfaceManager.Instance.StartTimer();
             }
-            
+
             ConvertPositionToIndices(partPosition, out int row, out int column);
 
             // store list of which position in the grid the module is occupying for easy lookup

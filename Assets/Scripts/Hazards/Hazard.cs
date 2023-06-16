@@ -33,6 +33,9 @@ public class Hazard : MonoBehaviour
     
     private Rigidbody2D _rigidbody;
 
+    [SerializeField]
+    private AudioSource hazardDestroyedSfx;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -107,6 +110,11 @@ public class Hazard : MonoBehaviour
 
     public void DestroyHazard()
     {
+        if (hazardDestroyedSfx != null)
+        {
+            hazardDestroyedSfx.Play();
+        }
+        
         HighScoreManager.Current.AddScore(scoreValue);
         
         collider.enabled = false;

@@ -23,6 +23,12 @@ public class ShipShield : ShipSubModule
    [SerializeField]
    private bool onlyBlockProjectiles = false;
 
+   [SerializeField]
+   private AudioSource shieldPopSfx;
+   
+   [SerializeField]
+   private AudioSource shieldRechargeSfx;
+
    void Start()
    {
       PhaseManager.Current.PhaseChangedEvent += UpdateShieldState;
@@ -111,6 +117,11 @@ public class ShipShield : ShipSubModule
 
       if (shieldHealthRemaining <= 0f && _shieldRechargeCoroutine == null)
       {
+         if (shieldPopSfx != null)
+         {
+            shieldPopSfx.Play();
+         }
+         
          DisableShield();
          _shieldRechargeCoroutine = StartCoroutine(RechargeShieldCoroutine());
       }
@@ -122,6 +133,11 @@ public class ShipShield : ShipSubModule
         
       _shieldRechargeCoroutine = null;
 
+      if (shieldRechargeSfx != null)
+      {
+         shieldRechargeSfx.Play();
+      }
+      
       UpdateShieldState();
    }
 }
