@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Laser : MonoBehaviour
 {
     public float speed = 30f;
     [HideInInspector] public int damage;
+
+    [FormerlySerializedAs("liveTime")]
+    [SerializeField]
+    private float lifeTime = 3f;
 
     private Rigidbody2D _rigidbody;
     
@@ -33,8 +38,17 @@ public class Laser : MonoBehaviour
         }
         
         _rigidbody.velocity =  transform.up * (speed + shipVelocity);
+
+        StartCoroutine(RunSelfDestructionSequence());
     }
-    
+
+    private IEnumerator RunSelfDestructionSequence()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        
+        DestroyLaser();
+    }
+
     public void DestroyLaser()
     {
         Destroy(gameObject);

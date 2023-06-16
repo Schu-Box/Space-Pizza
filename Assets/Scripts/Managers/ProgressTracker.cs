@@ -15,9 +15,7 @@ namespace Managers
         public void HandleLevelCompleted()
         {
             CurrentLevel += 1;
-            
-            Debug.LogError($"Reached level {CurrentLevel}");
-            
+
             CurrentLevelChangedEvent?.Invoke();
         }
     }

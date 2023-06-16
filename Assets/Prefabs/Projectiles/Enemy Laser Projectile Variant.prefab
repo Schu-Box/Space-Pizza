@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 651223203866784440, guid: f9bca2e4461ded04bac1f92b3b5c03c9, type: 3}
+      propertyPath: lifeTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7708997169974132338, guid: f9bca2e4461ded04bac1f92b3b5c03c9, type: 3}
       propertyPath: m_Name
-      value: Enemy Laser Projectile
+      value: Enemy Laser Projectile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8202277074583759321, guid: f9bca2e4461ded04bac1f92b3b5c03c9, type: 3}
       propertyPath: m_RootOrder
