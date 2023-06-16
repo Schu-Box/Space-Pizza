@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using Drops;
+using Helpers;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Drops/DropTable")]
@@ -18,24 +19,24 @@ public class DropTable : ScriptableObject
             return false;
         }
         
-        int totalWeight = 0;
+        float totalWeight = 0;
 
         foreach (WeightedPrefab weightedPrefab in drops)
         {
-            totalWeight += weightedPrefab.Weight;
+            totalWeight += weightedPrefab.CurrentWeight;
         }
 
         float randomSelection = Random.value * totalWeight;
 
         foreach (WeightedPrefab weightedPrefab in drops)
         {
-            if (randomSelection <= weightedPrefab.Weight)
+            if (randomSelection <= weightedPrefab.CurrentWeight)
             {
                 dropPrefab = weightedPrefab.Prefab;
                 return true;
             }
 
-            randomSelection -= weightedPrefab.Weight;
+            randomSelection -= weightedPrefab.CurrentWeight;
         }
 
         dropPrefab = drops[0].Prefab;

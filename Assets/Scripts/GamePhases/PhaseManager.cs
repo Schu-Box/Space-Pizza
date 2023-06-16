@@ -26,8 +26,6 @@ namespace GamePhases
 
         public GamePhase CurrentPhase => currentPhase;
 
-        public bool IsFirstConstructionPhase { get; private set; } = true;
-
         public bool IsJumping { get; private set; } = false;
 
         public void ChangeJumpState(bool shouldJump)
@@ -47,10 +45,10 @@ namespace GamePhases
                 SceneManager.LoadScene(sceneForPhase.sceneName);
             }
 
-            if (currentPhase == GamePhase.Construction)
+            if (currentPhase == GamePhase.Fighting)
             {
-                // left the construction phase
-                IsFirstConstructionPhase = false;
+                // left the fighting phase -> player completed a level
+                ProgressTracker.Current.HandleLevelCompleted();
             }
             
             currentPhase = nextPhase;

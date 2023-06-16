@@ -31,5 +31,10 @@ namespace Managers
         private HighScoreManager _highScoreManager;
 
         public HighScoreManager HighScoreManager => _highScoreManager;
+        
+        [SerializeField]
+        private ProgressTracker progressTracker;
+
+        public ProgressTracker ProgressTracker => progressTracker;
     }
 }
