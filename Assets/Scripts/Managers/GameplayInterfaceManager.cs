@@ -76,6 +76,9 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     public void DisplayJumpDriveReady()
     {
+        // no more scoring past this point
+        HighScoreManager.Current.LockScore();
+        
         jumpDriveChargeText.text = "Jump Drive Ready! Press Space!";
     }
 

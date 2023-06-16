@@ -54,6 +54,9 @@ namespace GamePhases
             // phase changes will always reset the jump state
             IsJumping = false;
             
+            // score should always be unlocked at the start of a new phase
+            HighScoreManager.Current.UnlockScore();
+
             currentPhase = nextPhase;
             PhaseChangedEvent?.Invoke();
         }

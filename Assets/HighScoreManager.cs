@@ -14,8 +14,15 @@ public class HighScoreManager : MonoBehaviour
     
     public bool HighScoreAchieved { get; private set; } = false;
 
+    private bool canScoreBeChanged = true;
+
     public void AddScore(int score)
     {
+        if (!canScoreBeChanged)
+        {
+            return;
+        }
+        
         if (GameplayInterfaceManager.Instance.IsGameOver)
         {
             return;
@@ -41,5 +48,15 @@ public class HighScoreManager : MonoBehaviour
     public void ClearScores()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void LockScore()
+    {
+        canScoreBeChanged = false;
+    }
+
+    public void UnlockScore()
+    {
+        canScoreBeChanged = true;
     }
 }
