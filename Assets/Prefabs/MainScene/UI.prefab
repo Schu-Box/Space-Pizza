@@ -402,6 +402,7 @@ MonoBehaviour:
   gameOverText: {fileID: 466026345726758471}
   highScoreText: {fileID: 466026345815855675}
   levelTextField: {fileID: 466026346771585890}
+  highScoreNameInputField: {fileID: 2722261105491735396}
   tutorial_WASD: {fileID: 466026347200588516}
 --- !u!1 &466026346129293109
 GameObject:
@@ -1860,7 +1861,6 @@ GameObject:
   - component: {fileID: 2586823182882439900}
   - component: {fileID: 7588426582286069753}
   - component: {fileID: 7732967289982781843}
-  - component: {fileID: 292555870909605246}
   - component: {fileID: 1247934504029003718}
   m_Layer: 5
   m_Name: Button
@@ -1972,9 +1972,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292555870909605246}
-        m_TargetAssemblyTypeName: Helpers.PhaseSwitcher, Assembly-CSharp
-        m_MethodName: SwitchPhase
+      - m_Target: {fileID: 466026345909059401}
+        m_TargetAssemblyTypeName: GameplayInterfaceManager, Assembly-CSharp
+        m_MethodName: SaveScoreAndRestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1984,19 +1984,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &292555870909605246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5124224540583541344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7ec83a5b15e434789298d6e7b15c0fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetPhase: 5
 --- !u!114 &1247934504029003718
 MonoBehaviour:
   m_ObjectHideFlags: 0

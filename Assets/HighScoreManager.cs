@@ -8,6 +8,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
+public struct HighScoreData
+{
+    public int rank;
+    public string playerName;
+    public int playerScore;
+}
+
 public class HighScoreManager : MonoBehaviour
 {
     public static HighScoreManager Current => GameManager.Instance
@@ -20,7 +27,15 @@ public class HighScoreManager : MonoBehaviour
     
     public bool HighScoreAchieved { get; private set; } = false;
 
+    private string highScoreNamePrefix = "highScore_PlayerName";
+    
+    private string highScorePointsPrefix = "highScore_PlayerScore";
+    
+    private string highScoreRankPrefix = "highScore_PlayerRank";
+    
     private bool canScoreBeChanged = true;
+
+    private string BestStoredScore => $"{highScorePointsPrefix}0";
 
     private void Start()
     {
@@ -56,7 +71,7 @@ public class HighScoreManager : MonoBehaviour
         
         CurrentScore += score;
         
-        if (!HighScoreAchieved && CurrentScore > PlayerPrefs.GetInt("highScore1"))
+        if (!HighScoreAchieved && CurrentScore > PlayerPrefs.GetInt(BestStoredScore))
         {
             HighScoreAchieved = true;
             GameplayInterfaceManager.Instance.UpdateScoreColor();
@@ -65,9 +80,67 @@ public class HighScoreManager : MonoBehaviour
         GameplayInterfaceManager.Instance.UpdateScoreText(CurrentScore, HighScoreAchieved);
     }
 
-    public void FinalizeScore()
+    public List<HighScoreData> LoadTopFiveScores()
     {
-        PlayerPrefs.SetInt("highScore1", CurrentScore);
+        List<HighScoreData> topFiveData = new();
+        
+        for (int i = 0; i < 5; i++)
+        {
+            string playerNameKey = $"{highScoreNamePrefix}{i}";
+            string rankKey = $"{highScoreRankPrefix}{i}";
+            string pointsKey = $"{highScorePointsPrefix}{i}";
+
+            if (!PlayerPrefs.HasKey(playerNameKey))
+            {
+                continue;
+            }
+
+            HighScoreData highScoreData = new();
+
+            highScoreData.playerName = PlayerPrefs.GetString(playerNameKey);
+            highScoreData.playerScore = PlayerPrefs.GetInt(pointsKey);
+            highScoreData.rank = PlayerPrefs.GetInt(rankKey);
+            
+            topFiveData.Add(highScoreData);
+        }
+
+        return topFiveData;
+    }
+
+    public void FinalizeScore(string playerName)
+    {
+        List<HighScoreData> topFiveData = LoadTopFiveScores();
+
+        HighScoreData currentPlayer = new HighScoreData
+        {
+            playerName = playerName,
+            playerScore = CurrentScore,
+            rank = 999,
+        };
+        
+        topFiveData.Add(currentPlayer);
+        
+        // sort from highest to lowest
+        topFiveData.Sort((data1, data2) => data1.playerScore.CompareTo(data2.playerScore));
+        topFiveData.Reverse();
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (i >= topFiveData.Count)
+            {
+                break;
+            }
+            
+            string playerNameKey = $"{highScoreNamePrefix}{i}";
+            string rankKey = $"{highScoreRankPrefix}{i}";
+            string pointsKey = $"{highScorePointsPrefix}{i}";
+
+            HighScoreData currentData = topFiveData[i];
+            
+            PlayerPrefs.SetInt(rankKey, i + 1);
+            PlayerPrefs.SetString(playerNameKey, currentData.playerName);
+            PlayerPrefs.SetInt(pointsKey, currentData.playerScore);
+        }
     }
 
     [ContextMenu("Clear Scores")]
