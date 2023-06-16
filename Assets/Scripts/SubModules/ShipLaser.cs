@@ -1,14 +1,30 @@
+using System;
 using System.Collections;
 using GamePhases;
 using Unity.VisualScripting;
 using UnityEngine;
+
 public class ShipLaser : ShipSubModule
-{ 
+{
     public Laser laserPrefab;
     public Transform laserSpawnTransform;
     public int laserDamage = 1;
     public float laserCooldownDuration = 2f;
     private float _laserCooldownTimeRemaining = 0f;
+
+    [SerializeField]
+    private GameObject shootDirectionPreview;
+
+    private void Start()
+    {
+        PhaseManager.Current.PhaseChangedEvent += UpdateFirePreviewVisibility;
+    }
+    
+    private void OnDestroy()
+    {
+        PhaseManager.Current.PhaseChangedEvent -= UpdateFirePreviewVisibility;
+    }
+
 
     void Update()
     {
@@ -34,15 +50,18 @@ public class ShipLaser : ShipSubModule
         laser.transform.eulerAngles = transform.eulerAngles;
         laser.Fire(this);
     }
-    
-    // private IEnumerator FireLaserCoroutine()
-    // {
-    //     _laserCooldownTimeRemaining = laserCooldownDuration;
-    //     
-    //     laser.SetActive(true);
-    //     yield return new WaitForSeconds(laserDuration);
-    //     laser.SetActive(false);
-    //     
-    //     _laserCoroutine = null;
-    // }
+
+    private void UpdateFirePreviewVisibility()
+    {
+        bool shouldBeVisible = PhaseManager.Current.CurrentPhase == GamePhase.Construction && wasGrabbed;
+
+        shootDirectionPreview.SetActive(shouldBeVisible);
+    }
+
+    public override void HandleModuleGrabbed()
+    {
+        base.HandleModuleGrabbed();
+        
+        UpdateFirePreviewVisibility();
+    }
 }
