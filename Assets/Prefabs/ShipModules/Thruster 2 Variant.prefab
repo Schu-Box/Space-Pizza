@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d412cb1b00144c846b1bf1deea5e084a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  rotationSpeed: 2
+  speed: 1.5
+  rotationSpeed: 1.5
   particleLightList:
   - {fileID: 3917362543141980670}
   - {fileID: 2267516834701813079}

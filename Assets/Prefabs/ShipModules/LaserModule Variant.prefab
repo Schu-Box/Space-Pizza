@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1253118563
       objectReference: {fileID: 0}
+    - target: {fileID: 8475170655525717333, guid: fe028328197f18641af056c7c1f4d418, type: 3}
+      propertyPath: laserCooldownDuration
+      value: 0.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe028328197f18641af056c7c1f4d418, type: 3}
 --- !u!114 &7155339306745525176 stripped
