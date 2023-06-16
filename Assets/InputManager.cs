@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.Escape))
         {
             Restart();
         }
