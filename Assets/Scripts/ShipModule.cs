@@ -70,7 +70,7 @@ public class ShipModule : MonoBehaviour
             }
 
             currentHealthInternal = value;
-            HealthChangedEvent?.Invoke();
+            HandleHealthChange();
         }
     }
 
@@ -83,6 +83,8 @@ public class ShipModule : MonoBehaviour
     public List<ShipModule> NeighboringShipModules { get; } = new List<ShipModule>();
 
     private Coroutine _explosionCoroutine;
+
+    private List<GameObject> damageEffects = new();
 
     private void Awake()
     {
@@ -155,13 +157,33 @@ public class ShipModule : MonoBehaviour
         }
     }
 
+    private void HandleHealthChange()
+    {
+        if (CurrentHealth == maxHealth)
+        {
+            // make sure there is no damage animation showing
+            foreach (GameObject damageEffect in damageEffects)
+            {
+                if (damageEffect == null)
+                {
+                    continue;
+                }
+                
+                Destroy(damageEffect);
+            }
+            
+            damageEffects.Clear();
+        }
+        
+        HealthChangedEvent?.Invoke();
+    }
+    
     public void HitByProjectile(Laser projectile)
     {
         projectile.DestroyLaser();
 
         TakeDamage(projectile.damage);
     }
-
 
     public void HitByHazard(Hazard hazard)
     {
@@ -178,7 +200,10 @@ public class ShipModule : MonoBehaviour
             return;
         }
         
-        Instantiate(damageAnimationPrefab, visualCenterPoint.position, Quaternion.identity, visualCenterPoint);
+        GameObject damageAnimation = Instantiate(damageAnimationPrefab, visualCenterPoint.position, 
+            Quaternion.identity, visualCenterPoint);
+        
+        damageEffects.Add(damageAnimation);
         
         CurrentHealth -= damage;
 
@@ -223,47 +248,6 @@ public class ShipModule : MonoBehaviour
 
         NeighboringShipModules.Add(neighbor);
     }
-
-    // public bool IsConnectedToCoreModule()
-    // {
-    //     List<ShipModule> connectedModules = new List<ShipModule>();
-    //
-    //     //TODO: Make this work!
-    //
-    //     //loop through all neighbors of this shipModule and all neighbors of those neighbors and so on
-    //     //if a neighbor is a core module, return true
-    //     //if no core module is found, return false
-    //     foreach (ShipModule neighbor in NeighboringShipModules)
-    //     {
-    //         if (!connectedModules.Contains(neighbor))
-    //         {
-    //             connectedModules.Add(neighbor);
-    //
-    //             //and add all neighbors of neighbors and so on that haven't been added to modulestocheck yet
-    //             foreach (ShipModule neighborOfNeighbor in neighbor.NeighboringShipModules)
-    //             {
-    //                 if (!connectedModules.Contains(neighborOfNeighbor))
-    //                 {
-    //                     connectedModules.Add(neighborOfNeighbor);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //
-    //     foreach (ShipModule module in connectedModules)
-    //     {
-    //         if (module.coreModule)
-    //         {
-    //             return true;
-    //         }
-    //     }
-    //
-    //     //TODO: Fix 
-    //
-    //     return true;
-    //
-    //     return false;
-    // }
 
     public void HandleModuleGrabbed()
     {

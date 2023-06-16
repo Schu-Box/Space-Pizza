@@ -52,6 +52,30 @@ MonoBehaviour:
   damage: 1
   health: 1
   speedRange: {x: 3, y: 8}
+  SpeedModifierOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   sizeRange: {x: 1, y: 1.6}
   angularVelocityRange: {x: -60, y: -60}
   explosionDuration: 0.4
@@ -5164,6 +5188,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344349466860986972}
     m_Modifications:
+    - target: {fileID: 1595071729241605474, guid: a1bf8159ba9cbaa4d8159deccf791536, type: 3}
+      propertyPath: laserPrefab
+      value: 
+      objectReference: {fileID: 1892804305853138969, guid: 3e9e28e85cde35145a5cc21ce9300ce4, type: 3}
+    - target: {fileID: 1595071729241605474, guid: a1bf8159ba9cbaa4d8159deccf791536, type: 3}
+      propertyPath: laserCooldownDuration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2227026557371567692, guid: a1bf8159ba9cbaa4d8159deccf791536, type: 3}
       propertyPath: m_RootOrder
       value: 2
