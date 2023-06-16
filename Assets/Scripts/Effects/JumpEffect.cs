@@ -20,6 +20,9 @@ namespace Effects
         [SerializeField]
         private float shipJumpPoint;
 
+        [SerializeField]
+        private AudioSource jumpSound;
+
         [ContextMenu("Test effect")]
         public void TestEffect()
         {
@@ -42,6 +45,8 @@ namespace Effects
             {
                 yield break;
             }
+
+            jumpSound.Play();
             
             float startTime = Time.time;
 
