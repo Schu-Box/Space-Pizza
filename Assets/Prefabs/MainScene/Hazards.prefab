@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazardParent: {fileID: 6123580849663722925}
-  asteroidPrefab: {fileID: 1344349466860986968, guid: 18832143323cea043ba5a5b9ad395ff6, type: 3}
   coinPrefab: {fileID: 5863432961061354667, guid: 0cd52f25c9c370c439292d84fd00d88e, type: 3}
   spawnRadiusRange: {x: 60, y: 100}
   targetRadiusRange: {x: 0, y: 100}
+  enemyComposition: {fileID: 11400000, guid: 1c687c4967599af41b09eb02b368b247, type: 2}
   spawnRateOverTime:
     serializedVersion: 2
     m_Curve:
