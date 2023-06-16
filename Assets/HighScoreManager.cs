@@ -2,13 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GamePhases;
+using Helpers;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 public class HighScoreManager : MonoBehaviour
 {
     public static HighScoreManager Current => GameManager.Instance
         .ReferenceProvider.HighScoreManager;
+    
+    [SerializeField]
+    private AnimationCurve pointsForLevelCompletion;
     
     public int CurrentScore { get; private set; } = 0;
     
@@ -16,9 +22,29 @@ public class HighScoreManager : MonoBehaviour
 
     private bool canScoreBeChanged = true;
 
-    public void AddScore(int score)
+    private void Start()
     {
-        if (!canScoreBeChanged)
+        ProgressManager.Current.CurrentLevelChangedEvent += HandleLevelCompleted;
+    }
+    
+    private void OnDestroy()
+    {
+        ProgressManager.Current.CurrentLevelChangedEvent -= HandleLevelCompleted;
+    }
+    
+    private void HandleLevelCompleted()
+    {
+        // the completed level is the previous one
+        int completedLevel = ProgressManager.Current.CurrentLevel - 1;
+
+        int pointsForCompletion = Mathf.RoundToInt(pointsForLevelCompletion.EvaluateLimitless(completedLevel));
+        
+        AddScore(pointsForCompletion, overwriteScoreLock: true);
+    }
+
+    public void AddScore(int score, bool overwriteScoreLock = false)
+    {
+        if (!canScoreBeChanged && !overwriteScoreLock)
         {
             return;
         }

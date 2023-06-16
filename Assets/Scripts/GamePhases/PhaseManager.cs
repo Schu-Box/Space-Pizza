@@ -48,7 +48,7 @@ namespace GamePhases
             if (currentPhase == GamePhase.Fighting)
             {
                 // left the fighting phase -> player completed a level
-                ProgressTracker.Current.HandleLevelCompleted();
+                ProgressManager.Current.HandleLevelCompleted();
             }
 
             // phase changes will always reset the jump state

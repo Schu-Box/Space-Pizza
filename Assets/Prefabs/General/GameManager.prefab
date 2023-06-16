@@ -44,6 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c86fd7f33adad4897c7578d142535f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsForLevelCompletion:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1000
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1000
+      inSlope: -0
+      outSlope: 0
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1996347519783575738
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +326,7 @@ MonoBehaviour:
   shipManager: {fileID: 607901460370984089}
   inputManager: {fileID: 4482871198380905214}
   _highScoreManager: {fileID: 963398238}
-  progressTracker: {fileID: 3613786196032370443}
+  progressManager: {fileID: 3613786196032370443}
 --- !u!1 &8874797175814493703
 GameObject:
   m_ObjectHideFlags: 0

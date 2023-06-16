@@ -65,7 +65,7 @@ public class Hazard : MonoBehaviour
         Vector3 direction = targetPosition - transform.position;
         direction.Normalize();
         _rigidbody.velocity = direction * (Random.Range(speedRange.x, speedRange.y) 
-                                           * SpeedModifierOverTime.EvaluateLimitless(ProgressTracker.Current.CurrentLevel));
+                                           * SpeedModifierOverTime.EvaluateLimitless(ProgressManager.Current.CurrentLevel));
         
         // Debug.Log(rigidbody.velocity);
     }

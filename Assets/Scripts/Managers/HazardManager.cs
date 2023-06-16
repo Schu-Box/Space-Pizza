@@ -36,7 +36,7 @@ public class HazardManager : MonoBehaviour
 
    private void Start()
    {
-      ProgressTracker.Current.CurrentLevelChangedEvent += UpdateSpawnRate;
+      ProgressManager.Current.CurrentLevelChangedEvent += UpdateSpawnRate;
       UpdateSpawnRate();
    }
 
@@ -83,12 +83,12 @@ public class HazardManager : MonoBehaviour
 
    private void OnDestroy()
    {
-      ProgressTracker.Current.CurrentLevelChangedEvent -= UpdateSpawnRate;
+      ProgressManager.Current.CurrentLevelChangedEvent -= UpdateSpawnRate;
    }
 
    private void UpdateSpawnRate()
    {
-      currentSpawnRate = spawnRateOverTime.EvaluateLimitless(ProgressTracker.Current.CurrentLevel);
+      currentSpawnRate = spawnRateOverTime.EvaluateLimitless(ProgressManager.Current.CurrentLevel);
    }
    
    public void StartSpawningHazards()

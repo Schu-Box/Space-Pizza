@@ -55,7 +55,7 @@ public class GameplayInterfaceManager : MonoBehaviour
         UpdateScoreText(HighScoreManager.Current.CurrentScore, 
             HighScoreManager.Current.HighScoreAchieved);
 
-        levelTextField.text = $"Level: {ProgressTracker.Current.CurrentLevel + 1}";
+        levelTextField.text = $"Level: {ProgressManager.Current.CurrentLevel + 1}";
     }
 
     void Update()

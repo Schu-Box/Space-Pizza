@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class ProgressTracker: MonoBehaviour
+    public class ProgressManager: MonoBehaviour
     {
-        public static ProgressTracker Current => GameManager.Instance.
-            ReferenceProvider.ProgressTracker;
+        public static ProgressManager Current => GameManager.Instance.
+            ReferenceProvider.ProgressManager;
 
         public event Action CurrentLevelChangedEvent;
 

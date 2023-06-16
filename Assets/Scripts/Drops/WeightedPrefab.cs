@@ -15,6 +15,6 @@ namespace Drops
         public AnimationCurve WeightOverTime => weightOverTime;
 
         public GameObject Prefab => prefab;
-        public float CurrentWeight => weightOverTime.EvaluateLimitless(ProgressTracker.Current.CurrentLevel);
+        public float CurrentWeight => weightOverTime.EvaluateLimitless(ProgressManager.Current.CurrentLevel);
     }
 }
