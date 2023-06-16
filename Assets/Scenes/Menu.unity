@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 48949823}
   - component: {fileID: 48949828}
   - component: {fileID: 48949822}
+  - component: {fileID: 48949829}
   m_Layer: 0
   m_Name: Racoon
   m_TagString: Untagged
@@ -391,6 +392,26 @@ CircleCollider2D:
   m_Offset: {x: 0.0000015199184, y: 0.13}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!95 &48949829
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48949820}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8cb2bba657907374e8f724d454152bd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &97969856
 GameObject:
   m_ObjectHideFlags: 0
