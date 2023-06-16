@@ -26,6 +26,9 @@ public class GameplayInterfaceManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI highScoreText;
 
+    [SerializeField]
+    private TMP_Text levelTextField;
+
     public GameObject tutorial_WASD;
 
     private bool wASDTutorialShown = true;
@@ -51,6 +54,8 @@ public class GameplayInterfaceManager : MonoBehaviour
         UpdateScoreColor();
         UpdateScoreText(HighScoreManager.Current.CurrentScore, 
             HighScoreManager.Current.HighScoreAchieved);
+
+        levelTextField.text = $"Level: {ProgressTracker.Current.CurrentLevel + 1}";
     }
 
     void Update()
