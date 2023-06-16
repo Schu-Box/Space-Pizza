@@ -47,9 +47,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553e303db8fbc7c4a98d0b99e2d5e3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreValue: 10
   damage: 1
   health: 1
   speedRange: {x: 3, y: 8}
+  SpeedModifierOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.033333343
+      outSlope: 0.033333343
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 1.1
+      inSlope: 0.033333343
+      outSlope: 0.042857137
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 1.4
+      inSlope: 0.042857137
+      outSlope: 0.04
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    - serializedVersion: 3
+      time: 20
+      value: 1.8
+      inSlope: 0.04
+      outSlope: 0
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   sizeRange: {x: 1, y: 1.6}
   angularVelocityRange: {x: -60, y: -60}
   explosionDuration: 0.4
