@@ -91,6 +91,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserModule 3 Variant (Mirrored)
       objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419766669005006074, guid: b835330c51fe92d48951217f17b59968, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8585638553546392146, guid: b835330c51fe92d48951217f17b59968, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
