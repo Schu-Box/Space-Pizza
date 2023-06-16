@@ -9,8 +9,6 @@ public class ShipLaser : ShipSubModule
     public int laserDamage = 1;
     public float laserCooldownDuration = 2f;
     private float _laserCooldownTimeRemaining = 0f;
-    
-    private Coroutine _laserCoroutine = null;
 
     void Update()
     {

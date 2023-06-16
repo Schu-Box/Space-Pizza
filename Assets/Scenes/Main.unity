@@ -258,7 +258,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
   m_Layer: 0
@@ -268,14 +267,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1465,6 +1456,79 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec45b643dfdf0c54ab56e89dffef7ff2, type: 3}
+--- !u!1001 &7507362387918319844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1078437690}
+    m_Modifications:
+    - target: {fileID: 845520519679224353, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_Name
+      value: Sword Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 845520519679224353, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827872670873308402, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827872670873308402, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254836189485112265, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938723983336409509, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6afcd50065e1fb84e98880e2f61a4067, type: 3}
 --- !u!1001 &7813736894970001595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1475,6 +1539,14 @@ PrefabInstance:
     - target: {fileID: 1567732847129243164, guid: aba5daaaf88da4d44acbe4cc639f6e5c, type: 3}
       propertyPath: m_Name
       value: Thruster 3 Variant (Mirrored)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650071136614097515, guid: aba5daaaf88da4d44acbe4cc639f6e5c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276467305620720527, guid: aba5daaaf88da4d44acbe4cc639f6e5c, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5481097515854794136, guid: aba5daaaf88da4d44acbe4cc639f6e5c, type: 3}
       propertyPath: m_RootOrder

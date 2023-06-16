@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b39be845af163f449b65175bfafa54a4
+guid: d1ae2aaa5d84a4946b0682b3a19ff088
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WASD_0
+      name: fx_melee_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 47
-        height: 39
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f983f5e543cd954db153a0f3a13615b
-      internalID: 576470015
+      spriteID: f619a10612b73124f9de4ac282bcc08a
+      internalID: 1149445481
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WASD_1
+      name: fx_melee_1
       rect:
         serializedVersion: 2
-        x: 47
+        x: 60
         y: 0
-        width: 47
-        height: 39
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40ec70df5cbd1934da09838de963761f
-      internalID: 1642942030
+      spriteID: 427634392d95a87459e2f3d735188753
+      internalID: -1718751028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WASD_2
+      name: fx_melee_2
       rect:
         serializedVersion: 2
-        x: 94
+        x: 120
         y: 0
-        width: 47
-        height: 39
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc4bd1a3650d7f54f889a297fb0d792f
-      internalID: 733224854
+      spriteID: c12aee2d99e5f014f96433e9d0fd24e7
+      internalID: 335800731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WASD_3
+      name: fx_melee_3
       rect:
         serializedVersion: 2
-        x: 141
+        x: 180
         y: 0
-        width: 47
-        height: 39
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33451b20c9379fd4ba82398895f4746f
-      internalID: 1037174157
+      spriteID: d737fb4581141dd4cb6a974d125092ad
+      internalID: -1268509028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WASD_4
+      name: fx_melee_4
       rect:
         serializedVersion: 2
-        x: 188
+        x: 240
         y: 0
-        width: 47
-        height: 39
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +215,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88ae8308aadf2ea468de05c2026494b2
-      internalID: 182916364
+      spriteID: 421a5d0ced03f9f409872fcf132dac75
+      internalID: -634218277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_melee_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5093109d0b22d8241809f56cb38a3f66
+      internalID: -894763849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_melee_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67d55f40f24966448a763ebae4a20bc
+      internalID: 1158838856
       vertices: []
       indices: 
       edges: []
@@ -232,11 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WASD_3: 1037174157
-      WASD_0: 576470015
-      WASD_1: 1642942030
-      WASD_2: 733224854
-      WASD_4: 182916364
+      fx_melee_3: -1268509028
+      fx_melee_4: -634218277
+      fx_melee_0: 1149445481
+      fx_melee_2: 335800731
+      fx_melee_1: -1718751028
+      fx_melee_5: -894763849
+      fx_melee_6: 1158838856
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

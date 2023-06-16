@@ -151,10 +151,17 @@ public class ShipModule : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
+        // Debug.Log("Hit by object " + other.gameObject.name);
+        
         if (other.gameObject.GetComponent<Laser>())
         {
             HitByProjectile(other.gameObject.GetComponent<Laser>());
         }
+
+        // if (other.gameObject.GetComponent<SwordCollider>())
+        // {
+        //     Debug.Log("hit by sword");
+        // }
     }
 
     private void HandleHealthChange()
