@@ -18,6 +18,8 @@ public class ShipModule : MonoBehaviour
     [SerializeField]
     private GameObject visualsRoot;
 
+    public Animator explosionAnimator;
+
     public Transform RootTransform => rootTransform;
 
     [FormerlySerializedAs("shipColorController")]
@@ -195,6 +197,8 @@ public class ShipModule : MonoBehaviour
     {
         rootTransform.SetParent(null);
         rootTransform.gameObject.AddComponent<Rigidbody2D>();
+        
+        explosionAnimator.Play("ModuleExplosion");
 
         //TODO: Apply force
 

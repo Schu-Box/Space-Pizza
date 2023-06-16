@@ -20,7 +20,7 @@ public class Ship : MonoBehaviour
     
     //Weight Values
     private float speedLostPerWeight = 0.05f;
-    private float rotationSpeedLostPerWeight = 2f;
+    private float rotationSpeedLostPerWeight = 2.5f;
 
     private bool jumpDriveCharging = false;
     private bool jumpDriveReady = false;

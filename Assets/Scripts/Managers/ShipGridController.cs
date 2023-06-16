@@ -146,7 +146,7 @@ namespace Managers
 
         public void PlacePart(Vector3 partPosition, ShipModule placedModule)
         {
-            if (PhaseManager.Current.CurrentPhase == GamePhase.Construction && ConstructionInterfaceManager.Instance.TimerStarted == false && !placedModule.coreModule)
+            if (!placedModule.coreModule && PhaseManager.Current.CurrentPhase == GamePhase.Construction && ConstructionInterfaceManager.Instance.TimerStarted == false)
             {
                 ConstructionInterfaceManager.Instance.StartTimer();
             }

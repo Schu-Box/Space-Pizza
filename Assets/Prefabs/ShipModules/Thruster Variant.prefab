@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  rotationSpeed: 0.5
+  rotationSpeed: 1
   particleLightList:
   - {fileID: 7785371167170181819}
 --- !u!1001 &4685765398116617416
@@ -58,6 +58,10 @@ PrefabInstance:
     - target: {fileID: 24581570820202380, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 611129594642235600, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 672886418004090320, guid: d83a524e8cf491e46a41b2118c1c3d39, type: 3}
       propertyPath: m_Size.y
