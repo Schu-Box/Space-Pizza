@@ -5315,6 +5315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserModule Variant (Mirrored)
       objectReference: {fileID: 0}
+    - target: {fileID: 5411692070416966493, guid: a1bf8159ba9cbaa4d8159deccf791536, type: 3}
+      propertyPath: laserCooldownDuration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4782750858806581369, guid: a1bf8159ba9cbaa4d8159deccf791536, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1bf8159ba9cbaa4d8159deccf791536, type: 3}
