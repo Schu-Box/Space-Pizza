@@ -20,6 +20,9 @@ public class ShipShield : ShipSubModule
    private bool _shieldEnabled = true;
    private Coroutine _shieldRechargeCoroutine = null;
 
+   [SerializeField]
+   private bool onlyBlockProjectiles = false;
+
    void Start()
    {
       PhaseManager.Current.PhaseChangedEvent += UpdateShieldState;
@@ -69,11 +72,14 @@ public class ShipShield : ShipSubModule
 
    public void OnCollisionEnter2D(Collision2D other)
    {
-      Hazard hazard = other.gameObject.GetComponent<Hazard>();
-      if (hazard != null)
+      if(!onlyBlockProjectiles)
       {
-         hazard.TakeDamage(damageDealtOnCollision);
-         AbsorbDamage(hazard.damage);
+         Hazard hazard = other.gameObject.GetComponent<Hazard>();
+         if (hazard != null)
+         {
+            hazard.TakeDamage(damageDealtOnCollision);
+            AbsorbDamage(hazard.damage);
+         }
       }
 
       Laser projectile = other.gameObject.GetComponent<Laser>();
