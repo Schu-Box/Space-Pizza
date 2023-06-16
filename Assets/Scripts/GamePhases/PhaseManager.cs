@@ -28,9 +28,9 @@ namespace GamePhases
 
         public bool IsJumping { get; private set; } = false;
 
-        public void ChangeJumpState(bool shouldJump)
+        public void StartJump()
         {
-            IsJumping = shouldJump;
+            IsJumping = true;
         }
 
         public void SwitchPhase(GamePhase nextPhase)
@@ -50,6 +50,9 @@ namespace GamePhases
                 // left the fighting phase -> player completed a level
                 ProgressTracker.Current.HandleLevelCompleted();
             }
+
+            // phase changes will always reset the jump state
+            IsJumping = false;
             
             currentPhase = nextPhase;
             PhaseChangedEvent?.Invoke();

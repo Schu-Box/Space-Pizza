@@ -49,6 +49,8 @@ public class GameplayInterfaceManager : MonoBehaviour
     private void Start()
     {
         UpdateScoreColor();
+        UpdateScoreText(HighScoreManager.Current.CurrentScore, 
+            HighScoreManager.Current.HighScoreAchieved);
     }
 
     void Update()
@@ -95,13 +97,12 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     private IEnumerator RunJumpSequence()
     {
-        PhaseManager.Current.ChangeJumpState(true);
+        PhaseManager.Current.StartJump();
 
         jumpEffect.StartEffect(jumpEffectDuration);
         
         Ship ship = ShipManager.Current.PlayerShip;
-        ship.ChangeVisibility(true);
-
+        
         Vector3 jumpPositioning = ship.RootTransform.position;
 
         yield return new WaitForSecondsRealtime(jumpEffectDuration * 0.25f);
@@ -110,15 +111,13 @@ public class GameplayInterfaceManager : MonoBehaviour
         
         yield return new WaitForSeconds(jumpEffectDuration * 0.75f + 0.5f);
 
-        PhaseManager.Current.ChangeJumpState(false);
-
         GameManager.Instance.ReferenceProvider.PhaseManager.SwitchPhase(GamePhase.Construction);
-        
-        
-        
+
         ship.RootTransform.position = ShipGridController.Current.CorePosition.GridPosition();
         ship.RootTransform.eulerAngles = Vector3.zero;
         ship.StopPhysics();
+                
+        ship.ChangeVisibility(true);
     }
 
     public void UpdateScoreText(int newScore, bool isHighScore = false)

@@ -10,10 +10,9 @@ public class HighScoreManager : MonoBehaviour
     public static HighScoreManager Current => GameManager.Instance
         .ReferenceProvider.HighScoreManager;
     
-    private int currentScore = 0;
-    private bool highScoreAchieved = false;
-
-    public bool HighScoreAchieved => highScoreAchieved;
+    public int CurrentScore { get; private set; } = 0;
+    
+    public bool HighScoreAchieved { get; private set; } = false;
 
     public void AddScore(int score)
     {
@@ -22,20 +21,20 @@ public class HighScoreManager : MonoBehaviour
             return;
         }
         
-        currentScore += score;
+        CurrentScore += score;
         
-        if (!highScoreAchieved && currentScore > PlayerPrefs.GetInt("highScore1"))
+        if (!HighScoreAchieved && CurrentScore > PlayerPrefs.GetInt("highScore1"))
         {
-            highScoreAchieved = true;
+            HighScoreAchieved = true;
             GameplayInterfaceManager.Instance.UpdateScoreColor();
         }
         
-        GameplayInterfaceManager.Instance.UpdateScoreText(currentScore, highScoreAchieved);
+        GameplayInterfaceManager.Instance.UpdateScoreText(CurrentScore, HighScoreAchieved);
     }
 
     public void FinalizeScore()
     {
-        PlayerPrefs.SetInt("highScore1", currentScore);
+        PlayerPrefs.SetInt("highScore1", CurrentScore);
     }
 
     [ContextMenu("Clear Scores")]

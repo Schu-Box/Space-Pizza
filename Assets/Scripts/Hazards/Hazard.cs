@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
+using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +13,10 @@ public class Hazard : MonoBehaviour
     public int damage = 1;
     public int health = 1;
     public Vector2 speedRange = new Vector2(3f, 8f);
+
+    [SerializeField]
+    private AnimationCurve SpeedModifierOverTime;
+    
     public Vector2 sizeRange = new Vector2(1f, 1.4f);
     public Vector2 angularVelocityRange = new Vector2(-30f, 30f);
 
@@ -58,7 +64,8 @@ public class Hazard : MonoBehaviour
         
         Vector3 direction = targetPosition - transform.position;
         direction.Normalize();
-        _rigidbody.velocity = direction * Random.Range(speedRange.x, speedRange.y);
+        _rigidbody.velocity = direction * (Random.Range(speedRange.x, speedRange.y) 
+                                           * SpeedModifierOverTime.EvaluateLimitless(ProgressTracker.Current.CurrentLevel));
         
         // Debug.Log(rigidbody.velocity);
     }
