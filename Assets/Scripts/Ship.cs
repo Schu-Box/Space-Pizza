@@ -254,6 +254,7 @@ public class Ship : MonoBehaviour
         totalWeight = 0f;
         speed = 0f;
         rotationSpeed = 0f;
+        
         foreach (ShipModule shipModule in shipModules)
         {
             foreach (ShipSubModule shipSubModule in shipModule.shipSubModules)
@@ -268,14 +269,11 @@ public class Ship : MonoBehaviour
             totalWeight += shipModule.weight;
         }
 
-        float subtractionSpeed = (totalWeight * speedLostPerWeight);
-        if (subtractionSpeed < 0f)
-        {
-            subtractionSpeed = 0f;
-        }
+        float speedReduction = totalWeight * speedLostPerWeight;
+        float rotationReduction = totalWeight * rotationSpeedLostPerWeight;
 
-        speed =  speed - subtractionSpeed;
-        rotationSpeed = rotationSpeed - (totalWeight - rotationSpeedLostPerWeight);
+        speed = Mathf.Clamp(speed - speedReduction, 0, speed) ;
+        rotationSpeed =  Mathf.Clamp(rotationSpeed - rotationReduction, 0, rotationSpeed) ;
     }
 
     public void StopPhysics()
