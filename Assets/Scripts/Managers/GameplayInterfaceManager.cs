@@ -67,6 +67,7 @@ public class GameplayInterfaceManager : MonoBehaviour
 
     void Update()
     {
+        // UpdateSpeedTexts();
     }
 
     public void HideWASDTutorial()
@@ -169,5 +170,17 @@ public class GameplayInterfaceManager : MonoBehaviour
         }
 
         highScoreText.color = Color.white;
+    }
+
+    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI velocityText;
+    public TextMeshProUGUI fpsText;
+    
+    //Debugging only
+    public void UpdateSpeedTexts()
+    {
+        speedText.text = "Speed: " + ShipManager.Current.PlayerShip.Speed;
+        velocityText.text = "Velocity: " + ShipManager.Current.PlayerShip.Velocity;
+        fpsText.text = "FPS: " + (int)(1f / Time.unscaledDeltaTime);
     }
 }

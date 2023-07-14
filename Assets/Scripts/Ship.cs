@@ -36,6 +36,7 @@ public class Ship : MonoBehaviour
     private List<ShipModule> shipModules = new List<ShipModule>();
 
     public Vector2 Velocity => rb.velocity;
+    public float Speed => speed;
 
     private ShipModule coreModule;
 
@@ -87,6 +88,8 @@ public class Ship : MonoBehaviour
     
     //TODO: Refactor shipModule searching (maybe just have a shared formula?)
 
+    private float expectedFPS = 320f;
+    
     void Update()
     {
         if (PhaseManager.Current.CurrentPhase == GamePhase.Construction)
@@ -97,7 +100,7 @@ public class Ship : MonoBehaviour
         float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
         if (forwardInput > 0f)
         {
-            Vector2 force = rootTransform.up * (forwardInput * speed);
+            Vector2 force = rootTransform.up * (forwardInput * speed) * (Time.unscaledDeltaTime * expectedFPS);
             rb.AddForce(force);
 
             if (!isThrusting)
