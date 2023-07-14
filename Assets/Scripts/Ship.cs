@@ -19,8 +19,8 @@ public class Ship : MonoBehaviour
     private Rigidbody2D rb;
     
     //Weight Values
-    private float speedLostPerWeight = 0.1f;
-    private float rotationSpeedLostPerWeight = 2.3f;
+    private float speedLostPerWeight = 0.15f;
+    private float rotationSpeedLostPerWeight = 2.5f;
 
     private bool jumpDriveCharging = false;
     private bool jumpDriveReady = false;

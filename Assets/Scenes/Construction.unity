@@ -714,6 +714,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5667455513818722950, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667455513818722950, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dd5319e179393eb45a11bd72a22856fb, type: 2}
+    - target: {fileID: 5667455513818722950, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667455513818722950, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2882601292093218044, guid: dd5319e179393eb45a11bd72a22856fb, type: 2}
+    - target: {fileID: 5667455513818722950, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5667455514332964799, guid: 2102e5a130b49b943adfe7df54760ba1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
