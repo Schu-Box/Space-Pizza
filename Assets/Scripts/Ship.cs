@@ -100,7 +100,7 @@ public class Ship : MonoBehaviour
         float forwardInput = Mathf.Clamp(Input.GetAxis("Vertical"), 0f, 1f);
         if (forwardInput > 0f)
         {
-            Vector2 force = rootTransform.up * (forwardInput * speed) * (Time.unscaledDeltaTime * expectedFPS);
+            Vector2 force = rootTransform.up * (forwardInput * speed) * (Time.deltaTime * expectedFPS);
             rb.AddForce(force);
 
             if (!isThrusting)
