@@ -152,8 +152,7 @@ namespace Managers
         {
             placeModuleSfxPlayer.Play();
             
-            if (!placedModule.coreModule && 
-                PhaseManager.Current.CurrentPhase == GamePhase.Construction && 
+            if (PhaseManager.Current.CurrentPhase == GamePhase.Construction && !placedModule.coreModule && 
                 ConstructionInterfaceManager.Instance.TimerStarted == false)
             {
                 ConstructionInterfaceManager.Instance.StartTimer();

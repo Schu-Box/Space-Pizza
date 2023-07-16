@@ -15,11 +15,6 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Restart();
-        }
-
         if (PhaseManager.Current.CurrentPhase == GamePhase.Fighting && 
             GameplayInterfaceManager.Instance.WASDTutorialShown)
         {
@@ -60,12 +55,5 @@ public class InputManager : MonoBehaviour
         }
         
         moduleSelector.HandleModuleSelected();
-    }
-
-    public void Restart()
-    {
-        Destroy(ShipManager.Current.PlayerShip.RootTransform.gameObject);
-        Destroy(GameManager.Instance.gameObject);
-        SceneManager.LoadScene(0);  
     }
 }

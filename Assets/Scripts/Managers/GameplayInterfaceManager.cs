@@ -113,7 +113,7 @@ public class GameplayInterfaceManager : MonoBehaviour
 
         HighScoreManager.Current.FinalizeScore(playerName);
 
-        InputManager.Current.Restart();
+        SettingsMenu.Instance.Restart();
     }
 
     [ContextMenu("ActivateJumpDrive")]
