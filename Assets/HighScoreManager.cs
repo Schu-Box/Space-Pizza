@@ -40,6 +40,12 @@ public class HighScoreManager : MonoBehaviour
     private void Start()
     {
         ProgressManager.Current.CurrentLevelChangedEvent += HandleLevelCompleted;
+
+        if (PlayerPrefs.GetInt($"{highScorePointsPrefix}{0}") == 0)
+        {
+            Debug.Log("Setting default scores!");
+            SetDefaultScores();
+        }
     }
     
     private void OnDestroy()
@@ -147,6 +153,47 @@ public class HighScoreManager : MonoBehaviour
     public void ClearScores()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    [ContextMenu("Set Default Scores")]
+    public void SetDefaultScores()
+    {
+        ClearScores();
+        
+        string rankKey_1 = $"{highScoreRankPrefix}{0}";
+        string playerNameKey_1 = $"{highScoreNamePrefix}{0}";
+        string pointsKey_1 = $"{highScorePointsPrefix}{0}";
+        PlayerPrefs.SetInt(rankKey_1, 1);
+        PlayerPrefs.SetString(playerNameKey_1, "Charlie");
+        PlayerPrefs.SetInt(pointsKey_1, 100000);
+        
+        string rankKey_2 = $"{highScoreRankPrefix}{1}";
+        string playerNameKey_2 = $"{highScoreNamePrefix}{1}";
+        string pointsKey_2 = $"{highScorePointsPrefix}{1}";
+        PlayerPrefs.SetInt(rankKey_2, 2);
+        PlayerPrefs.SetString(playerNameKey_2, "Paul");
+        PlayerPrefs.SetInt(pointsKey_2, 50000);
+        
+        string rankKey_3 = $"{highScoreRankPrefix}{2}";
+        string playerNameKey_3 = $"{highScoreNamePrefix}{2}";
+        string pointsKey_3 = $"{highScorePointsPrefix}{2}";
+        PlayerPrefs.SetInt(rankKey_3, 3);
+        PlayerPrefs.SetString(playerNameKey_3, "Hassen");
+        PlayerPrefs.SetInt(pointsKey_3, 20000);
+        
+        string rankKey_4 = $"{highScoreRankPrefix}{3}";
+        string playerNameKey_4 = $"{highScoreNamePrefix}{3}";
+        string pointsKey_4 = $"{highScorePointsPrefix}{3}";
+        PlayerPrefs.SetInt(rankKey_4, 4);
+        PlayerPrefs.SetString(playerNameKey_4, "Kirsten");
+        PlayerPrefs.SetInt(pointsKey_4, 5000);
+        
+        string rankKey_5 = $"{highScoreRankPrefix}{4}";
+        string playerNameKey_5 = $"{highScoreNamePrefix}{4}";
+        string pointsKey_5 = $"{highScorePointsPrefix}{4}";
+        PlayerPrefs.SetInt(rankKey_5, 5);
+        PlayerPrefs.SetString(playerNameKey_5, "James");
+        PlayerPrefs.SetInt(pointsKey_5, 2000);
     }
 
     public void LockScore()

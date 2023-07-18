@@ -48,19 +48,25 @@ public class SettingsMenu : MonoBehaviour
 
     private void SetSliderValues()
     {
-        float musicVolumeValue = PlayerPrefs.GetFloat("MusicVolume", 0.7f);
+        float musicVolumeValue = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         musicVolumeSlider.value = musicVolumeValue;
         
-        float sfxVolumeValue = PlayerPrefs.GetFloat("SFXVolume", 0.7f);
+        float sfxVolumeValue = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
         sfxVolumeSlider.value = sfxVolumeValue;
     }
 
     public void Restart()
     {
-        Time.timeScale = 1f;
-        paused = false;
+        if (paused)
+        {
+            ToggleSettingsMenu();
+        }
+
+        if (ShipManager.Current.PlayerShip != null)
+        {
+            Destroy(ShipManager.Current.PlayerShip.RootTransform.gameObject);
+        }
         
-        Destroy(ShipManager.Current.PlayerShip.RootTransform.gameObject);
         Destroy(GameManager.Instance.gameObject);
         SceneManager.LoadScene(0);  
     }

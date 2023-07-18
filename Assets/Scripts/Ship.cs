@@ -287,7 +287,7 @@ public class Ship : MonoBehaviour
 
     private void DestroyShip()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
         
         GameplayInterfaceManager.Instance.DisplayGameOver();
     }
@@ -296,7 +296,7 @@ public class Ship : MonoBehaviour
     {
         if (coreModule == null)
         {
-            Debug.LogError($"[Ship] RemoveDisconnectedNeighboringShipModules called but" +
+            Debug.LogWarning($"[Ship] RemoveDisconnectedNeighboringShipModules called but" +
                            $" no core modules in known!");
             return;
         }
